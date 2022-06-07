@@ -1,37 +1,70 @@
 MODELS
-npx sequelize model:generate --name Tweets --attributes userId:integer,address:string,city:string,state:string,country:string,name:string,price:integer
 
-npx sequelize model:generate --name Booking --attributes locationId:integer,userId:integer,startDate:date,endDate:date
+npx sequelize model:generate --name User --attributes fullname:string,email:string,bio:text,profilePic:string,hashedPassword:string,verified:boolean,state:string,country:string,link:text
 
-npx sequelize model:generate --name Image --attributes locationId:integer,url:string
+npx sequelize model:generate --name Tweet --attributes userId:integer,tweet:string,imgUrl:string
 
-npx sequelize model:generate --name Review --attributes userId:integer,locationId:integer,review:string,rating:integer
+npx sequelize model:generate --name Comment --attributes tweetId:integer,userId:integer,comment:string
 
+npx sequelize model:generate --name Image --attributes url:string,tweetId:integer
+
+npx sequelize model:generate --name Retweet --attributes userId:integer,tweetId:integer,tweet:string,imgUrl:string
+
+npx sequelize model:generate --name Like --attributes userId:integer,tweetId:integer
+
+npx sequelize model:generate --name Reply --attributes tweetId:integer,userId:integer,commentId:integer,comment:string
+
+npx sequelize model:generate --name Follow --attributes followerId:integer,followingId:integer
 
 
 Associations:
 
-Users has many Locations
-Users has many Bookings
-
-Bookings belongs to Users
-Bookings belongs to Locations
-
-Locations belongs to Users
-Locations has many Bookings
-Locations has many Images
-
-Images belongs to Locations
+Users Table
+    Users has many tweets.
+    Users has many comments.
+    Users has many likes.
+    Users has many retweets.
+    Users has many followers.
+    Users has many followings.
+    users has many replies.
+Tweets Table
+    A tweet belongs to a single user.
+    A post has many likes.
+    A post has many comments.
+    A post has many retweets.
+Comments Table
+    A comment belongs to one user.
+    A comment belongs to one post.
+    A comment has many replies
+Likes Table
+    A like belongs to one user.
+    A like belongs to one tweet.
+Retweet Table
+    A retweet belongs to one tweet
+    A retweet belongs to one user
+Follows Table
+    A follower belongs to one user
+    A following belongs to one user
+Images Table
+    An image belongs to a tweet
+Replied Table
+    A reply belongs to a user
+    A reply belongs to a tweet
+    A reply belongs to a comment
 
 ------------------------------
 
 
 SEEDS:
 
-npx sequelize seed:generate --name Location
-npx sequelize seed:generate --name Booking
+npx sequelize seed:generate --name User
+npx sequelize seed:generate --name Tweet
+npx sequelize seed:generate --name Comment
+npx sequelize seed:generate --name Like
+npx sequelize seed:generate --name Retweet
+npx sequelize seed:generate --name Follow
 npx sequelize seed:generate --name Image
-npx sequelize seed:generate --name Review
+npx sequelize seed:generate --name Reply
 
 
 LOCATION SEED

@@ -1,11 +1,17 @@
 {
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-  "sequelize": "sequelize",
-  "sequelize-cli": "sequelize-cli",
-  "start": "per-env",
-  "start:development": "nodemon -r dotenv/config ./bin/www",
-  "start:production": "node ./bin/www"
-},
+    "sequelize": "sequelize",
+    "sequelize-cli": "sequelize-cli",
+    "start": "per-env",
+    "start:development": "nodemon -r dotenv/config ./bin/www",
+    "start:production": "node ./bin/www"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
@@ -26,5 +32,6 @@
   "devDependencies": {
     "dotenv-cli": "^5.1.0",
     "nodemon": "^2.0.16"
-  }
+  },
+  "description": ""
 }

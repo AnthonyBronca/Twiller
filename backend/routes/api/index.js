@@ -1,17 +1,19 @@
 const router = require('express').Router();
-const sessionRouter = require('./session.js');
-// const usersRouter = require('./users.js');
-// const bookingRouter = require('./bookings')
+// const sessionRouter = require('./session.js');
+// // const usersRouter = require('./users.js');
+// // const bookingRouter = require('./bookings')
 
-router.use('/session', sessionRouter);
+
+router.post('/test', function(req, res) {
+    res.json({ requestBody: req.body });
+  });
+
+
+// router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-router.use('/locations', locationRouter)
-router.use('/user', userListingsRouter)
-router.use('/user', reviewsRouter)
-router.use('/reviews', reviewRouter)
-// router.use('/bookings', bookingRouter)
+// // router.use('/bookings', bookingRouter)
 
 
 router.get('/api/csrf/restore', (req,res)=>{
@@ -23,9 +25,6 @@ router.get('/api/csrf/restore', (req,res)=>{
       }
 })
 
-//website./locations/
-
-//webite./music/:id
 
 
 
