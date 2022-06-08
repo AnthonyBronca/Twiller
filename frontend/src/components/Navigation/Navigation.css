@@ -1,0 +1,19 @@
+#profile-button{
+    margin: 10px
+}
+
+#navigation-ul{
+    border: solid black 1px;
+    display: flex;
+    justify-content: right;
+}
+
+#nav-bar-items{
+    border: solid black 1px;
+}
+
+#nav-bar-box-container{
+    box-shadow: rgb(0 0 0 / 8%) 0px 1px 1px !important;
+    transform-origin: 50% 0% !important;
+
+}

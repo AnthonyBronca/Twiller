@@ -12,10 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     }),
     Comment.belongsTo(models.Tweet, {
       foreignKey: 'tweetId'
-    }),
-    Comment.hasMany(models.Reply, {
-      foreignKey: 'commentId'
     })
+    // Comment.hasMany(models.Reply, {
+    //   foreignKey: 'commentId'
+    // })
   };
   return Comment;
 };

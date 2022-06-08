@@ -1,0 +1,32 @@
+#email-field{
+    margin-left: 50px;
+}
+
+#username-field{
+    margin-left: 50px;
+}
+
+#confirm-password-field{
+    margin-left: 50px;
+}
+
+#password-field{
+    margin-left: 50px;
+}
+
+#signup-button{
+    margin-left: 50px;
+}
+
+.signup-items{
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    padding: 5px;
+}
+
+.input-box-signup{
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+}

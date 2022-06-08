@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      username: {
+        type: Sequelize.STRING(50),
+        allowNull: false,
+        unique: true
+      },
       fullname: {
         type: Sequelize.STRING(50),
         allowNull: false
@@ -18,7 +23,7 @@ module.exports = {
         unique: true
       },
       bio: {
-        type: Sequelize.TEXT(2000)
+        type: Sequelize.TEXT()
       },
       profilePic: {
         type: Sequelize.STRING(255)
@@ -37,14 +42,14 @@ module.exports = {
         type: Sequelize.STRING(100)
       },
       link: {
-        type: Sequelize.TEXT(2000)
+        type: Sequelize.TEXT()
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       }
     });
