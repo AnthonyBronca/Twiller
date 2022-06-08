@@ -18,7 +18,7 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink style={{color:'white'}} to="/signup">Sign Up</NavLink>
       </>
     );
   }
@@ -27,7 +27,7 @@ function Navigation({ isLoaded }){
     <div id='nav-bar-box-container'>
     <ul>
       <ul id='nav-bar-items'>
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink style={{color:'white'}} exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
       </ul>
     </ul>
