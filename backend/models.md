@@ -1,9 +1,3 @@
-
-S3 access key: AKIAXA3CNEJBPXD5JMLF
-s3 secret key: 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
-
-
-
 MODELS
 
 npx sequelize model:generate --name User --attributes username:string,fullname:string,email:string,bio:text,profilePic:string,hashedPassword:string,verified:boolean,state:string,country:string,link:text
