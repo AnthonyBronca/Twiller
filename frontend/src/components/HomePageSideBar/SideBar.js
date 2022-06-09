@@ -8,17 +8,18 @@ import {
     notificationIcon, notificationIconFilledIn,
     messageIcon, messageIconFilledIn,
     profileIcon, profileIconFilledIn
-} from './sidebaricons'
+} from './sidebaricons';
+import './sidebar.css'
 
 function SideBar() {
     const dispatch = useDispatch();
-
+    const history = useHistory();
+    const userId = useSelector((state) => state?.session?.user?.id)
     const [homeStatus, setHomeStatus] = useState(homeIcon)
     const [exploreStatus, setExploreStatus] = useState(exploreIcon)
     const [notificationStatus, setNotificationStatus] = useState(notificationIcon)
     const [messageStatus, setMessageStatus] = useState(messageIcon)
     const [profileStatus, setProfileStatus] = useState(profileIcon)
-
 
     const clearIconStatus = (id) => {
         setHomeStatus(homeIcon);
@@ -32,41 +33,56 @@ function SideBar() {
         e.stopPropagation();
         clearIconStatus(iconId);
         console.log(iconId)
-        if (iconId === 'home')setHomeStatus(homeFilledIn)
+        if (iconId === 'home') {
+            setHomeStatus(homeFilledIn)
+            history.push('/')
+        }
         if (iconId === 'explore') setExploreStatus(exploreIconFilledIn)
         if (iconId === 'notification') setNotificationStatus(notificationIconFilledIn)
         if (iconId === 'message') setMessageStatus(messageIconFilledIn)
-        if (iconId === 'profile') setProfileStatus(profileIconFilledIn)
+        if (iconId === 'profile') {
+            setProfileStatus(profileIconFilledIn)
+            history.push(`/user/${userId}`)
+        }
     }
 
     return (
         <>
             <div className="side-bar-container">
                 <div className="side-bar-icons">
-                    <div id='bird' className="bird-icon">
-                       {birdIcon}
-                       {/* add dispatch to bird */}
-                    </div >
-                    <div id='home' className="home-icon"
-                    onClick={(e)=> changeIconStatus(e, e.target.id)}>
-                    {homeStatus}
+                    <div className="interior-side-bar">
+
+                        <div id='bird' className="side-bar-icon">
+                            {birdIcon}
+                            {/* add dispatch to bird */}
+                        </div >
+                        <div id='home' className="side-bar-icon"
+                            onClick={(e) => changeIconStatus(e, e.target.id)}>
+                            {homeStatus}
+                            <label className="side-bar-label">Home</label>
+                        </div>
+                        <div id='explore' className="side-bar-icon"
+                            onClick={(e) => changeIconStatus(e, e.target.id)}>
+                            {exploreStatus}
+                            <label className="side-bar-label">Explore</label>
+                        </div >
+                        <div id='notification' className="side-bar-icon"
+                            onClick={(e) => changeIconStatus(e, e.target.id)}>
+                            {notificationStatus}
+                            <label className="side-bar-label">Notifications</label>
+                        </div>
+                        <div id='message' className="side-bar-icon"
+                            onClick={(e) => changeIconStatus(e, e.target.id)}>
+                            {messageStatus}
+                            <label className="side-bar-label">Messages</label>
+                        </div>
+                        <div id='profile' className="side-bar-icon"
+                            onClick={(e) => changeIconStatus(e, e.target.id)}>
+                            {profileStatus}
+                            <label className="side-bar-label">Profile</label>
+                        </div>
                     </div>
-                    <div id='explore' className="explore-icon"
-                    onClick={(e)=> changeIconStatus(e, e.target.id)}>
-                    {exploreStatus}
-                    </div >
-                    <div id='notification' className="notification-icon"
-                    onClick={(e)=> changeIconStatus(e, e.target.id)}>
-                    {notificationStatus}
-                    </div>
-                    <div id='message' className="message-icon"
-                    onClick={(e)=> changeIconStatus(e, e.target.id)}>
-                    {messageStatus}
-                    </div>
-                    <div id='profile' className="profile-icon"
-                    onClick={(e)=> changeIconStatus(e, e.target.id)}>
-                    {profileStatus}
-                    </div>
+
                 </div>
             </div>
 

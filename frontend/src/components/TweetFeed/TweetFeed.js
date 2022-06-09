@@ -55,7 +55,6 @@ function TweetFeed() {
     } else {
         return (authorizedUser &&
             <>
-                <SideBar />
                 <div className="center-container">
                     <NewTweetForm />
                     <div className="feed-container">

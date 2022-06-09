@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import TweetFeed from "./components/TweetFeed/TweetFeed";
 // import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import OneTweet from "./components/OneTweet/OneTweet";
+import SideBar from "./components/HomePageSideBar/SideBar";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+    <SideBar />
       {isLoaded && (
         <Switch>
           <Route path="/signup">
