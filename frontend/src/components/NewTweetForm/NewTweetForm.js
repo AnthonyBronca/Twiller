@@ -40,7 +40,7 @@ function NewTweetForm() {
         return <h1>Please sign in to post a tweet</h1>
     } else {
         return (
-            <div>
+            <div className="new-tweet-container">
                 <img style={{ height: '5.5%', width: '5.5%', borderRadius: '50%' }} src={`${user.profilePic}`}></img>
                 <form onSubmit={e=> handleSubmit(e)} id='new-tweet-form'>
                     <input

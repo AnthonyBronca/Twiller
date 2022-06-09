@@ -29,8 +29,11 @@ router.get('/', (async(req,res)=>{
 router.get('/:id', (async(req,res)=> {
     const id = req.params.id
     const tweet = await Tweet.findByPk(id,{
-        include: Comment
-    } )
+        include: [User, Comment]
+    })
+    const tweetId = tweet.id
+    const comments = await Comment.findAll({where:{tweetId}, include: [User]})
+    console.log(comments)
     return res.json(tweet)
 }))
 

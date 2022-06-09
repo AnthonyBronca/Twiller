@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from './session';
 import tweetReducer from './tweets'
+import oneTweetReducer from "./oneTweet";
 // preloadState: {
 //   session: sessionInfo,
 //   posts: listOfPosts,
@@ -9,7 +10,8 @@ import tweetReducer from './tweets'
 // }
 const rootReducer = combineReducers({
   session: sessionReducer,
-  tweets: tweetReducer
+  tweets: tweetReducer,
+  oneTweet: oneTweetReducer
   // posts: postsReducer,
   // users: usersReducers
 });
