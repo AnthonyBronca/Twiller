@@ -40,7 +40,7 @@ export const updateTweetThunk = (userId, tweet, imgUrl) => async (dispatch) => {
     const id = tweet.id
     const response = await csrfFetch(`/api/tweets/${id}`, {
         method: 'PUT',
-        headers: {'Content-type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userId, tweet, imgUrl)
     })
     const tweet = await response.json()
@@ -57,14 +57,20 @@ export const deleteTweetThunk = (tweetId) => async(dispatch) => {
     return response
 }
 
-export const addTweetThunk = (userId, tweet, imgUrl) => async (dispatch) => {
-    const response = await csrfFetch('/api/tweets/new', {
+export const addTweetThunk = (formValues) => async (dispatch) => {
+    console.log('we are now in the thunk: 2')
+    const options = {
         method: 'POST',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(userId, tweet, imgUrl)
-    })
-    const tweet = await response.json()
-    dispatch(addTweet(tweet))
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(formValues)
+    }
+    console.log(options, "2")
+
+    const response = await csrfFetch('/api/tweets/new', options)
+    console.log(response, 'this is response, 2')
+    const newTweet = await response.json()
+    console.log(newTweet, "this is newTweet 2")
+    dispatch(addTweet(newTweet))
     return response
 }
 

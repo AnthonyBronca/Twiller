@@ -7,7 +7,9 @@ const {dateParser} = require('../../helpers/datecalculator')
 
 //get all tweets
 router.get('/', (async(req,res)=>{
-    const tweets = await Tweet.findAll()
+    const tweets = await Tweet.findAll({
+        include: [User]
+    })
     return res.json(tweets)
 }))
 /*
@@ -45,15 +47,20 @@ router.get('/user/:id', (async(req,res)=> {
 
 //post a new tweet
 router.post('/new', (async(req,res)=> {
+    console.log('I am now in the backend: 3')
+    console.log(req, " request!!!!!!!!!!!!!!!!!!%@#%@#%@!#%@#$%: 3")
+    console.log('aerkghawlbgneawjbnfgjkawbnfejkawnefjkawbelfanw ef!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     const {userId, tweet, imgUrl} = req.body
-    console.log(userId, tweet, imgUrl)
-    const newTweet = await Tweet.create({
+    console.log(userId, tweet, imgUrl, '*************************')
+    const newT = await Tweet.create({
         userId,
         tweet,
         imgUrl
     })
-    console.log(newTweet)
-    return res.send(':)')
+    const newTweet = await Tweet.findByPk(newT.id,{
+        include: [User]
+    })
+    return res.json(newTweet)
 }))
 
 //updates an existing tweet based on tweet id. must pass in userId, tweetbody, and imgurl

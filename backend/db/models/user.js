@@ -41,6 +41,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
+    },
+    profilePic: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   },
     {
@@ -59,8 +63,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
   User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
-    const { id, username, email } = this; // context will be the User instance
-    return { id, username, email };
+    const { id, username, email, profilePic } = this; // context will be the User instance
+    return { id, username, email, profilePic };
   };
 
   User.prototype.validatePassword = function (password) {
