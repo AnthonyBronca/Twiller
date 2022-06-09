@@ -25,15 +25,22 @@ router.get('/', (async(req,res)=>{
 
 */
 
-//get one tweet and all its coments
+router.get('/:id/comments', (async(req,res)=> {
+    const id = req.params.id
+    const comments = await Comment.findAll({
+        where: {tweetId:id}, include: User
+    })
+    console.log('am i here??')
+    return res.json(comments)
+
+}))
+
+//get one tweet
 router.get('/:id', (async(req,res)=> {
     const id = req.params.id
     const tweet = await Tweet.findByPk(id,{
-        include: [User, Comment]
+        include: User
     })
-    const tweetId = tweet.id
-    const comments = await Comment.findAll({where:{tweetId}, include: [User]})
-    console.log(comments)
     return res.json(tweet)
 }))
 

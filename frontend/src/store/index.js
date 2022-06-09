@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import sessionReducer from './session';
 import tweetReducer from './tweets'
 import oneTweetReducer from "./oneTweet";
+import commentReducer from './comments'
 // preloadState: {
 //   session: sessionInfo,
 //   posts: listOfPosts,
@@ -11,7 +12,8 @@ import oneTweetReducer from "./oneTweet";
 const rootReducer = combineReducers({
   session: sessionReducer,
   tweets: tweetReducer,
-  oneTweet: oneTweetReducer
+  oneTweet: oneTweetReducer,
+  comments: commentReducer
   // posts: postsReducer,
   // users: usersReducers
 });

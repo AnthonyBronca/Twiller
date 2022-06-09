@@ -10,7 +10,7 @@ export async function csrfFetch(url, options = {}) {
     // "application/json", and set the "XSRF-TOKEN" header to the value of the
     // "XSRF-TOKEN" cookie
 
-    if (options.method.toUpperCase() !== 'GET') {
+    if (options.method.toUpperCase() !== 'GET') { //checking if a content type is assigned. if not it defaults to app/json
       options.headers['Content-Type'] =
         options.headers['Content-Type'] || 'application/json';
       options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');

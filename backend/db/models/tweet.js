@@ -17,8 +17,18 @@ module.exports = (sequelize, DataTypes) => {
     //   foreignKey: 'tweetId'
     // }),
     Tweet.hasMany(models.Comment, {
-      foreignKey: 'tweetId'
+      foreignKey: 'tweetId',
+      onDelete: 'CASCADE',
+      hooks: true
     })
   };
   return Tweet;
 };
+
+/*
+Song.hasMany(models.Comment, {
+      foreignKey: "songId",
+      onDelete: "CASCADE",
+      hooks: true,
+    });
+*/
