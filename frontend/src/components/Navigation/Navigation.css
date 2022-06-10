@@ -3,17 +3,39 @@
 }
 
 #navigation-ul{
-    border: solid black 1px;
     display: flex;
     justify-content: right;
 }
 
 #nav-bar-items{
-    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #nav-bar-box-container{
     box-shadow: rgb(0 0 0 / 8%) 0px 1px 1px !important;
     transform-origin: 50% 0% !important;
 
+}
+
+.user-identifiers{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+
+@media only screen and (max-width: 750px){
+    .user-identifiers{
+        visibility: hidden;
+    }
+    #nav-bar-profile-pic{
+        height: 20%;
+        width: 20%;
+    }
+    #nav-bar-items{
+      position: relative;
+      left: 35%;
+    }
 }

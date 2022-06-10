@@ -34,3 +34,9 @@ width: 100%;
     border-radius: 30%;
     transition-duration: .3s;
 }
+
+.dot-container{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}

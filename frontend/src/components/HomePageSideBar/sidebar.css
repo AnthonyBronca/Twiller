@@ -77,3 +77,9 @@
     top: 5%;
 }
 }
+
+.user-profile-actions{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}

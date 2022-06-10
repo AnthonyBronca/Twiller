@@ -10,6 +10,7 @@ import {
     profileIcon, profileIconFilledIn
 } from './sidebaricons';
 import './sidebar.css'
+import Navigation from "../Navigation";
 
 function SideBar() {
     const dispatch = useDispatch();
@@ -56,7 +57,7 @@ function SideBar() {
                 <div className="side-bar-icons">
                     <div className="interior-side-bar">
 
-                        <div onClick={(e) => history.push('/tweets')}id='bird' className="side-bar-icon">
+                        <div onClick={(e) => history.push('/tweets')} id='bird' className="side-bar-icon">
                             {birdIcon}
                             {/* add dispatch to bird */}
                         </div >
@@ -87,6 +88,9 @@ function SideBar() {
                         </div>
                     </div>
 
+                    <div className="user-profile-actions">
+                        <Navigation />
+                    </div>
                 </div>
             </div>
 

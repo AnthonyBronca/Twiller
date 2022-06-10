@@ -5,7 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   // const tweets = useSelector(state => state.tweets)
 
@@ -18,19 +18,21 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink style={{color:'white'}} to="/signup">Sign Up</NavLink>
+        <NavLink style={{ color: 'white' }} to="/signup">Sign Up</NavLink>
       </>
     );
   }
 
   return (
     <div id='nav-bar-box-container'>
-    <ul>
-      <ul id='nav-bar-items'>
-        <NavLink style={{color:'white'}} exact to="/">Home</NavLink>
+      <div id='nav-bar-items'>
+        <span><img id='nav-bar-profile-pic' className='profile-pic' src={sessionUser?.profilePic}></img></span>
+        <div className='user-identifiers'>
+        <span>{sessionUser?.fullname}</span>
+        <span style={{ color: 'rgb(139,152,165)' }}>{`@${sessionUser?.username}`}</span>
+        </div>
         {isLoaded && sessionLinks}
-      </ul>
-    </ul>
+      </div>
     </div>
   );
 }

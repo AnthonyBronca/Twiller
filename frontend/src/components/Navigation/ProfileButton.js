@@ -33,7 +33,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button id='profile-button' onClick={openMenu}>
-          {profileIcon}
+          {user.profileUrl}
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
