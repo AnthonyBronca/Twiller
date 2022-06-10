@@ -39,7 +39,9 @@ function OneTweet() {
         const reply = tweetField
         const tweetId = tweet.id
         const formValues = {tweetId, userId, reply}
+        setIsLoaded(false)
         dispatch(addCommentThunk(tweetId, formValues))
+        .then(()=> setIsLoaded(true))
         // dispatch(addTweetThunk(formValues))
         setTweetField('')
     }
