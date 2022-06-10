@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 const {User, Tweet, Comment} = require('../../db/models')
 const {dateParser} = require('../../helpers/datecalculator')
-
-
-
+const asyncHandler = require('express-async-handler')
+const {singlePublicFileUpload, singleMulterUpload} = require('../../awsS3')
 //get all tweets
 router.get('/', (async(req,res)=>{
     const tweets = await Tweet.findAll({
@@ -55,23 +54,37 @@ router.get('/user/:id', (async(req,res)=> {
     return res.json(tweets)
 }))
 
-//post a new tweet
-router.post('/new', (async(req,res)=> {
-    console.log('I am now in the backend: 3')
-    console.log(req, " request!!!!!!!!!!!!!!!!!!%@#%@#%@!#%@#$%: 3")
-    console.log('aerkghawlbgneawjbnfgjkawbnfejkawnefjkawbelfanw ef!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    const {userId, tweet, imgUrl} = req.body
-    console.log(userId, tweet, imgUrl, '*************************')
+
+//aws test post a new tweet image
+router.post('/new', singleMulterUpload('image'),asyncHandler(async(req,res)=> {
+    const {userId, tweet, image} = req.body
+    const imgUrl = await singlePublicFileUpload(req.file); //converts data from form
     const newT = await Tweet.create({
         userId,
         tweet,
         imgUrl
     })
+
+    // setTokenCookie(res, newT); //is this needed????
     const newTweet = await Tweet.findByPk(newT.id,{
         include: [User]
     })
     return res.json(newTweet)
 }))
+
+//post a new tweet
+// router.post('/new', (async(req,res)=> {
+//     const {userId, tweet, imgUrl} = req.body
+//     const newT = await Tweet.create({
+//         userId,
+//         tweet,
+//         imgUrl
+//     })
+//     const newTweet = await Tweet.findByPk(newT.id,{
+//         include: [User]
+//     })
+//     return res.json(newTweet)
+// }))
 
 //updates an existing tweet based on tweet id. must pass in userId, tweetbody, and imgurl
 router.put('/:id/edit', (async(req,res)=>{

@@ -11,30 +11,41 @@ function NewTweetForm() {
     const user = useSelector((state) => state.session.user)
 
     const [tweetField, setTweetField] = useState('')
-    const [imgUrl, setImgUrl] = useState('')
-    // const [previewUrl, setPreviewUrl] = useState("");
-    // const [showUpload, setShowUpload] = useState(true);
+    const [image, setImgUrl] = useState(null)
+    const [errors, setErrors] = useState([])
+    const [previewUrl, setPreviewUrl] = useState("");
+    const [showUpload, setShowUpload] = useState(true);
 
     function handleSubmit(e) {
         e.preventDefault();
         const userId = user.id;
         const tweet = tweetField
-        const formValues = { userId, tweet, imgUrl }
+        const formValues = { userId, tweet, image }
         console.log(formValues, '1')
         dispatch(addTweetThunk(formValues))
-        setTweetField('')
-    }
+        .then(()=> {
+            setTweetField('')
+            setImgUrl(null);
+        })
+        // .catch(async(res)=> {
+        //     const data = await res.json();
+        //     if(data && data.errors){
+        //         newErrors = data.errors;
+        //         setErrors(newErrors);
+        //     }
+        // });
+    };
 
-    // const updateImage = async (e) => {
-    //     const file = e.target.files[0];
-    //     const reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onload = function (e) {
-    //       setPreviewUrl(reader.result);
-    //     };
-    //     setImgUrl(file);
-    //     setShowUpload(false);
-    //   };
+    const updateImage = async (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+          setPreviewUrl(reader.result);
+        };
+        setImgUrl(file);
+        setShowUpload(false);
+      };
 
     if (!user) {
         return <h1>Please sign in to post a tweet</h1>
@@ -53,14 +64,14 @@ function NewTweetForm() {
                         onChange={e => setTweetField(e.target.value)}
                     ></input>
                 </div>
-                {/* <label htmlFor="file-upload" className='custome-file-upload'>Select From computer
+                <label htmlFor="file-upload" className='custome-file-upload'>Select From computer
                         <input id="file-upload"
                         type='file'
-                        name='imgUrl'
-                        onChange={updateImage}
+                        name='image'
+                        onChange={e=> updateImage(e)}
                         accept='.jpg, .jpeg, .png, .gif'>
                         </input>
-                    </label> */}
+                    </label>
                 <div className="new-form-footer">
                     <div className="outter-button-container">
                         <div onClick={e => handleSubmit(e)} className="new-tweet-button">Tweet</div>

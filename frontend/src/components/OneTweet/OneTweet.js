@@ -15,10 +15,10 @@ function OneTweet() {
     const history = useHistory();
     const tweet = useSelector((state) => state?.oneTweet?.oneTweet)
     const comments = useSelector((state => Object.values(state?.comments)))
-    const comment = useSelector((state) => state?.comments['0'])
+    // const comment = useSelector((state) => Object.values(state?.comments))
     const authorizedUser = useSelector((state) => state?.session?.user)
     const { id } = useParams();
-    console.log(comment, "is this a thing?")
+    console.log(comments, "is this a thing?")
 
 
     const [isLoaded, setIsLoaded] = useState(false)
@@ -39,9 +39,8 @@ function OneTweet() {
         const reply = tweetField
         const tweetId = tweet.id
         const formValues = {tweetId, userId, reply}
-        setIsLoaded(false)
         dispatch(addCommentThunk(tweetId, formValues))
-        .then(()=> setIsLoaded(true))
+        // .then(()=> setIsLoaded(true))
         // dispatch(addTweetThunk(formValues))
         setTweetField('')
     }
@@ -102,7 +101,7 @@ function OneTweet() {
                                     </div>
                             </div>
                         </div>
-                        {comment?.tweetId === tweet.id ? comments.map((comment, idx) => {
+                        {comments? comments.map((comment, idx) => {
                             return (
                                 <div key={idx}>
                                     <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>

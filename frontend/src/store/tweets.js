@@ -58,13 +58,18 @@ export const deleteTweetThunk = (tweetId) => async(dispatch) => {
 }
 
 export const addTweetThunk = (formValues) => async (dispatch) => {
-    console.log('we are now in the thunk: 2')
+    const {userId, tweet, image} = formValues
+    const formData = new FormData();
+    formData.append('userId', userId);
+    formData.append('tweet', tweet);
+
+    if (image) formData.append('image', image)
+
     const options = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(formValues)
+        headers: {'Content-Type': 'multipart/form-data'},
+        body: formData
     }
-    console.log(options, "2")
 
     const response = await csrfFetch('/api/tweets/new', options)
     console.log(response, 'this is response, 2')

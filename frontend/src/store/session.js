@@ -5,7 +5,7 @@ const REMOVE_USER = 'session/removeUser';
 
 
 
-//AWS EXAMPLE FETCG
+// AWS EXAMPLE FETCG
 // user_actions.js
 // const SET_USER = "session/setUser";
 
