@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
-
+import Checkmark from '../Checkmark/Checkmark';
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   // const tweets = useSelector(state => state.tweets)
@@ -28,7 +28,7 @@ function Navigation({ isLoaded }) {
       <div id='nav-bar-items'>
         <span><img id='nav-bar-profile-pic' className='profile-pic' src={sessionUser?.profilePic}></img></span>
         <div className='user-identifiers'>
-        <span>{sessionUser?.fullname}</span>
+        <span>{sessionUser?.fullname}{sessionUser?.username === 'abronca' ?<Checkmark/>:null}</span>
         <span style={{ color: 'rgb(139,152,165)' }}>{`@${sessionUser?.username}`}</span>
         </div>
         {isLoaded && sessionLinks}

@@ -7,6 +7,7 @@ import { deleteTweetThunk } from '../../store/tweets'
 import SideBar from '../HomePageSideBar/SideBar';
 import { commentIcon, backArrowIcon } from './onetweeticons'
 import './oneTweet.css'
+import Checkmark from '../Checkmark/Checkmark';
 
 
 function OneTweet() {
@@ -18,7 +19,11 @@ function OneTweet() {
     const authorizedUser = useSelector((state) => state?.session?.user)
     const { id } = useParams();
     console.log(comment, "is this a thing?")
+
+
     const [isLoaded, setIsLoaded] = useState(false)
+    const [tweetField, setTweetField] = useState('')
+    const [imgUrl, setImgUrl] = useState('')
 
     useEffect(() => {
         dispatch(getTweetThunk(id))
@@ -28,6 +33,14 @@ function OneTweet() {
 
 
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        const userId = authorizedUser.id;
+        const tweet = tweetField
+        const formValues = { userId, tweet, imgUrl }
+        // dispatch(addTweetThunk(formValues))
+        setTweetField('')
+    }
 
     const deleteTweet = (e, tweetId) => {
         e.preventDefault();
@@ -50,7 +63,7 @@ function OneTweet() {
                                 <span className='profile-pic-span-one-post'><img className='profile-pic' src={tweet?.User?.profilePic}></img></span>
                                 <div className='user-items-words'>
                                     <div className='fullname-one-tweet'>
-                                        <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
+                                        <span style={{ color: 'white' }}>{tweet?.User?.fullname}{tweet?.User?.id === 2 ? <Checkmark /> : null}</span>
                                     </div>
                                     <div className='username-one-tweet'>
                                         <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
@@ -68,12 +81,30 @@ function OneTweet() {
                             <div className='comments-container'>
                             </div>
                         </div>
+                        <div className="tweet-header">
+                            <div className='tweet-reply-container'>
+                                <img className='profile-pic' src={authorizedUser?.profilePic}></img>
+                                <div className='new-reply-input-field'>
+                                    <input
+                                        id="new-tweet-field"
+                                        placeholder="Tweet your reply"
+                                        value={tweetField}
+                                        onChange={e => setTweetField(e.target.value)}
+                                        style={{ position: 'relative', 'left': '4px', 'top': '10px', paddingLeft: '8px', fontSize: '24px' }}
+                                    ></input>
+                                </div>
+                                    <div className="outter-button-container-reply" >
+                                        <div onClick={e => handleSubmit(e)} className="new-tweet-button">Tweet</div>
+                                    </div>
+                            </div>
+                        </div>
                         {comment?.tweetId === tweet.id ? comments.map(comment => {
                             return (
-                                 <div>
-                                     <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
-                                     <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
-                                     <p style={{ color: 'white' }} >{comment?.comment}</p>
+                                <div>
+                                    <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
+                                    {comment?.User?.id === 2 ? <Checkmark /> : null}
+                                    <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
+                                    <p style={{ color: 'white' }} >{comment?.comment}</p>
                                 </div>
                             )
                         }) : null}

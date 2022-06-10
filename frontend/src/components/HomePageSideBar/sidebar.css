@@ -52,34 +52,63 @@
     transition-duration: 0.2s;
 }
 
-@media only screen and (max-width: 650px){
-#profile.side-bar-label{
-    visibility: hidden;
 
-}
-#message.side-bar-label{
-    visibility: hidden;
-}
-#notification.side-bar-label{
-    visibility: hidden;
-}
-#explore.side-bar-label{
-    visibility: hidden;
-}
-#home.side-bar-label{
-    visibility: hidden;
-}
-.new-tweet-button{
-    font-weight: 700;
-    font-size: 10px;
-    text-align: center;
-    position: relative;
-    top: 5%;
-}
-}
 
 .user-profile-actions{
     display: flex;
     justify-content: center;
     align-items: flex-end;
 }
+
+@media (max-width: 700px){
+    #bird{
+        position: relative;
+        right: 37%;
+    }
+    #home{
+        position: relative;
+        right: 25%;
+
+    }
+    #message{
+        position: relative;
+        right: 25%;
+    }
+    #notification{
+        position: relative;
+        right: 25%;
+    }
+    #explore{
+        position: relative;
+        right: 25%;
+    }
+    #profile{
+        position: relative;
+        right: 25%;
+    }
+}
+
+@media only screen and (max-width: 900px){
+    #profile.side-bar-label{
+        visibility: hidden;
+    }
+    #message.side-bar-label{
+        visibility: hidden;
+    }
+    #notification.side-bar-label{
+        visibility: hidden;
+    }
+    #explore.side-bar-label{
+        visibility: hidden;
+    }
+    #home.side-bar-label{
+        visibility: hidden;
+    }
+    .new-tweet-button{
+        font-weight: 700;
+        font-size: 10px;
+        text-align: center;
+        position: relative;
+        top: 5%;
+    }
+    }

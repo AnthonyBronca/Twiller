@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { deleteTweetThunk, getTweetsThunk, updateTweetThunk } from '../../store/tweets';
+import Checkmark from "../Checkmark/Checkmark";
 import SideBar from '../HomePageSideBar/SideBar'
 import Elipsis from "../MoreTweetOptions/Elipsis";
 import NewTweetForm from "../NewTweetForm/NewTweetForm";
@@ -84,6 +85,7 @@ function TweetFeed() {
                                     {modalStatus? <Elipsis />: null}
                                     <span><img className="profile-pic" src={tweet?.User?.profilePic}></img></span>
                                     <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
+                                    <span>{tweet.User.id === 2?<Checkmark />: null}</span>
                                     <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
                                     <p style={{ color: 'white' }} >{tweet?.tweet}</p>
                                     {authorizedUser.id === tweet.User.id ? <>

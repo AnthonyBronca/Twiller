@@ -40,3 +40,35 @@
 .username-one-tweet{
     padding-left: 5px;
 }
+
+.tweet-reply-container{
+    display: flex;
+}
+
+.outter-button-container-reply{
+    background-color: rgb(29, 155, 240);
+    width: 20%;
+    outline: none;
+    margin-right: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    left: 150px;
+}
+.new-tweet-button{
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 1160px) {
+    .outter-button-container-reply{
+        left: 0;
+    }
+}
+
+@media (max-width: 750px){
+    .outter-button-container-reply{
+        visibility: hidden;
+    }
+}
