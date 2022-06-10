@@ -15,4 +15,6 @@ body{
     flex-basis: auto;
     flex-shrink: 0;
     position: relative;
+    justify-content: space-between;
+    width: 60%;
 }

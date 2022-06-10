@@ -1,0 +1,13 @@
+.center-container{
+margin-left: 20px;
+border: 1px solid rgb(56,68,77);
+}
+
+.feed-container{
+    /* border: 1px solid rgb(56,68,77); */
+}
+
+.tweet-header{
+    border: 1px solid rgb(56,68,77);
+    padding: 10px;
+}

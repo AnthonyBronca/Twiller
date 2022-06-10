@@ -38,28 +38,34 @@ function OneTweet() {
     } else {
         return (
             <>
-                <div className="tweet-header">
-                    <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
-                    <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
-                    <p style={{ color: 'white' }} >{tweet?.tweet}</p>
-                    {authorizedUser.id === tweet.User.id ? <>
-                        <button onClick={e => deleteTweet(e, tweet.id)}
-                            className="delete-tweet-button">Delete Tweet</button>
-                    </> : null}
-                    <div className='icon-container'>
-                        {commentIcon}
-                    </div>
-                    <button onClick={() => history.push('/')}>Go Back</button>
-                    <div className='comments-container'>
-                        {comment.tweetId === tweet.id ? comments.map(comment => {
-                            return (
-                                <div>
-                                    <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
-                                    <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
-                                    <p style={{ color: 'white' }} >{comment?.comment}</p>
-                                </div>
-                            )
-                        }) : null}
+                <div className='center-container'>
+
+                    <div className='feed-container'>
+
+                        <div className="tweet-header">
+                            <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
+                            <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
+                            <p style={{ color: 'white' }} >{tweet?.tweet}</p>
+                            {authorizedUser.id === tweet?.User?.id ? <>
+                                <button onClick={e => deleteTweet(e, tweet?.id)}
+                                    className="delete-tweet-button">Delete Tweet</button>
+                            </> : null}
+                            <div className='icon-container'>
+                                {commentIcon}
+                            </div>
+                            <button onClick={() => history.push('/')}>Go Back</button>
+                            <div className='comments-container'>
+                                {comment?.tweetId === tweet.id ? comments.map(comment => {
+                                    return (
+                                        <div>
+                                            <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
+                                            <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
+                                            <p style={{ color: 'white' }} >{comment?.comment}</p>
+                                        </div>
+                                    )
+                                }) : null}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </>

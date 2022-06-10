@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { restoreUser } from "../../store/session";
 import './newtweetform.css'
-import {addTweetThunk} from '../../store/tweets'
+import { addTweetThunk } from '../../store/tweets'
+import './newtweetform.css'
 
 function NewTweetForm() {
     const dispatch = useDispatch();
@@ -17,12 +18,11 @@ function NewTweetForm() {
     function handleSubmit(e) {
         e.preventDefault();
         const userId = user.id;
-        console.log(userId, "1")
         const tweet = tweetField
-        console.log(tweet, '1')
-        const formValues = {userId, tweet, imgUrl}
+        const formValues = { userId, tweet, imgUrl }
         console.log(formValues, '1')
         dispatch(addTweetThunk(formValues))
+        setTweetField('')
     }
 
     // const updateImage = async (e) => {
@@ -41,15 +41,19 @@ function NewTweetForm() {
     } else {
         return (
             <div className="new-tweet-container">
-                <img style={{ height: '5.5%', width: '5.5%', borderRadius: '50%' }} src={`${user.profilePic}`}></img>
-                <form onSubmit={e=> handleSubmit(e)} id='new-tweet-form'>
+                <div className="new-tweet-header">
+                    <h4 className="form-header">Home</h4>
+                    <img className="profile-pic" src={`${user.profilePic}`}></img>
+                </div>
+                <div className="input-outer-1">
                     <input
-                    id="new-tweet-field"
-                    placeholder="What's happening?"
-                    value={tweetField}
-                    onChange={e => setTweetField(e.target.value)}
+                        id="new-tweet-field"
+                        placeholder="What's happening?"
+                        value={tweetField}
+                        onChange={e => setTweetField(e.target.value)}
                     ></input>
-                    {/* <label htmlFor="file-upload" className='custome-file-upload'>Select From computer
+                </div>
+                {/* <label htmlFor="file-upload" className='custome-file-upload'>Select From computer
                         <input id="file-upload"
                         type='file'
                         name='imgUrl'
@@ -57,8 +61,11 @@ function NewTweetForm() {
                         accept='.jpg, .jpeg, .png, .gif'>
                         </input>
                     </label> */}
-                    <button className="new-tweet-button">Tweet</button>
-                </form>
+                <div className="new-form-footer">
+                    <div className="outter-button-container">
+                        <div onClick={e => handleSubmit(e)} className="new-tweet-button">Tweet</div>
+                    </div>
+                </div>
             </div>
         )
     }

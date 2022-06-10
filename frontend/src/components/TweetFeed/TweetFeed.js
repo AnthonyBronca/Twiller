@@ -4,6 +4,10 @@ import { NavLink, useHistory } from "react-router-dom";
 import { deleteTweetThunk, getTweetsThunk, updateTweetThunk } from '../../store/tweets';
 import SideBar from '../HomePageSideBar/SideBar'
 import NewTweetForm from "../NewTweetForm/NewTweetForm";
+import { commentIcon } from "../OneTweet/onetweeticons";
+import './tweetfeed.css'
+
+
 function TweetFeed() {
 
     const dispatch = useDispatch();
@@ -61,6 +65,7 @@ function TweetFeed() {
                         {tweets ? tweets.map((tweet) => {
                             return (
                                 <div key={tweet?.id} onClick={e => sendToTweetPage(e,tweet.id)}className="tweet-header">
+                                    <span><img className="profile-pic" src={tweet?.User?.profilePic}></img></span>
                                     <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
                                     <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
                                     <p style={{ color: 'white' }} >{tweet?.tweet}</p>
@@ -68,6 +73,7 @@ function TweetFeed() {
                                         <button onClick={e=> deleteTweet(e, tweet.id)}className="delete-tweet-button">Delete Tweet
                                         </button>
                                     </> : null}
+                                    <div onClick={e => sendToTweetPage(e,tweet.id)}>{commentIcon}</div>
                                 </div>
                             )
                         }) : <h1>Loading...</h1>}

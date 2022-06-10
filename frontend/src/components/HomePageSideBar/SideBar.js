@@ -35,7 +35,7 @@ function SideBar() {
         console.log(iconId)
         if (iconId === 'home') {
             setHomeStatus(homeFilledIn)
-            history.push('/')
+            history.push('/tweets')
         }
         if (iconId === 'explore') setExploreStatus(exploreIconFilledIn)
         if (iconId === 'notification') setNotificationStatus(notificationIconFilledIn)
@@ -58,28 +58,28 @@ function SideBar() {
                         </div >
                         <div id='home' className="side-bar-icon"
                             onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            {homeStatus}
-                            <label className="side-bar-label">Home</label>
+                            <span id='home' onClick={(e) => changeIconStatus(e, e.target.id)}>{homeStatus}</span>
+                            <label id='home' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Home</label>
                         </div>
                         <div id='explore' className="side-bar-icon"
                             onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            {exploreStatus}
-                            <label className="side-bar-label">Explore</label>
+                            <span id="explore" onClick={(e) => changeIconStatus(e, e.target.id)}>{exploreStatus}</span>
+                            <label id='explore' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Explore</label>
                         </div >
                         <div id='notification' className="side-bar-icon"
                             onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            {notificationStatus}
-                            <label className="side-bar-label">Notifications</label>
+                            <span id='notification' onClick={(e) => changeIconStatus(e, e.target.id)}>{notificationStatus}</span>
+                            <label id='notification' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Notifications</label>
                         </div>
                         <div id='message' className="side-bar-icon"
                             onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            {messageStatus}
-                            <label className="side-bar-label">Messages</label>
+                            <span id='message' onClick={(e) => changeIconStatus(e, e.target.id)}>{messageStatus}</span>
+                            <label id='message' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Messages</label>
                         </div>
                         <div id='profile' className="side-bar-icon"
                             onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            {profileStatus}
-                            <label className="side-bar-label">Profile</label>
+                            <span id='profile' onClick={(e) => changeIconStatus(e, e.target.id)}>{profileStatus}</span>
+                            <label id='profile' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Profile</label>
                         </div>
                     </div>
 
