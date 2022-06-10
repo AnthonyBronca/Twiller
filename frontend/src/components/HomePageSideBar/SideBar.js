@@ -15,11 +15,14 @@ function SideBar() {
     const dispatch = useDispatch();
     const history = useHistory();
     const userId = useSelector((state) => state?.session?.user?.id)
-    const [homeStatus, setHomeStatus] = useState(homeIcon)
+    const [homeStatus, setHomeStatus] = useState(homeFilledIn)
     const [exploreStatus, setExploreStatus] = useState(exploreIcon)
     const [notificationStatus, setNotificationStatus] = useState(notificationIcon)
     const [messageStatus, setMessageStatus] = useState(messageIcon)
     const [profileStatus, setProfileStatus] = useState(profileIcon)
+
+
+
 
     const clearIconStatus = (id) => {
         setHomeStatus(homeIcon);
@@ -44,6 +47,7 @@ function SideBar() {
             setProfileStatus(profileIconFilledIn)
             history.push(`/user/${userId}`)
         }
+
     }
 
     return (
@@ -52,7 +56,7 @@ function SideBar() {
                 <div className="side-bar-icons">
                     <div className="interior-side-bar">
 
-                        <div id='bird' className="side-bar-icon">
+                        <div onClick={(e) => history.push('/tweets')}id='bird' className="side-bar-icon">
                             {birdIcon}
                             {/* add dispatch to bird */}
                         </div >

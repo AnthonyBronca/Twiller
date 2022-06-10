@@ -1,0 +1,42 @@
+.center-container-one-post{
+    width: 63%;
+    position: relative;
+    left: 0%;
+}
+
+.feed-container-one-post{
+    height: 50vw;
+    width: 50vw;
+    border: 1px solid rgb(56,68,77)
+}
+
+.go-back-header{
+    display: flex;
+    justify-content: start;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 4%;
+    cursor: pointer;
+}
+
+.back-to-tweet{
+    padding-left: 4%;
+}
+
+.user-items-get-one-tweet{
+    display: flex;
+    justify-content: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.user-items-words{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.username-one-tweet{
+    padding-left: 5px;
+}

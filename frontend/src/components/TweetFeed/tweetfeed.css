@@ -1,6 +1,7 @@
 .center-container{
-margin-left: 20px;
+margin-left: 10%;
 border: 1px solid rgb(56,68,77);
+width: 100%;
 }
 
 .feed-container{
@@ -10,4 +11,10 @@ border: 1px solid rgb(56,68,77);
 .tweet-header{
     border: 1px solid rgb(56,68,77);
     padding: 10px;
+    transition-property: background-color;
+}
+
+.tweet-header:hover{
+    background-color: rgba(70,70,70,0.5);
+    transition-duration: .3s;
 }

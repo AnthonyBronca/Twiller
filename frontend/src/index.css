@@ -5,6 +5,9 @@ body{
     /* display: flex;
     flex-direction: row; */
     height:100%;
+    margin-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
 }
 
 .page-container{
@@ -15,6 +18,5 @@ body{
     flex-basis: auto;
     flex-shrink: 0;
     position: relative;
-    justify-content: space-between;
-    width: 60%;
+    width: 80%;
 }
