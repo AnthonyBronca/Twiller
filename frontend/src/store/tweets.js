@@ -61,7 +61,7 @@ export const addTweetThunk = (formValues) => async (dispatch) => {
     console.log('we are now in the thunk: 2')
     const options = {
         method: 'POST',
-        // headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formValues)
     }
     console.log(options, "2")

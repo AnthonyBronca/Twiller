@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { getCommentsThunk } from '../../store/comments';
+import { addCommentThunk, getCommentsThunk } from '../../store/comments';
 import { getTweetThunk } from '../../store/oneTweet';
 import { deleteTweetThunk } from '../../store/tweets'
 import SideBar from '../HomePageSideBar/SideBar';
@@ -36,8 +36,10 @@ function OneTweet() {
     function handleSubmit(e) {
         e.preventDefault();
         const userId = authorizedUser.id;
-        const tweet = tweetField
-        const formValues = { userId, tweet, imgUrl }
+        const reply = tweetField
+        const tweetId = tweet.id
+        const formValues = {tweetId, userId, reply}
+        dispatch(addCommentThunk(tweetId, formValues))
         // dispatch(addTweetThunk(formValues))
         setTweetField('')
     }
@@ -94,13 +96,13 @@ function OneTweet() {
                                     ></input>
                                 </div>
                                     <div className="outter-button-container-reply" >
-                                        <div onClick={e => handleSubmit(e)} className="new-tweet-button">Tweet</div>
+                                        <div onClick={e => handleSubmit(e)} className="new-tweet-button">Reply</div>
                                     </div>
                             </div>
                         </div>
-                        {comment?.tweetId === tweet.id ? comments.map(comment => {
+                        {comment?.tweetId === tweet.id ? comments.map((comment, idx) => {
                             return (
-                                <div>
+                                <div key={idx}>
                                     <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
                                     {comment?.User?.id === 2 ? <Checkmark /> : null}
                                     <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>

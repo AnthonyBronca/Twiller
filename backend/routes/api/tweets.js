@@ -105,8 +105,10 @@ router.delete('/:id', (async(req,res)=> {
 //adds a new comment to a specified tweet
 router.post('/:id/comment/new', (async(req,res)=>{
     // const id = req.params.id;
-    const {tweetId, userId, comment} = req.body
-    console.log(tweetId,userId,comment, "tweetId??");
+    console.log('hellllo???')
+    const {tweetId, userId, reply} = req.body
+    const comment = reply
+    console.log(tweetId,userId,reply, "tweetId??");
     const newComment = await Comment.create({
         tweetId,
         userId,

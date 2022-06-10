@@ -20,11 +20,11 @@ function App() {
 
   if (!user) {
     return (
-      setTimeout(
+      // setTimeout(
         <Route path='/' exact={true}>
         <Splash />
       </Route>
-        ,500)
+        // ,500)
     )
   } else {
     return (

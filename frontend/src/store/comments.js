@@ -2,6 +2,7 @@ import { bindActionCreators } from "redux";
 import { csrfFetch } from "./csrf";
 
 const GET_COMMENTS = '/comments/getComments'
+const ADD_COMMENT = '/comments/addComment'
 
 const getComments = (comments)=> {
     return {
@@ -10,6 +11,31 @@ const getComments = (comments)=> {
     }
 }
 
+const addComment = (comment) => {
+    return {
+        type: ADD_COMMENT,
+        payload: comment
+    }
+}
+
+export const addCommentThunk = (tweetId, formValues) => async (dispatch)=> {
+    const options = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(formValues)
+    }
+    console.log('am i here?')
+    console.log(options)
+    const response = await csrfFetch(`/api/tweets/${tweetId}/comment/new`, options)
+    console.log(response, 'response')
+    const comment = await response.json();
+    dispatch(addComment(comment))
+    return response;
+}
+
+//router.post('/:id/comment/new', (async(req,res)=>{
+    // const id = req.params.id;
+    //const {tweetId, userId, comment} = req.body
 
 export const getCommentsThunk = (tweetId) => async (dispatch) => {
     const response = await csrfFetch(`/api/tweets/${tweetId}/comments`)
@@ -26,8 +52,14 @@ const commentReducer = (state = initialState, action) => {
     let newState;
     switch(action.type){
         case GET_COMMENTS:
-            let newState = {...state, ...action.payload}
+            newState = {...state, ...action.payload}
             return newState;
+        case ADD_COMMENT:
+            newState = {...state};
+            console.log(action.payload, 'yoo')
+            const newCommentId = action.payload.id;
+            newState[newCommentId] = action.payload
+            return newState
         default:
             return state;
     }
