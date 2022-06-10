@@ -12,9 +12,25 @@ width: 100%;
     border: 1px solid rgb(56,68,77);
     padding: 10px;
     transition-property: background-color;
+    cursor: pointer;
 }
 
 .tweet-header:hover{
     background-color: rgba(70,70,70,0.5);
+    transition-duration: .3s;
+}
+
+.tweet-action-icon-row{
+    position: relative;
+    padding-left: 40px;
+}
+
+.comment-icon{
+    width: 25px;
+}
+
+.comment-icon:hover{
+    background-color: rgba(0, 204, 255, 0.49);
+    border-radius: 30%;
     transition-duration: .3s;
 }

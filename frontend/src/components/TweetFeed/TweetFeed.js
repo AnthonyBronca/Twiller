@@ -73,7 +73,9 @@ function TweetFeed() {
                                         <button onClick={e=> deleteTweet(e, tweet.id)}className="delete-tweet-button">Delete Tweet
                                         </button>
                                     </> : null}
-                                    <div onClick={e => sendToTweetPage(e,tweet.id)}>{commentIcon}</div>
+                                    <div className="tweet-action-icon-row">
+                                    <div className='comment-icon' onClick={e => sendToTweetPage(e,tweet.id)}>{commentIcon}</div>
+                                    </div>
                                 </div>
                             )
                         }) : <h1>Loading...</h1>}
