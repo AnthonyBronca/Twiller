@@ -1,7 +1,6 @@
 const AWS = require("aws-sdk");
 // name of your bucket here
-const NAME_OF_BUCKET = "newtwiller";
-
+const NAME_OF_BUCKET  = process.env.AWS_BUCKET_NAME
 const multer = require("multer");
 
 //  make sure to set environment variables in production for:
@@ -14,7 +13,9 @@ const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 // --------------------------- Public UPLOAD ------------------------
 
 const singlePublicFileUpload = async (file) => {
+  console.log(file, "this is vader")
   const { originalname, mimetype, buffer } = await file;
+  console.log(originalname, "this is originalname")
   const path = require("path");
   // name of the file in your S3 bucket will be the date in ms plus the extension name
   const Key = new Date().getTime().toString() + path.extname(originalname);
@@ -83,7 +84,7 @@ const storage = multer.memoryStorage({
   },
 });
 
-const singleMulterUpload = (nameOfKey) =>
+const singleMulterUpload = (nameOfKey) => //'image' comes in
   multer({ storage: storage }).single(nameOfKey);
 const multipleMulterUpload = (nameOfKey) =>
   multer({ storage: storage }).array(nameOfKey);

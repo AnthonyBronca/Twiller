@@ -9,7 +9,7 @@ module.exports = {
       Example:
       */
    return queryInterface.bulkInsert('Users', [
-     {username: 'Demo', fullname:'Demo User', email: 'demo@demo.com', bio: 'I am the demo user', profilePic:'', hashedPassword: 'twiller', verified: false, state: 'Florida', country: 'USA', link: ''},
+     {username: 'Demo', fullname:'Demo User', email: 'demo@demo.com', bio: 'I am the demo user', profilePic:'s3://newtwiller/egg-3442-4c317615ec1fd800728672f2c168aca5@1x.jpg', hashedPassword: 'twiller', verified: false, state: 'Florida', country: 'USA', link: ''},
      {username: 'abronca', fullname:'Anthony Bronca', email: 'abronca@admin.io', bio: 'I am the admin!', profilePic:'', hashedPassword: 'twiller', verified: true, state: 'Florida', country: 'USA', link: ''},
      {username: 'jgrabow', fullname:'Jade Grabow', email: 'Jade@demo.com', bio: 'I am a seeded user', profilePic:'', hashedPassword: 'twiller', verified: true, state: 'Florida', country: 'USA', link: ''},
      {username: 'Ben', fullname:'Obiwan Kenobi', email: 'notajedi@sw.io', bio: '', profilePic:'', hashedPassword: 'twiller', verified: false, state: 'New York', country: 'USA', link: ''},

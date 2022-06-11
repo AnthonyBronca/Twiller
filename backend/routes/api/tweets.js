@@ -57,7 +57,8 @@ router.get('/user/:id', (async(req,res)=> {
 
 //aws test post a new tweet image
 router.post('/new', singleMulterUpload('image'),asyncHandler(async(req,res)=> {
-    const {userId, tweet, image} = req.body
+    const {userId, tweet} = req.body
+    // console.log(req, '****************** This is req *************', req.body.image)
     const imgUrl = await singlePublicFileUpload(req.file); //converts data from form
     const newT = await Tweet.create({
         userId,
