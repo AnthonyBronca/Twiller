@@ -1,0 +1,79 @@
+.elispis-modal-container{
+    box-shadow: rgb(136 153 166 / 20%) 0px 0px 15px 1px;
+    /* box-sizing: border-box; */
+    height: 0%;
+    width: 50%;
+    position:relative;
+    z-index: 200;
+    left: 47%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(21,32,43);
+    color: white;
+}
+
+.edit-button-elipsis{
+    width: 100%;
+    height: 33.3%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(21,32,43);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 15%;
+}
+
+.edit-button-elipsis:hover{
+    background-color: rgba(70,70,70,1);
+    transition-duration: .2s;
+}
+
+.edit-word{
+    font-size: 15px;
+    padding-left: 15%;
+}
+
+.delete-button-elipsis{
+    width: 100%;
+    height: 33.3%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(21,32,43);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 15%;
+}
+
+.delete-button-elipsis:hover{
+    background-color: rgba(70,70,70,1);
+    transition-duration: .2s;
+}
+
+.delete-word{
+    font-size: 15px;
+    padding-left: 15%;
+}
+
+.close-button-elipsis{
+    width: 100%;
+    height: 33.3%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(21,32,43);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 15%;
+    /* border-bottom: rgb(136 153 166 / 20%) 0px 0px 15px 1px; */
+}
+
+.close-button-elipsis:hover{
+    background-color: rgba(70,70,70,1);
+    transition-duration: .2s;
+}
+
+.close-word{
+    font-size: 15px;
+    padding-left: 15%;
+}

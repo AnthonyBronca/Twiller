@@ -7,7 +7,6 @@ function ElipsisModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>TESTTT</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <Elipsis />

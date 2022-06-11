@@ -8,6 +8,7 @@ import Elipsis from "../MoreTweetOptions/Elipsis";
 import NewTweetForm from "../NewTweetForm/NewTweetForm";
 import { commentIcon, dotDotDotIcon } from "../OneTweet/onetweeticons";
 import './tweetfeed.css'
+import EditTweetModal from "./EditTweetModal";
 
 
 function TweetFeed() {
@@ -23,7 +24,8 @@ function TweetFeed() {
 
     const [isLoaded, setIsLoaded] = useState(false)
     const [modalStatus, setModalStatus] = useState(false)
-
+    const [editModalStatus, setEditModalStatus] = useState(false)
+    const [tweetNum, setTweetNum] = useState(null)
 
     useEffect(() => {
         dispatch(getTweetsThunk())
@@ -49,14 +51,25 @@ function TweetFeed() {
     //     }
     //     dispatch(updateTweetThunk(tweetId))
     // }
-
-    const modalAction = (e)=> {
+    const editModalActions = (e, tweetId) => {
         e.preventDefault()
         e.stopPropagation();
-        if(!modalStatus){
-            setModalStatus(true)
+        setTweetNum(tweetId)
+        if (editModalStatus) {
+            setEditModalStatus(false)
         } else {
+            setEditModalStatus(true)
+        }
+        console.log(editModalStatus)
+    }
+
+    const modalAction = (e) => {
+        e.preventDefault()
+        e.stopPropagation();
+        if (modalStatus) {
             setModalStatus(false)
+        } else {
+            setModalStatus(true)
         }
     }
 
@@ -78,24 +91,28 @@ function TweetFeed() {
                     <div className="feed-container">
                         {tweets ? tweets.map((tweet) => {
                             return (
-                                <div key={tweet?.id} onClick={e => sendToTweetPage(e, tweet.id)} className="tweet-header">
-                                    <div onClick={(e)=>setModalStatus(true)}
-                                    onClose={()=> setModalStatus(false)}
-                                    className="dot-container">{dotDotDotIcon}</div>
-                                    {modalStatus? <Elipsis />: null}
-                                    <span><img className="profile-pic" src={tweet?.User?.profilePic}></img></span>
-                                    <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
-                                    <span>{tweet.User.id === 2?<Checkmark />: null}</span>
-                                    <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
-                                    <p style={{ color: 'white' }} >{tweet?.tweet}</p>
-                                    {authorizedUser.id === tweet.User.id ? <>
-                                        <button onClick={e => deleteTweet(e, tweet.id)} className="delete-tweet-button">Delete Tweet
-                                        </button>
-                                    </> : null}
-                                    <div className="tweet-action-icon-row">
-                                        <div className='comment-icon' onClick={e => sendToTweetPage(e, tweet.id)}>{commentIcon}</div>
+                                <>
+                                    <div key={tweet?.id}
+                                        // onClick={e => sendToTweetPage(e, tweet.id)}
+                                        lassName="tweet-header">
+                                        {authorizedUser?.id === tweet?.User?.id ? <div onClick={(e) => editModalActions(e, tweet?.id)}
+                                            className="dot-container">{dotDotDotIcon}</div> : null}
+                                            {editModalStatus && tweetNum === tweet?.id ? <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} /> : null}
+                                        <span><img className="profile-pic" src={tweet?.User?.profilePic}></img></span>
+                                        <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
+                                        <span>{tweet.User.id === 2 ? <Checkmark /> : null}</span>
+                                        <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
+                                        {modalStatus ? <EditTweetModal tweet={tweet?.tweet} /> : <p style={{ color: 'white' }} >{tweet?.tweet}</p>}
+                                        {authorizedUser.id === tweet.User.id ? <>
+                                            <button onClick={e => deleteTweet(e, tweet.id)}
+                                                className="delete-tweet-button">Delete Tweet</button>
+                                            <button onClick={e => modalAction(e)}>Edit Tweet</button>
+                                        </> : null}
+                                        <div className="tweet-action-icon-row">
+                                            <div className='comment-icon' onClick={e => sendToTweetPage(e, tweet.id)}>{commentIcon}</div>
+                                        </div>
                                     </div>
-                                </div>
+                                </>
                             )
                         }) : <h1>Loading...</h1>}
                     </div>

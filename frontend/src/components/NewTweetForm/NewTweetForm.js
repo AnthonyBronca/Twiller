@@ -14,18 +14,14 @@ function NewTweetForm() {
     const [image, setImgUrl] = useState(null)
     const [errors, setErrors] = useState([])
     const [previewUrl, setPreviewUrl] = useState("");
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
     const [submitted, setSubmitted] = useState(false)
-
-    console.log(image, "this is image")
-    console.log(previewUrl, 'this is prev')
 
     function handleSubmit(e) {
         e.preventDefault();
         const userId = user.id;
         const tweet = tweetField
         const formValues = { userId, tweet, image }
-        console.log(formValues, '1')
         return dispatch(addTweetThunk(formValues))
             .then(() => {
                 setTweetField('');
@@ -45,7 +41,6 @@ function NewTweetForm() {
 
 
     const updateImage = (e) => {
-        console.log(e.target.files, 'this is line 47')
         const file = e.target.files[0];
         setImgUrl(file);
         setShowModal(true)
@@ -55,6 +50,8 @@ function NewTweetForm() {
         }
         setSubmitted(true)
     }
+
+
     // const updateImage = async (e) => {
     //     const file = e.target.files[0];
     //     const reader = new FileReader();
@@ -82,7 +79,7 @@ function NewTweetForm() {
                             placeholder="What's happening?"
                             value={tweetField}
                             onChange={e => setTweetField(e.target.value)}
-                        ></input>
+                            ></input>
                     </div>
                     {submitted? <img src={previewUrl}></img> : <label htmlFor="file-upload" className='custome-file-upload'>Select From computer
                        <input id="file-upload"
