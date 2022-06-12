@@ -6,6 +6,7 @@ import './newtweetform.css'
 import { addTweetThunk } from '../../store/tweets'
 import './newtweetform.css'
 import Checkmark from '../Checkmark/Checkmark'
+import { mediaIcon } from "./newtweeticons";
 function NewTweetForm() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
@@ -16,13 +17,19 @@ function NewTweetForm() {
     const [previewUrl, setPreviewUrl] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [submitted, setSubmitted] = useState(false)
-
     function handleSubmit(e) {
-        e.preventDefault();
-        const userId = user.id;
-        const tweet = tweetField
-        const formValues = { userId, tweet, image }
-        return dispatch(addTweetThunk(formValues))
+
+        let validations = [];
+        if(tweetField.length <= 0 || image === null) validations.push('No tweet has been entered')
+        if(tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
+        setErrors(validations);
+
+        if (!errors){
+            e.preventDefault();
+            const userId = user.id;
+            const tweet = tweetField
+            const formValues = { userId, tweet, image }
+            return dispatch(addTweetThunk(formValues))
             .then(() => {
                 setTweetField('');
                 setImgUrl('');
@@ -30,14 +37,42 @@ function NewTweetForm() {
                 setSubmitted(false)
             })
 
-        // .catch(async(res)=> {
-        //     const data = await res.json();
-        //     if(data && data.errors){
-        //         newErrors = data.errors;
-        //         setErrors(newErrors);
-        //     }
-        // });
-    };
+            // .catch(async(res)=> {
+                //     const data = await res.json();
+                //     if(data && data.errors){
+                    //         newErrors = data.errors;
+                    //         setErrors(newErrors);
+                    //     }
+                    // });
+                };
+            }
+
+                const tweetButtonStyle = () => {
+                    if (tweetField.length > 0){
+                        return {
+                            'background-color': 'rgb(29, 155, 240)',
+                            'color': 'white',
+                            'font-weight': 700,
+                            'font-size': '15px',
+                            'text-align':'center',
+                            'position':'sticky',
+                            'margin-bottom':'20%',
+                            'border-radius': '12%',
+                            'font-family': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                        }
+                    } else {
+                        return {
+                        'background-color': 'rgb(26, 93, 141)',
+                        'color': 'light-grey',
+                        'font-weight': 700,
+                        'font-size': '15px',
+                        'text-align':'center',
+                        'position':'sticky',
+                        'margin-bottom':'20%',
+                        'border-radius': '12%',
+                        'font-family': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}
+                    }
+                }
 
 
     const updateImage = (e) => {
@@ -81,7 +116,8 @@ function NewTweetForm() {
                             onChange={e => setTweetField(e.target.value)}
                             ></input>
                     </div>
-                    {submitted? <img src={previewUrl}></img> : <label htmlFor="file-upload" className='custome-file-upload'>Select From computer
+                    {submitted? <img className='preview-img'src={previewUrl}></img> : <label htmlFor="file-upload" className='custome-file-upload'>
+                        <div className="media-icon">{mediaIcon}</div>
                        <input id="file-upload"
                             type='file'
                             name='image'
@@ -91,7 +127,7 @@ function NewTweetForm() {
                     </label>}
                     <div className="new-form-footer">
                         <div className="outter-button-container">
-                            <button className="new-tweet-button">Tweet</button>
+                            <button style={tweetButtonStyle()} type='button' disabled={errors.length <= 0? true: false} onClick={handleSubmit} className="new-tweet-button">Tweet</button>
                         </div>
                     </div>
                 </div>

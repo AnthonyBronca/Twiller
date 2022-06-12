@@ -7,7 +7,7 @@ const {singlePublicFileUpload, singleMulterUpload} = require('../../awsS3')
 //get all tweets
 router.get('/', (async(req,res)=>{
     const tweets = await Tweet.findAll({
-        include: [User]
+        include: [User, Comment]
     })
     return res.json(tweets)
 }))

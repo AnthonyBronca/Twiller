@@ -1,6 +1,6 @@
 .elispis-modal-container{
-    box-shadow: rgb(136 153 166 / 20%) 0px 0px 15px 1px;
     /* box-sizing: border-box; */
+    box-shadow: 0px 0px 15px 3px rgb(136 153 166 / 20%) ;
     height: 0%;
     width: 50%;
     position:relative;
@@ -9,6 +9,12 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(21,32,43);
     color: white;
+}
+
+.elipsis-modal-inner{
+    /* height: 100%; */
+    /* width: 100%; */
+    box-shadow: rgb(136 153 166 / 20%) 0px 0px 15px 1px;
 }
 
 .edit-button-elipsis{
@@ -21,6 +27,7 @@
     flex-direction: row;
     justify-content: flex-start;
     padding: 15%;
+    cursor: pointer;
 }
 
 .edit-button-elipsis:hover{
@@ -43,6 +50,7 @@
     flex-direction: row;
     justify-content: flex-start;
     padding: 15%;
+    cursor: pointer;
 }
 
 .delete-button-elipsis:hover{
@@ -65,7 +73,7 @@
     flex-direction: row;
     justify-content: flex-start;
     padding: 15%;
-    /* border-bottom: rgb(136 153 166 / 20%) 0px 0px 15px 1px; */
+    cursor: pointer;
 }
 
 .close-button-elipsis:hover{

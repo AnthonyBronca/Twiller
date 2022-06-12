@@ -43,10 +43,14 @@ width: 100%;
 
 .tweet-action-icon-row{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     border-bottom: solid 1px rgb(56,68,77);
     border-top: solid 1px rgb(56,68,77);
     padding-top: 10px;
     padding-bottom: 10px;
 
+}
+
+.tweetCount{
+    padding-left: 2%;
 }

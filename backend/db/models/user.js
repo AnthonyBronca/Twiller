@@ -44,7 +44,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     profilePic: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      defaultValue: 's3://newtwiller/egg-3442-4c317615ec1fd800728672f2c168aca5@1x.jpg'
     }
   },
     {
