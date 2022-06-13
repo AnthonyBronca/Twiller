@@ -94,18 +94,23 @@ function TweetFeed() {
                     <div className="feed-container">
                         {tweets ? tweets.map((tweet) => {
                             return (
-                                <>
-                                    <div key={tweet?.id}
+                                <div key={tweet?.id}>
+                                    <div
                                         // onClick={e => sendToTweetPage(e, tweet.id)}
                                         className="tweet-header">
-                                        {authorizedUser?.id === tweet?.User?.id ? <div onClick={(e) => editModalActions(e, tweet?.id)}
+                                        {authorizedUser?.id === tweet?.User?.id ?
+                                        <div onClick={(e) => editModalActions(e, tweet?.id)}
                                             className="dot-container">{dotDotDotIcon}</div> : null}
-                                            {editModalStatus && tweetNum === tweet?.id ? <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} /> : null}
+                                            {editModalStatus && tweetNum === tweet?.id ?
+                                            <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} />
+                                            : null}
                                         <span><img className="profile-pic" src={tweet?.User?.profilePic}></img></span>
                                         <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
                                         <span>{tweet.User.id === 2 ? <Checkmark /> : null}</span>
                                         <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
-                                        {modalStatus ? <EditTweetModal tweet={tweet?.tweet} /> : <p style={{ color: 'white' }} >{tweet?.tweet}</p>}
+                                        {modalStatus ? <EditTweetModal tweet={tweet?.tweet} /> :
+                                        <p style={{ color: 'white' }} >{tweet?.tweet}</p>}
+                                        {tweet?.imgUrl ? <img className='tweet-feed-image' src={tweet?.imgUrl} alt='tweet content'></img>: null}
                                         {/* {authorizedUser.id === tweet.User.id ? <>
                                             <button onClick={e => deleteTweet(e, tweet.id)}
                                                 className="delete-tweet-button">Delete Tweet</button>
@@ -113,10 +118,10 @@ function TweetFeed() {
                                         </> : null} */}
                                         <div className="tweet-action-icon-row">
                                             <div className='comment-icon' onClick={e => sendToTweetPage(e, tweet.id)}>{commentIcon}</div>
-                                            <div className="tweetCount">{tweet?.Comments.length}</div>
+                                            {tweet?.Comments?<div className="tweetCount">{tweet?.Comments?.length > 0 ? tweet?.Comments?.length: null}</div>: <div className="tweetCount"></div>}
                                         </div>
                                     </div>
-                                </>
+                                </div>
                             )
                         }) : <h1>Loading...</h1>}
                     </div>

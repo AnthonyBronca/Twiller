@@ -54,3 +54,8 @@ width: 100%;
 .tweetCount{
     padding-left: 2%;
 }
+
+.tweet-feed-image{
+    height: 250px;
+    width: 250px;
+}

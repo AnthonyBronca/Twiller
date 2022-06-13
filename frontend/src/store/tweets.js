@@ -40,7 +40,7 @@ export const updateTweetThunk = (userId, tweet, imgUrl) => async (dispatch) => {
     const id = tweet.id
     const response = await csrfFetch(`/api/tweets/${id}`, {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userId, tweet, imgUrl)
     })
     const tweet = await response.json()
@@ -48,7 +48,7 @@ export const updateTweetThunk = (userId, tweet, imgUrl) => async (dispatch) => {
     return response
 }
 
-export const deleteTweetThunk = (tweetId) => async(dispatch) => {
+export const deleteTweetThunk = (tweetId) => async (dispatch) => {
     const response = await csrfFetch(`/api/tweets/${tweetId}`, {
         method: 'DELETE',
     })
@@ -58,25 +58,41 @@ export const deleteTweetThunk = (tweetId) => async(dispatch) => {
 }
 
 export const addTweetThunk = (formValues) => async (dispatch) => {
-    const {userId, tweet, image} = formValues
+    const { userId, tweet, image } = formValues
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('tweet', tweet);
+    console.log('is image present?')
+    if (image) {
+        console.log('did i get to this location???')
+        formData.append('image', image);
 
-    if (image) formData.append('image', image)
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'multipart/form-data' },
+            body: formData
+        }
+        const response = await csrfFetch('/api/tweets/new', options)
+        console.log(response, 'this is response, 2')
+        const newTweet = await response.json()
+        console.log(newTweet, "this is newTweet 2")
+        dispatch(addTweet(newTweet))
+        return response
+    } else {
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({userId, tweet})
+        };
 
-    const options = {
-        method: 'POST',
-        headers: {'Content-Type': 'multipart/form-data'},
-        body: formData
+        const response = await csrfFetch('/api/tweets/new', options)
+        console.log(response, 'this is response, 2')
+        const newTweet = await response.json()
+        console.log(newTweet, "this is newTweet 2")
+        dispatch(addTweet(newTweet))
+        return response
     }
 
-    const response = await csrfFetch('/api/tweets/new', options)
-    console.log(response, 'this is response, 2')
-    const newTweet = await response.json()
-    console.log(newTweet, "this is newTweet 2")
-    dispatch(addTweet(newTweet))
-    return response
 }
 
 export const getTweetsThunk = () => async (dispatch) => {
@@ -90,30 +106,30 @@ const initialState = {};
 
 const tweetReducer = (state = initialState, action) => {
     let newState;
-    switch(action.type){
+    switch (action.type) {
         case GET_TWEETS:
-            newState = {...state};
+            newState = { ...state };
             action.payload.forEach(tweet => {
                 newState[tweet.id] = tweet
             })
-        return newState
+            return newState
         case ADD_TWEET:
-            newState = {...state};
+            newState = { ...state };
             const newTweetId = action.payload.id;
             newState[`${newTweetId}`] = action.payload
             return newState
         case UPDATE_TWEET:
-            newState = {...state};
+            newState = { ...state };
             const updatedTweetId = action.payload.id;
             newState[`${updatedTweetId}`] = action.payload
             return newState
         case DELETE_TWEET:
-            newState = {...state};
+            newState = { ...state };
             const deletedTweetId = action.payload.id;
             delete newState[`${deletedTweetId}`]
             return newState;
-    default:
-        return state;
+        default:
+            return state;
     }
 }
 

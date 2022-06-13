@@ -58,19 +58,35 @@ router.get('/user/:id', (async(req,res)=> {
 //aws test post a new tweet image
 router.post('/new', singleMulterUpload('image'),asyncHandler(async(req,res)=> {
     const {userId, tweet} = req.body
+    console.log('1')
+    console.log(req)
+    if(req.file){
+        console.log('2')
+        const imgUrl = await singlePublicFileUpload(req.file); //converts data from form
+        const newT = await Tweet.create({
+            userId,
+            tweet,
+            imgUrl
+        })
+        const newTweet = await Tweet.findByPk(newT.id,{
+            include: [User]
+        })
+        return res.json(newTweet)
+    }else {
+        console.log('3')
+        const newT = await Tweet.create({
+            userId,
+            tweet,
+        })
+        const newTweet = await Tweet.findByPk(newT.id,{
+            include: [User]
+        })
+        return res.json(newTweet)
+    }
     // console.log(req, '****************** This is req *************', req.body.image)
-    const imgUrl = await singlePublicFileUpload(req.file); //converts data from form
-    const newT = await Tweet.create({
-        userId,
-        tweet,
-        imgUrl
-    })
+
 
     // setTokenCookie(res, newT); //is this needed????
-    const newTweet = await Tweet.findByPk(newT.id,{
-        include: [User]
-    })
-    return res.json(newTweet)
 }))
 
 //post a new tweet

@@ -17,62 +17,65 @@ function NewTweetForm() {
     const [previewUrl, setPreviewUrl] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [submitted, setSubmitted] = useState(false)
-    function handleSubmit(e) {
 
+    function handleSubmit(e) {
         let validations = [];
-        if(tweetField.length <= 0 || image === null) validations.push('No tweet has been entered')
-        if(tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
+        if (tweetField.length <= 0 && image === null) validations.push('No tweet has been entered')
+        if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
         setErrors(validations);
 
-        if (!errors){
+        if (!errors.length) {
+            console.log('am i here?')
             e.preventDefault();
             const userId = user.id;
             const tweet = tweetField
             const formValues = { userId, tweet, image }
-            return dispatch(addTweetThunk(formValues))
-            .then(() => {
-                setTweetField('');
-                setImgUrl('');
-                setPreviewUrl('');
-                setSubmitted(false)
-            })
+            console.log(formValues, "this is form values")
+            dispatch(addTweetThunk(formValues))
+                .then(() => {
+                    setTweetField('');
+                    setImgUrl('');
+                    setPreviewUrl('');
+                    setSubmitted(false)
+                })
 
             // .catch(async(res)=> {
-                //     const data = await res.json();
-                //     if(data && data.errors){
-                    //         newErrors = data.errors;
-                    //         setErrors(newErrors);
-                    //     }
-                    // });
-                };
-            }
+            //     const data = await res.json();
+            //     if(data && data.errors){
+            //         newErrors = data.errors;
+            //         setErrors(newErrors);
+            //     }
+            // });
+        };
+    }
 
-                const tweetButtonStyle = () => {
-                    if (tweetField.length > 0){
-                        return {
-                            'background-color': 'rgb(29, 155, 240)',
-                            'color': 'white',
-                            'font-weight': 700,
-                            'font-size': '15px',
-                            'text-align':'center',
-                            'position':'sticky',
-                            'margin-bottom':'20%',
-                            'border-radius': '12%',
-                            'font-family': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
-                        }
-                    } else {
-                        return {
-                        'background-color': 'rgb(26, 93, 141)',
-                        'color': 'light-grey',
-                        'font-weight': 700,
-                        'font-size': '15px',
-                        'text-align':'center',
-                        'position':'sticky',
-                        'margin-bottom':'20%',
-                        'border-radius': '12%',
-                        'font-family': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}
-                    }
-                }
+    const tweetButtonStyle = () => {
+        if (tweetField.length > 0) {
+            return {
+                'backgroundColor': 'rgb(29, 155, 240)',
+                'color': 'white',
+                'fontWeight': 700,
+                'fontSize': '15px',
+                'textAlign': 'center',
+                'position': 'sticky',
+                'marginBottom': '20%',
+                'borderRadius': '12%',
+                'fontFamily': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+            }
+        } else {
+            return {
+                'backgroundColor': 'rgb(26, 93, 141)',
+                'color': 'light-grey',
+                'fontWeight': 700,
+                'fontSize': '15px',
+                'textAlign': 'center',
+                'position': 'sticky',
+                'marginBottom': '20%',
+                'borderradius': '12%',
+                'fontFamily': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+            }
+        }
+    }
 
 
     const updateImage = (e) => {
@@ -102,36 +105,36 @@ function NewTweetForm() {
         return <h1>Please sign in to post a tweet</h1>
     } else {
         return (
-            <form onSubmit={handleSubmit}>
-                <div className="new-tweet-container">
-                    <div className="new-tweet-header">
-                        <h4 className="form-header">Home</h4>
-                        <img className="profile-pic" src={`${user.profilePic}`}></img>
-                    </div>
-                    <div className="input-outer-1">
-                        <input
-                            id="new-tweet-field"
-                            placeholder="What's happening?"
-                            value={tweetField}
-                            onChange={e => setTweetField(e.target.value)}
-                            ></input>
-                    </div>
-                    {submitted? <img className='preview-img'src={previewUrl}></img> : <label htmlFor="file-upload" className='custome-file-upload'>
-                        <div className="media-icon">{mediaIcon}</div>
-                       <input id="file-upload"
-                            type='file'
-                            name='image'
-                            onChange={updateImage}
-                            accept='.jpg, .jpeg, .png, .gif'>
-                        </input>
-                    </label>}
-                    <div className="new-form-footer">
-                        <div className="outter-button-container">
-                            <button style={tweetButtonStyle()} type='button' disabled={errors.length <= 0? true: false} onClick={handleSubmit} className="new-tweet-button">Tweet</button>
-                        </div>
+            // <form onSubmit={handleSubmit}>
+            <div className="new-tweet-container">
+                <div className="new-tweet-header">
+                    <h4 className="form-header">Home</h4>
+                    <img className="profile-pic" src={`${user.profilePic}`}></img>
+                </div>
+                <div className="input-outer-1">
+                    <input
+                        id="new-tweet-field"
+                        placeholder="What's happening?"
+                        value={tweetField}
+                        onChange={e => setTweetField(e.target.value)}
+                    ></input>
+                </div>
+                {submitted ? <img className='preview-img' src={previewUrl}></img> : <label htmlFor="file-upload" className='custome-file-upload'>
+                    <div className="media-icon">{mediaIcon}</div>
+                    <input id="file-upload"
+                        type='file'
+                        name='image'
+                        onChange={updateImage}
+                        accept='.jpg, .jpeg, .png, .gif'>
+                    </input>
+                </label>}
+                <div className="new-form-footer">
+                    <div className="outter-button-container">
+                        <button style={tweetButtonStyle()} type='button' onClick={e => handleSubmit(e)} className="new-tweet-button">Tweet</button>
                     </div>
                 </div>
-            </form>
+            </div>
+            // </form>
         )
     }
 }
