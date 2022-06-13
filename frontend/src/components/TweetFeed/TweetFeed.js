@@ -32,7 +32,7 @@ function TweetFeed() {
             .then(() => setIsLoaded(true))
     }, [isLoaded])
 
-
+    console.log(editModalStatus, "hellllllloooo")
 
     const deleteTweet = (e, tweetId) => {
         e.preventDefault();
@@ -56,8 +56,10 @@ function TweetFeed() {
         e.stopPropagation();
         setTweetNum(tweetId)
         if (editModalStatus) {
+            console.log('editmodal was closed')
             setEditModalStatus(false)
         } else {
+            console.log('you opened the edit modal')
             setEditModalStatus(true)
         }
         console.log(editModalStatus)
@@ -76,6 +78,11 @@ function TweetFeed() {
     const sendToTweetPage = (e, tweetId) => {
         e.preventDefault();
         e.stopPropagation();
+        if (editModalStatus){
+            return;
+        } else {
+
+        }
         history.push(`/tweets/${tweetId}`)
     }
 
@@ -96,7 +103,7 @@ function TweetFeed() {
                             return (
                                 <div key={tweet?.id}>
                                     <div
-                                        // onClick={e => sendToTweetPage(e, tweet.id)}
+                                        onClick={e => sendToTweetPage(e, tweet.id)}
                                         className="tweet-header">
                                         {authorizedUser?.id === tweet?.User?.id ?
                                         <div onClick={(e) => editModalActions(e, tweet?.id)}

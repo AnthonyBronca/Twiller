@@ -15,6 +15,7 @@
     /* height: 100%; */
     /* width: 100%; */
     box-shadow: rgb(136 153 166 / 20%) 0px 0px 15px 1px;
+    z-index: 200;
 }
 
 .edit-button-elipsis{
@@ -74,6 +75,7 @@
     justify-content: flex-start;
     padding: 15%;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .close-button-elipsis:hover{
@@ -84,4 +86,5 @@
 .close-word{
     font-size: 15px;
     padding-left: 15%;
+    z-index: 1000;
 }
