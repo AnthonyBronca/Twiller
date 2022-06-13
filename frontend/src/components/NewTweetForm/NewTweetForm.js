@@ -50,7 +50,7 @@ function NewTweetForm() {
     }
 
     const tweetButtonStyle = () => {
-        if (tweetField.length > 0) {
+        if (tweetField.length > 0 || image !== null) {
             return {
                 'backgroundColor': 'rgb(29, 155, 240)',
                 'color': 'white',
@@ -87,6 +87,13 @@ function NewTweetForm() {
 
         }
         setSubmitted(true)
+    }
+
+    const clearFields = e => {
+        setImgUrl(null);
+        setTweetField('');
+        setPreviewUrl('')
+        setSubmitted(false)
     }
 
 
@@ -131,6 +138,16 @@ function NewTweetForm() {
                 <div className="new-form-footer">
                     <div className="outter-button-container">
                         <button style={tweetButtonStyle()} type='button' onClick={e => handleSubmit(e)} className="new-tweet-button">Tweet</button>
+                        {tweetField.length > 0 || image !== null ?
+                         <button
+                         onClick={e=> clearFields(e)}
+                         style={{background: 'transparent',
+                         'color': 'white',
+                         'border': 'transparent'}}>X
+                         </button>
+                         : null}
+                    </div>
+                    <div>
                     </div>
                 </div>
             </div>
