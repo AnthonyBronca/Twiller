@@ -10,6 +10,19 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+
+
+  const sendToSplash = () => {
+    history.push('/')
+  }
+
+  const demoLogin = () => {
+    setCredential('Demo')
+    setPassword('twiller')
+    handleSubmit();
+  }
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -59,6 +72,16 @@ function LoginForm() {
             </div>
             <div className="login-button-div">
               <button className='login-button' type="submit">Log In</button>
+            </div>
+            <div className="login-button-div">
+              <button type='submit'
+              className='login-button'
+              onClick={demoLogin}>Demo Login</button>
+            </div>
+            <div className="login-button-div">
+              <button type='button'
+              className='login-button'
+              onClick={sendToSplash}>Go Back</button>
             </div>
           </div>
         </form>

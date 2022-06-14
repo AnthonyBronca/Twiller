@@ -10,6 +10,9 @@ function Splash() {
         history.push('/login')
     }
 
+    const sendToNewAccountForm = () => {
+        history.push('/signup')
+    }
 
 
     return (
@@ -22,7 +25,7 @@ function Splash() {
                         <h1 className='happening-now-title'>Happening Now</h1>
                         <div className='new-user-form'>
                             <span>New to Twiller?</span>
-                            <button className='new-account-button'>Make an account</button>
+                            <button onClick={sendToNewAccountForm} className='new-account-button'>Make an account</button>
                         </div>
                         <div className='existing-user-form'>
                             <span>Existing User?</span>
