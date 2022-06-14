@@ -11,6 +11,7 @@ import SideBar from "./components/HomePageSideBar/SideBar";
 import Splash from "./components/Splash/splash";
 import EditTweetForm from "./components/EditTweetForm/EditTweetForm";
 import EditCommentForm from "./components/EditCommentForm/EditCommentForm";
+import LoginForm from "./components/LoginFormModal/LoginForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
             <Route path='/' exact={true}>
               <Splash />
             </Route>
+            <Route path='/login' exact={true}>
+              <LoginForm />
+            </Route>
             <Route path="/signup">
               <SignupFormPage />
             </Route>
@@ -54,7 +58,7 @@ function App() {
             <Route path='/comments/:id/edit' exact={true}>
               <EditCommentForm />
             </Route>
-            <h1>Please sign in</h1>
+            <h1>Page Not Found</h1>
           </Switch>
         )}
       </>

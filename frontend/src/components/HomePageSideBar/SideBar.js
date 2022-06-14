@@ -16,6 +16,7 @@ function SideBar() {
     const dispatch = useDispatch();
     const history = useHistory();
     const userId = useSelector((state) => state?.session?.user?.id)
+
     const [homeStatus, setHomeStatus] = useState(homeFilledIn)
     const [exploreStatus, setExploreStatus] = useState(exploreIcon)
     const [notificationStatus, setNotificationStatus] = useState(notificationIcon)
@@ -51,51 +52,56 @@ function SideBar() {
 
     }
 
-    return (
-        <>
-            <div className="side-bar-container">
-                <div className="side-bar-icons">
-                    <div className="interior-side-bar">
+    if (!userId) {
+        return null
+    } else {
 
-                        <div onClick={(e) => history.push('/tweets')} id='bird' className="side-bar-icon">
-                            {birdIcon}
-                            {/* add dispatch to bird */}
-                        </div >
-                        <div id='home' className="side-bar-icon"
-                            onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            <span id='home' onClick={(e) => changeIconStatus(e, e.target.id)}>{homeStatus}</span>
-                            <label id='home' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Home</label>
-                        </div>
-                        <div id='explore' className="side-bar-icon"
-                            onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            <span id="explore" onClick={(e) => changeIconStatus(e, e.target.id)}>{exploreStatus}</span>
-                            <label id='explore' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Explore</label>
-                        </div >
-                        <div id='notification' className="side-bar-icon"
-                            onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            <span id='notification' onClick={(e) => changeIconStatus(e, e.target.id)}>{notificationStatus}</span>
-                            <label id='notification' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Notifications</label>
-                        </div>
-                        <div id='message' className="side-bar-icon"
-                            onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            <span id='message' onClick={(e) => changeIconStatus(e, e.target.id)}>{messageStatus}</span>
-                            <label id='message' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Messages</label>
-                        </div>
-                        <div id='profile' className="side-bar-icon"
-                            onClick={(e) => changeIconStatus(e, e.target.id)}>
-                            <span id='profile' onClick={(e) => changeIconStatus(e, e.target.id)}>{profileStatus}</span>
-                            <label id='profile' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Profile</label>
-                        </div>
-                    </div>
+        return (
+            <>
+                <div className="side-bar-container">
+                    <div className="side-bar-icons">
+                        <div className="interior-side-bar">
 
-                    <div className="user-profile-actions">
-                        <Navigation />
+                            <div onClick={(e) => history.push('/tweets')} id='bird' className="side-bar-icon">
+                                {birdIcon}
+                                {/* add dispatch to bird */}
+                            </div >
+                            <div id='home' className="side-bar-icon"
+                                onClick={(e) => changeIconStatus(e, e.target.id)}>
+                                <span id='home' onClick={(e) => changeIconStatus(e, e.target.id)}>{homeStatus}</span>
+                                <label id='home' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Home</label>
+                            </div>
+                            <div id='explore' className="side-bar-icon"
+                                onClick={(e) => changeIconStatus(e, e.target.id)}>
+                                <span id="explore" onClick={(e) => changeIconStatus(e, e.target.id)}>{exploreStatus}</span>
+                                <label id='explore' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Explore</label>
+                            </div >
+                            <div id='notification' className="side-bar-icon"
+                                onClick={(e) => changeIconStatus(e, e.target.id)}>
+                                <span id='notification' onClick={(e) => changeIconStatus(e, e.target.id)}>{notificationStatus}</span>
+                                <label id='notification' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Notifications</label>
+                            </div>
+                            <div id='message' className="side-bar-icon"
+                                onClick={(e) => changeIconStatus(e, e.target.id)}>
+                                <span id='message' onClick={(e) => changeIconStatus(e, e.target.id)}>{messageStatus}</span>
+                                <label id='message' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Messages</label>
+                            </div>
+                            <div id='profile' className="side-bar-icon"
+                                onClick={(e) => changeIconStatus(e, e.target.id)}>
+                                <span id='profile' onClick={(e) => changeIconStatus(e, e.target.id)}>{profileStatus}</span>
+                                <label id='profile' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Profile</label>
+                            </div>
+                        </div>
+
+                        <div className="user-profile-actions">
+                            <Navigation />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </>
-    )
+            </>
+        )
+    }
 }
 
 export default SideBar

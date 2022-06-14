@@ -13,7 +13,7 @@ function LoginFormPage() {
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return (
-    <Redirect to="/" />
+    <Redirect to="/tweets" />
   );
 
   const handleSubmit = (e) => {
@@ -27,39 +27,41 @@ function LoginFormPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <div className='login-items'>
+    <div className='sign-in-form-container'>
+      <form onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <div className='login-items'>
 
-        <label id='userName-field'>
-          Username or Email
-          <input
-            type="text"
-            className='login-box'
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-      </div>
-      <div className='login-items'>
-        <label id='password-field'>
-          Password
-          <input
-            type="password"
-            className='login-box'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-      </div>
-      <div className='login-items'>
-        <button type="submit" id='login-button' >Log In</button>
-      </div>
-    </form>
+          <label id='userName-field'>
+            Username or Email
+            <input
+              type="text"
+              className='login-box'
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className='login-items'>
+          <label id='password-field'>
+            Password
+            <input
+              type="password"
+              className='login-box'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className='login-items'>
+          <button type="submit" id='login-button'>Log In</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

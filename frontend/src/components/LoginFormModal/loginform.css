@@ -1,0 +1,44 @@
+.login-body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.login-form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-form-fields{
+    display: flex;
+    flex-direction: column;
+}
+
+.username-label{
+    padding-bottom: 10px;
+}
+
+.pass-container{
+    padding-bottom: 10px;
+}
+
+.login-button-div{
+    width: 100%;
+}
+
+.login-button{
+    width: 100%;
+    background-color: rgb(26, 93, 141);
+    color: white;
+    font-weight: 700px;
+    font-size: 15px;
+    text-align: center;
+    position:sticky;
+    margin-bottom: 20%;
+    margin-top: 10px;
+    border-radius: 12%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

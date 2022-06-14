@@ -1,0 +1,69 @@
+.page-container{
+    align-items: stretch;
+    border: 0 solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-basis: auto;
+    flex-shrink: 0;
+    position: relative;
+    width: 80%;
+    height: 100%;
+}
+
+.splash-main-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.splash-logo-img{
+    height: 80%;
+    width: 85%;
+}
+
+.home-login-forms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bird-logo-icon{
+    position: relative;
+    right: 100px;
+}
+.happening-now-title{
+    position: relative;
+    left: 10%;
+    font-size: 60px;
+}
+
+.existing-user-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.new-user-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.new-account-button {
+    background-color: rgb(26, 93, 141);
+    color: white;
+    font-weight: 700px;
+    font-size: 15px;
+    text-align: center;
+    position:sticky;
+    margin-bottom: 20%;
+    margin-top: 10px;
+    border-radius: 12%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
