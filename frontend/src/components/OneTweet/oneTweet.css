@@ -1,12 +1,24 @@
+.one-tweet-page-container{
+    align-items: stretch;
+    border: 0 solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-basis: auto;
+    flex-shrink: 0;
+    position: relative;
+    width: 80%;
+    height: 100%;
+}
+
 .center-container-one-post{
-    width: 63%;
     position: relative;
     left: 0%;
+    width: 50%;
 }
 
 .feed-container-one-post{
     /* height: 50vw; */
-    width: 50vw;
+    width: 100%;
     border: 1px solid rgb(56,68,77);
 }
 
@@ -47,6 +59,8 @@
 
 .individual-comment-container{
     border: solid 1px rgb(56,68,77);
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 .outter-button-container-reply{

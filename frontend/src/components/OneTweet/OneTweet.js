@@ -64,7 +64,7 @@ function OneTweet() {
         setComment(comment)
 
 
-        if(commentModalStatus){
+        if (commentModalStatus) {
             setCommentModalStatus(false)
         } else {
             setCommentModalStatus(true)
@@ -99,76 +99,78 @@ function OneTweet() {
     } else {
         return (
             <>
-                <div className='center-container-one-post'>
-                    <div className='feed-container-one-post'>
-                        <div className="tweet-header">
-                            <div onClick={e => history.push('/tweets')} className='go-back-header'>{backArrowIcon}<span className='back-to-tweet'>Tweet</span></div>
-                            {authorizedUser?.id === tweet?.User?.id ?
-                                <div onClick={(e) => editModalActions(e, tweet?.id)}
-                                    className="dot-container">{dotDotDotIcon}</div> : null}
-                            {editModalStatus && tweetNum === tweet?.id ?
-                                <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} />
-                                : null}
-                            <div className='user-items-get-one-tweet'>
-                                <span className='profile-pic-span-one-post'><img className='profile-pic' src={tweet?.User?.profilePic}></img></span>
-                                <div className='user-items-words'>
-                                    <div className='fullname-one-tweet'>
-                                        <span style={{ color: 'white' }}>{tweet?.User?.fullname}{tweet?.User?.id === 2 ? <Checkmark /> : null}</span>
-                                    </div>
-                                    <div className='username-one-tweet'>
-                                        <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
+                <div className='one-tweet-page-container'>
+                    <div className='center-container-one-post'>
+                        <div className='feed-container-one-post'>
+                            <div className="tweet-header">
+                                <div onClick={e => history.push('/tweets')} className='go-back-header'>{backArrowIcon}<span className='back-to-tweet'>Tweet</span></div>
+                                {authorizedUser?.id === tweet?.User?.id ?
+                                    <div onClick={(e) => editModalActions(e, tweet?.id)}
+                                        className="dot-container">{dotDotDotIcon}</div> : null}
+                                {editModalStatus && tweetNum === tweet?.id ?
+                                    <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} />
+                                    : null}
+                                <div className='user-items-get-one-tweet'>
+                                    <span className='profile-pic-span-one-post'><img className='profile-pic' src={tweet?.User?.profilePic}></img></span>
+                                    <div className='user-items-words'>
+                                        <div className='fullname-one-tweet'>
+                                            <span style={{ color: 'white' }}>{tweet?.User?.fullname}{tweet?.User?.id === 2 ? <Checkmark /> : null}</span>
+                                        </div>
+                                        <div className='username-one-tweet'>
+                                            <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p style={{ color: 'white' }} >{tweet?.tweet}</p>
-                            {/* {authorizedUser.id === tweet?.User?.id ? <>
+                                <p style={{ color: 'white' }} >{tweet?.tweet}</p>
+                                {/* {authorizedUser.id === tweet?.User?.id ? <>
                                 <button onClick={e => deleteTweet(e, tweet?.id)}
-                                    className="delete-tweet-button">Delete Tweet</button>
+                                className="delete-tweet-button">Delete Tweet</button>
                             </> : null} */}
-                            <div className='icon-container'>
-                                {commentIcon}
-                            </div>
-                            <div className='comments-container'>
-                            </div>
-                        </div>
-                        <div className="tweet-header">
-                            <div className='tweet-reply-container'>
-                                <img className='profile-pic' src={authorizedUser?.profilePic}></img>
-                                <div className='new-reply-input-field'>
-                                    <input
-                                        id="new-tweet-field"
-                                        placeholder="Tweet your reply"
-                                        value={tweetField}
-                                        onChange={e => setTweetField(e.target.value)}
-                                        style={{ position: 'relative', 'left': '4px', 'top': '10px', paddingLeft: '8px', fontSize: '24px' }}
-                                    ></input>
+                                <div className='icon-container'>
+                                    {commentIcon}
                                 </div>
-                                <div className="outter-button-container-reply" >
-                                    <button onClick={e => handleSubmit(e)} className="new-tweet-button-one-tweet">Reply</button>
+                                <div className='comments-container'>
                                 </div>
                             </div>
-                        </div>
-                        <div className='comment-section-one-tweet'>
-                            {commentsLoaded && tweet?.Comments ? tweet?.Comments.map((comment, idx) => {
-                                return (
-                                    <div className='individual-comment-container' key={idx}>
-                                        <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
-                                        {comment?.User?.id === 2 ? <Checkmark /> : null}
-                                        <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
-                                        {authorizedUser?.id === tweet?.User?.id ?
-                                            <div onClick={(e) => commentModalActions(e, comment?.id, comment?.comment)}
-                                                className="dot-container">{dotDotDotIcon}</div> : null}
-                                        {commentModalStatus && commentNum === comment?.id ?
-                                            <Elipsis setEditModalStatus={commentModalStatus}
-                                            tweetNum={comment?.id}
-                                            commentVerification={commentVerification}
-                                            commentNum={commentNum}
-                                            comment={comment} />
-                                            : null}
-                                        <p style={{ color: 'white' }} >{comment?.comment}</p>
+                            <div className="tweet-header">
+                                <div className='tweet-reply-container'>
+                                    <img className='profile-pic' src={authorizedUser?.profilePic}></img>
+                                    <div className='new-reply-input-field'>
+                                        <input
+                                            id="new-tweet-field"
+                                            placeholder="Tweet your reply"
+                                            value={tweetField}
+                                            onChange={e => setTweetField(e.target.value)}
+                                            style={{ position: 'relative', 'left': '4px', 'top': '10px', paddingLeft: '8px', fontSize: '24px' }}
+                                        ></input>
                                     </div>
-                                )
-                            }) : null}
+                                    <div className="outter-button-container-reply" >
+                                        <button onClick={e => handleSubmit(e)} className="new-tweet-button-one-tweet">Reply</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='comment-section-one-tweet'>
+                                {commentsLoaded && tweet?.Comments ? tweet?.Comments.map((comment, idx) => {
+                                    return (
+                                        <div className='individual-comment-container' key={idx}>
+                                            <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
+                                            {comment?.User?.id === 2 ? <Checkmark /> : null}
+                                            <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
+                                            {authorizedUser?.id === tweet?.User?.id ?
+                                                <div onClick={(e) => commentModalActions(e, comment?.id, comment?.comment)}
+                                                    className="dot-container">{dotDotDotIcon}</div> : null}
+                                            {commentModalStatus && commentNum === comment?.id ?
+                                                <Elipsis setEditModalStatus={commentModalStatus}
+                                                    tweetNum={comment?.id}
+                                                    commentVerification={commentVerification}
+                                                    commentNum={commentNum}
+                                                    comment={comment} />
+                                                : null}
+                                            <p style={{ color: 'white' }} >{comment?.comment}</p>
+                                        </div>
+                                    )
+                                }) : null}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ function Splash() {
 
     return (
         <>
-            <div className='page-container'>
+            <div className='splash-page-container'>
                 <div className='splash-main-container'>
                     <img className='splash-logo-img' src={logo} alt='twitter-login-logo'></img>
                     <div className='home-login-forms'>
