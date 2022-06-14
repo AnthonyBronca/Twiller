@@ -5,9 +5,9 @@
 }
 
 .feed-container-one-post{
-    height: 50vw;
+    /* height: 50vw; */
     width: 50vw;
-    border: 1px solid rgb(56,68,77)
+    border: 1px solid rgb(56,68,77);
 }
 
 .go-back-header{
@@ -45,8 +45,11 @@
     display: flex;
 }
 
+.individual-comment-container{
+    border: solid 1px rgb(56,68,77);
+}
+
 .outter-button-container-reply{
-    background-color: rgb(29, 155, 240);
     width: 20%;
     outline: none;
     margin-right: 10px;
@@ -56,9 +59,14 @@
     position: relative;
     left: 150px;
 }
-.new-tweet-button{
+.new-tweet-button-one-tweet{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(29, 155, 240);
+    height: 50%;
+    width: 50%;
+    font-size: 16px;
 }
 
 @media (max-width: 1160px) {

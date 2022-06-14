@@ -27,8 +27,10 @@ export const addCommentThunk = (tweetId, formValues) => async (dispatch)=> {
     console.log('am i here?')
     console.log(options)
     const response = await csrfFetch(`/api/tweets/${tweetId}/comment/new`, options)
-    console.log(response, 'response')
+    console.log(response, 'response ********************************3838383883838')
     const comment = await response.json();
+    console.log(comment, "^^^^^^^^^^^^^^^^^^^^^^^^^*******")
+    //check state between user and usertable and comments userId.
     dispatch(addComment(comment))
     return response;
 }

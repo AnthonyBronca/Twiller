@@ -1,0 +1,17 @@
+.edit-tweet-body-input{
+    height: 100%;
+    width: 120%;
+    word-wrap: break-word;
+    font-size: 18px;
+}
+
+.submit-edit-button{
+    position: relative;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.new-tweet-button-one-tweet{
+    color:white;
+}

@@ -36,13 +36,17 @@ const addTweet = (tweet) => {
 }
 
 
-export const updateTweetThunk = (userId, tweet, imgUrl) => async (dispatch) => {
-    const id = tweet.id
-    const response = await csrfFetch(`/api/tweets/${id}`, {
+export const updateTweetThunk = (id, updatedTweet) => async (dispatch) => {
+
+    const options = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userId, tweet, imgUrl)
-    })
+        body: JSON.stringify({id, updatedTweet})
+    }
+
+    console.log(options, 'this is options')
+
+    const response = await csrfFetch(`/api/tweets/${id}/edit`, options)
     const tweet = await response.json()
     dispatch(updateTweet(tweet))
     return response

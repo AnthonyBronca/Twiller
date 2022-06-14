@@ -40,17 +40,7 @@ function TweetFeed() {
         dispatch(deleteTweetThunk(tweetId))
     }
 
-    // const editTweet = (e, tweetId, tweet, imgUrl) => {
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     const userId = authorizedUser.id
-    //     const form = {
-    //         userId,
-    //         tweet,
-    //         imgUrl
-    //     }
-    //     dispatch(updateTweetThunk(tweetId))
-    // }
+
     const editModalActions = (e, tweetId) => {
         e.preventDefault()
         e.stopPropagation();
@@ -105,15 +95,15 @@ function TweetFeed() {
                                     <div
                                         onClick={e => sendToTweetPage(e, tweet.id)}
                                         className="tweet-header">
-                                        {authorizedUser?.id === tweet?.User?.id ?
-                                        <div onClick={(e) => editModalActions(e, tweet?.id)}
-                                            className="dot-container">{dotDotDotIcon}</div> : null}
-                                            {editModalStatus && tweetNum === tweet?.id ?
-                                            <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} />
-                                            : null}
+                                            {authorizedUser?.id === tweet?.User?.id ?
+                                            <div onClick={(e) => editModalActions(e, tweet?.id)}
+                                                className="dot-container">{dotDotDotIcon}</div> : null}
+                                                {editModalStatus && tweetNum === tweet?.id ?
+                                                <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweet?.id} />
+                                                : null}
                                         <span><img className="profile-pic" src={tweet?.User?.profilePic}></img></span>
                                         <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
-                                        <span>{tweet.User.id === 2 ? <Checkmark /> : null}</span>
+                                        <span>{tweet?.User?.id === 2 ? <Checkmark /> : null}</span>
                                         <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
                                         {modalStatus ? <EditTweetModal tweet={tweet?.tweet} /> :
                                         <p style={{ color: 'white' }} >{tweet?.tweet}</p>}

@@ -9,6 +9,9 @@ import TweetFeed from "./components/TweetFeed/TweetFeed";
 import OneTweet from "./components/OneTweet/OneTweet";
 import SideBar from "./components/HomePageSideBar/SideBar";
 import Splash from "./components/Splash/splash";
+import EditTweetForm from "./components/EditTweetForm/EditTweetForm";
+
+
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user)
@@ -41,6 +44,9 @@ function App() {
             </Route>
             <Route path={'/tweets/:id'} exact={true}>
               <OneTweet />
+            </Route>
+            <Route path='/tweets/:id/edit' exact={true}>
+              <EditTweetForm />
             </Route>
             <h1>Please sign in</h1>
           </Switch>

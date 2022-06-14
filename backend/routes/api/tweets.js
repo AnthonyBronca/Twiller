@@ -27,7 +27,7 @@ router.get('/', (async(req,res)=>{
 router.get('/:id/comments', (async(req,res)=> {
     const id = req.params.id
     const comments = await Comment.findAll({
-        where: {tweetId:id}, include: User
+        where: {tweetId:id}, include: [User]
     })
     console.log('am i here??')
     return res.json(comments)
@@ -38,7 +38,7 @@ router.get('/:id/comments', (async(req,res)=> {
 router.get('/:id', (async(req,res)=> {
     const id = req.params.id
     const tweet = await Tweet.findByPk(id,{
-        include: User
+        include: [User, {model:Comment, include: User}]
     })
     return res.json(tweet)
 }))
@@ -105,22 +105,25 @@ router.post('/new', singleMulterUpload('image'),asyncHandler(async(req,res)=> {
 
 //updates an existing tweet based on tweet id. must pass in userId, tweetbody, and imgurl
 router.put('/:id/edit', (async(req,res)=>{
-    const tweetId = req.params.id
-    const {userId, tweet, imgUrl} = req.body
-    const originalTweet = await Tweet.findByPk(tweetId)
+    // const id = req.params.id
+    const {id, updatedTweet} = req.body
+    console.log(req.body, "this is req.body")
+    // console.log(id, tweet, 'this is req.body from PUT')
+    const originalTweet = await Tweet.findByPk(id)
     const oldTweet = originalTweet.tweet
     const oldImg = originalTweet.imgUrl
 
-    if(oldTweet !== tweet){
-        originalTweet.tweet = tweet
-        await originalTweet.save();
+    if(oldTweet !== updatedTweet){
+        originalTweet.tweet = updatedTweet
+         await originalTweet.save();
     }
-    if (oldImg !== imgUrl){
-        originalTweet.imgUrl = imgUrl;
-        await originalTweet.save();
-    }
-    const updatedTweet = await Tweet.findByPk(tweetId)
+    // if (oldImg !== imgUrl){
+    //     originalTweet.imgUrl = imgUrl;
+    //     await originalTweet.save();
+    // }
+    const newTweet = await Tweet.findByPk(id)
     return res.json(updatedTweet)
+    // return res.send(';)')
 }))
 
 //deletes an existing tweet

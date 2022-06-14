@@ -8,7 +8,8 @@ import SideBar from '../HomePageSideBar/SideBar';
 import { commentIcon, backArrowIcon } from './onetweeticons'
 import './oneTweet.css'
 import Checkmark from '../Checkmark/Checkmark';
-
+import { dotDotDotIcon } from './onetweeticons';
+import Elipsis from '../MoreTweetOptions/Elipsis';
 
 function OneTweet() {
     const dispatch = useDispatch();
@@ -24,33 +25,50 @@ function OneTweet() {
     const [isLoaded, setIsLoaded] = useState(false)
     const [tweetField, setTweetField] = useState('')
     const [imgUrl, setImgUrl] = useState('')
+    const [editModalStatus, setEditModalStatus] = useState(false)
+    const [tweetNum, setTweetNum] = useState(null)
+
 
     useEffect(() => {
         dispatch(getTweetThunk(id))
-            .then(() => dispatch(getCommentsThunk(id)))
+        console.log(id, "wtf is this")
+        dispatch(getCommentsThunk(id))
             .then(() => setIsLoaded(true))
     }, [isLoaded])
 
-
+    const editModalActions = (e, tweetId) => {
+        e.preventDefault()
+        e.stopPropagation();
+        setTweetNum(tweetId)
+        if (editModalStatus) {
+            console.log('editmodal was closed')
+            setEditModalStatus(false)
+        } else {
+            console.log('you opened the edit modal')
+            setEditModalStatus(true)
+        }
+        console.log(editModalStatus)
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
+        setIsLoaded(false)
         const userId = authorizedUser.id;
         const reply = tweetField
         const tweetId = tweet.id
         const formValues = {tweetId, userId, reply}
         dispatch(addCommentThunk(tweetId, formValues))
-        // .then(()=> setIsLoaded(true))
+        .then(()=> setIsLoaded(true))
         // dispatch(addTweetThunk(formValues))
         setTweetField('')
     }
 
-    const deleteTweet = (e, tweetId) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dispatch(deleteTweetThunk(tweetId))
-        history.push('/')
-    }
+    // const deleteTweet = (e, tweetId) => {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     dispatch(deleteTweetThunk(tweetId))
+    //     history.push('/')
+    // }
 
 
     if (!isLoaded) {
@@ -62,6 +80,12 @@ function OneTweet() {
                     <div className='feed-container-one-post'>
                         <div className="tweet-header">
                             <div onClick={e => history.push('/tweets')} className='go-back-header'>{backArrowIcon}<span className='back-to-tweet'>Tweet</span></div>
+                                {authorizedUser?.id === tweet?.User?.id ?
+                                        <div onClick={(e) => editModalActions(e, tweet?.id)}
+                                            className="dot-container">{dotDotDotIcon}</div> : null}
+                                            {editModalStatus && tweetNum === tweet?.id ?
+                                            <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} />
+                                            : null}
                             <div className='user-items-get-one-tweet'>
                                 <span className='profile-pic-span-one-post'><img className='profile-pic' src={tweet?.User?.profilePic}></img></span>
                                 <div className='user-items-words'>
@@ -74,10 +98,10 @@ function OneTweet() {
                                 </div>
                             </div>
                             <p style={{ color: 'white' }} >{tweet?.tweet}</p>
-                            {authorizedUser.id === tweet?.User?.id ? <>
+                            {/* {authorizedUser.id === tweet?.User?.id ? <>
                                 <button onClick={e => deleteTweet(e, tweet?.id)}
                                     className="delete-tweet-button">Delete Tweet</button>
-                            </> : null}
+                            </> : null} */}
                             <div className='icon-container'>
                                 {commentIcon}
                             </div>
@@ -97,13 +121,14 @@ function OneTweet() {
                                     ></input>
                                 </div>
                                     <div className="outter-button-container-reply" >
-                                        <div onClick={e => handleSubmit(e)} className="new-tweet-button">Reply</div>
+                                        <button onClick={e => handleSubmit(e)} className="new-tweet-button-one-tweet">Reply</button>
                                     </div>
                             </div>
                         </div>
-                        {comments? comments.map((comment, idx) => {
+                        <div className='comment-section-one-tweet'>
+                        {isLoaded && tweet?.Comments ? tweet?.Comments.map((comment, idx) => {
                             return (
-                                <div key={idx}>
+                                <div className='individual-comment-container' key={idx}>
                                     <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
                                     {comment?.User?.id === 2 ? <Checkmark /> : null}
                                     <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
@@ -111,6 +136,7 @@ function OneTweet() {
                                 </div>
                             )
                         }) : null}
+                        </div>
                     </div>
                 </div>
             </>
