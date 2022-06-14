@@ -57,6 +57,7 @@ const commentReducer = (state = initialState, action) => {
             newState = {...state, ...action.payload}
             return newState;
         case ADD_COMMENT:
+            //newState = JSON.parse(JSON.stringify(state));
             newState = {...state};
             console.log(action.payload, 'yoo')
             console.log(newState, "this is newState")

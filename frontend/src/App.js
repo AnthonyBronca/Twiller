@@ -21,21 +21,24 @@ function App() {
   }, [dispatch]);
 
 
-  if (!user) {
-    return (
-      // setTimeout(
-        <Route path='/' exact={true}>
-        <Splash />
-      </Route>
-        // ,500)
-    )
-  } else {
+  // if (!user) {
+  //   return (
+  //     // setTimeout(
+  //     <Route path='/' exact={true}>
+  //       <Splash />
+  //     </Route>
+  //     // ,500)
+  //   )
+  // } else {
     return (
       <>
         {/* <Navigation isLoaded={isLoaded} /> */}
         <SideBar />
         {isLoaded && (
           <Switch>
+            <Route path='/' exact={true}>
+              <Splash />
+            </Route>
             <Route path="/signup">
               <SignupFormPage />
             </Route>
@@ -57,6 +60,6 @@ function App() {
       </>
     );
   }
-}
+// }
 
 export default App;

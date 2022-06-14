@@ -68,6 +68,7 @@ export const addTweetThunk = (formValues) => async (dispatch) => {
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('tweet', tweet);
+    console.log(formData, "what is this")
     console.log('is image present?')
     if (image) {
         console.log('did i get to this location???')
@@ -78,6 +79,7 @@ export const addTweetThunk = (formValues) => async (dispatch) => {
             headers: { 'Content-Type': 'multipart/form-data' },
             body: formData
         }
+        console.log(options, "this is options")
         const response = await csrfFetch('/api/tweets/new', options)
         console.log(response, 'this is response, 2')
         const newTweet = await response.json()
