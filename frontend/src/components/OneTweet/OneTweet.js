@@ -26,7 +26,12 @@ function OneTweet() {
     const [tweetField, setTweetField] = useState('')
     const [imgUrl, setImgUrl] = useState('')
     const [editModalStatus, setEditModalStatus] = useState(false)
+    const [commentModalStatus, setCommentModalStatus] = useState(false)
     const [tweetNum, setTweetNum] = useState(null)
+    const [commentNum, setCommentNum] = useState(null)
+    const [commentsLoaded, setCommentsLoaded] = useState(false)
+    const [commentVerification, setCommentVerifiaction] = useState(false)
+    const [comment, setComment] = useState('')
 
 
     useEffect(() => {
@@ -34,7 +39,8 @@ function OneTweet() {
         console.log(id, "wtf is this")
         dispatch(getCommentsThunk(id))
             .then(() => setIsLoaded(true))
-    }, [isLoaded])
+            .then(() => setCommentsLoaded(true))
+    }, [isLoaded, commentsLoaded])
 
     const editModalActions = (e, tweetId) => {
         e.preventDefault()
@@ -50,15 +56,32 @@ function OneTweet() {
         console.log(editModalStatus)
     }
 
+    const commentModalActions = (e, commentId, comment) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setCommentNum(commentId);
+        setCommentVerifiaction(true)
+        setComment(comment)
+
+
+        if(commentModalStatus){
+            setCommentModalStatus(false)
+        } else {
+            setCommentModalStatus(true)
+        }
+
+        console.log(commentId, 'yoooo what sup')
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
-        setIsLoaded(false)
+        setCommentsLoaded(false)
         const userId = authorizedUser.id;
         const reply = tweetField
         const tweetId = tweet.id
-        const formValues = {tweetId, userId, reply}
+        const formValues = { tweetId, userId, reply }
         dispatch(addCommentThunk(tweetId, formValues))
-        .then(()=> setIsLoaded(true))
+            .then(() => setCommentsLoaded(true))
         // dispatch(addTweetThunk(formValues))
         setTweetField('')
     }
@@ -80,12 +103,12 @@ function OneTweet() {
                     <div className='feed-container-one-post'>
                         <div className="tweet-header">
                             <div onClick={e => history.push('/tweets')} className='go-back-header'>{backArrowIcon}<span className='back-to-tweet'>Tweet</span></div>
-                                {authorizedUser?.id === tweet?.User?.id ?
-                                        <div onClick={(e) => editModalActions(e, tweet?.id)}
-                                            className="dot-container">{dotDotDotIcon}</div> : null}
-                                            {editModalStatus && tweetNum === tweet?.id ?
-                                            <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} />
-                                            : null}
+                            {authorizedUser?.id === tweet?.User?.id ?
+                                <div onClick={(e) => editModalActions(e, tweet?.id)}
+                                    className="dot-container">{dotDotDotIcon}</div> : null}
+                            {editModalStatus && tweetNum === tweet?.id ?
+                                <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} />
+                                : null}
                             <div className='user-items-get-one-tweet'>
                                 <span className='profile-pic-span-one-post'><img className='profile-pic' src={tweet?.User?.profilePic}></img></span>
                                 <div className='user-items-words'>
@@ -120,22 +143,32 @@ function OneTweet() {
                                         style={{ position: 'relative', 'left': '4px', 'top': '10px', paddingLeft: '8px', fontSize: '24px' }}
                                     ></input>
                                 </div>
-                                    <div className="outter-button-container-reply" >
-                                        <button onClick={e => handleSubmit(e)} className="new-tweet-button-one-tweet">Reply</button>
-                                    </div>
+                                <div className="outter-button-container-reply" >
+                                    <button onClick={e => handleSubmit(e)} className="new-tweet-button-one-tweet">Reply</button>
+                                </div>
                             </div>
                         </div>
                         <div className='comment-section-one-tweet'>
-                        {isLoaded && tweet?.Comments ? tweet?.Comments.map((comment, idx) => {
-                            return (
-                                <div className='individual-comment-container' key={idx}>
-                                    <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
-                                    {comment?.User?.id === 2 ? <Checkmark /> : null}
-                                    <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
-                                    <p style={{ color: 'white' }} >{comment?.comment}</p>
-                                </div>
-                            )
-                        }) : null}
+                            {commentsLoaded && tweet?.Comments ? tweet?.Comments.map((comment, idx) => {
+                                return (
+                                    <div className='individual-comment-container' key={idx}>
+                                        <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
+                                        {comment?.User?.id === 2 ? <Checkmark /> : null}
+                                        <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
+                                        {authorizedUser?.id === tweet?.User?.id ?
+                                            <div onClick={(e) => commentModalActions(e, comment?.id, comment?.comment)}
+                                                className="dot-container">{dotDotDotIcon}</div> : null}
+                                        {commentModalStatus && commentNum === comment?.id ?
+                                            <Elipsis setEditModalStatus={commentModalStatus}
+                                            tweetNum={comment?.id}
+                                            commentVerification={commentVerification}
+                                            commentNum={commentNum}
+                                            comment={comment} />
+                                            : null}
+                                        <p style={{ color: 'white' }} >{comment?.comment}</p>
+                                    </div>
+                                )
+                            }) : null}
                         </div>
                     </div>
                 </div>

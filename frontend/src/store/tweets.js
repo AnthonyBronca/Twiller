@@ -6,7 +6,6 @@ const ADD_TWEET = 'tweets/addTweet'
 const UPDATE_TWEET = 'tweets/updateTweet'
 const DELETE_TWEET = 'tweets/deleteTweet'
 
-
 const deleteTweet = (tweet) => {
     return {
         type: DELETE_TWEET,
@@ -34,6 +33,9 @@ const addTweet = (tweet) => {
         payload: tweet
     }
 }
+
+
+
 
 
 export const updateTweetThunk = (id, updatedTweet) => async (dispatch) => {

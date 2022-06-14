@@ -10,7 +10,7 @@ import OneTweet from "./components/OneTweet/OneTweet";
 import SideBar from "./components/HomePageSideBar/SideBar";
 import Splash from "./components/Splash/splash";
 import EditTweetForm from "./components/EditTweetForm/EditTweetForm";
-
+import EditCommentForm from "./components/EditCommentForm/EditCommentForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +47,9 @@ function App() {
             </Route>
             <Route path='/tweets/:id/edit' exact={true}>
               <EditTweetForm />
+            </Route>
+            <Route path='/comments/:id/edit' exact={true}>
+              <EditCommentForm />
             </Route>
             <h1>Please sign in</h1>
           </Switch>
