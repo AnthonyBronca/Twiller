@@ -97,17 +97,6 @@ function NewTweetForm() {
     }
 
 
-    // const updateImage = async (e) => {
-    //     const file = e.target.files[0];
-    //     const reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onload = function (e) {
-    //       setPreviewUrl(reader.result);
-    //     };
-    //     setImgUrl(file);
-    //     setShowUpload(false);
-    //   };
-
     if (!user) {
         return <h1>Please sign in to post a tweet</h1>
     } else {
@@ -116,7 +105,7 @@ function NewTweetForm() {
             <div className="new-tweet-container">
                 <div className="new-tweet-header">
                     <h4 className="form-header">Home</h4>
-                    <img className="profile-pic" src={`${user.profilePic}`}></img>
+                    <img className="profile-pic" src={`${user?.profilePic}`}></img>
                 </div>
                 <div className="input-outer-1">
                     <input
@@ -138,7 +127,7 @@ function NewTweetForm() {
                 <div className="new-form-footer">
                     <div className="outter-button-container">
                         <button style={tweetButtonStyle()} type='button' onClick={e => handleSubmit(e)} className="new-tweet-button">Tweet</button>
-                        {tweetField.length > 0 || image !== null ?
+                        {(tweetField.length > 0) && (submitted === false) || (previewUrl !== '') && (submitted === false)  ?
                          <button
                          onClick={e=> clearFields(e)}
                          style={{background: 'transparent',

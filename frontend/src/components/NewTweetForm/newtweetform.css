@@ -34,7 +34,8 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    left: 7vw;
+    left: 75px;
+    width: 60%;
     bottom: 2vw;
 }
 
@@ -85,6 +86,13 @@ input#file-upload{
     position: relative;
     left: 6.5%;
     cursor: pointer;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgb(56,68,77);
+    border-bottom: 1px solid rgb(56,68,77);
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 

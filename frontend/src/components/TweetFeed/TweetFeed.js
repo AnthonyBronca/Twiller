@@ -103,8 +103,8 @@ function TweetFeed() {
                                                 <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweet?.id} />
                                                 : null}
                                             <span><img className="profile-pic" src={tweet?.User?.profilePic}></img></span>
-                                            <span style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
-                                            <span>{tweet?.User?.id === 2 ? <Checkmark /> : null}</span>
+                                            <span className='user-handle-info' style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
+                                            <span >{tweet?.User?.id === 2 ? <Checkmark /> : null}</span>
                                             <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
                                             {modalStatus ? <EditTweetModal tweet={tweet?.tweet} /> :
                                                 <p style={{ color: 'white' }} >{tweet?.tweet}</p>}
