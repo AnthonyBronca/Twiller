@@ -5,19 +5,19 @@ const {User, Tweet, Comment} = require('../../db/models')
 const {dateParser} = require('../../helpers/datecalculator')
 
 //updates a comment only if changes were made
-router.put('/:id', (async(req, res)=> {
+router.put('/:id/edit', (async(req, res)=> {
     const id = req.params.id;
-    const {tweetId, userId, comment} = req.body
-    console.log(tweetId, userId, comment, "helllloo")
-    const originalComment = await Comment.findByPk(id);
+    // console.log(req, '********************************')
+    const {commentId, newComment} = req.body
+    // console.log(tweetId, userId, comment, "helllloo")
+    const originalComment = await Comment.findByPk(commentId);
     const oldComment = originalComment.comment;
 
-    if (oldComment !== comment){
-        originalComment['comment'] = comment
+    if (oldComment !== newComment){
+        originalComment['comment'] = newComment
         await originalComment.save()
-        const updatedComment  = await Comment.findByPk(id)
+        const updatedComment  = await Comment.findByPk(commentId)
         return res.json(updatedComment)
-
     } else {
         return res.json(originalComment)
     }

@@ -48,11 +48,11 @@ console.log(options, "helllo!!!!")
 
 export const updateCommentThunk = (commentId, newComment) => async (dispatch) => {
     const options = {
-        methood: 'PUT',
+        method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({commentId, newComment})
     }
-
+    console.log(options, 'this is options')
     const response = await csrfFetch(`/api/comments/${commentId}/edit`, options)
     const comment = await response.json();
     dispatch(updateComment(comment));

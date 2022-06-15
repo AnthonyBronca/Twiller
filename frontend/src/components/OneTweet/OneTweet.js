@@ -36,7 +36,6 @@ function OneTweet() {
 
     useEffect(() => {
         dispatch(getTweetThunk(id))
-        console.log(id, "wtf is this")
         dispatch(getCommentsThunk(id))
             .then(() => setIsLoaded(true))
             .then(() => setCommentsLoaded(true))
@@ -47,10 +46,8 @@ function OneTweet() {
         e.stopPropagation();
         setTweetNum(tweetId)
         if (editModalStatus) {
-            console.log('editmodal was closed')
             setEditModalStatus(false)
         } else {
-            console.log('you opened the edit modal')
             setEditModalStatus(true)
         }
         console.log(editModalStatus)
@@ -62,7 +59,9 @@ function OneTweet() {
         setCommentNum(commentId);
         setCommentVerifiaction(true)
         setComment(comment)
-
+        console.log(comment)
+        console.log(commentVerification)
+        console.log('lol idk anymore')
 
         if (commentModalStatus) {
             setCommentModalStatus(false)
@@ -156,7 +155,7 @@ function OneTweet() {
                                             <span style={{ color: 'white' }}>{comment?.User?.fullname}</span>
                                             {comment?.User?.id === 2 ? <Checkmark /> : null}
                                             <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
-                                            {authorizedUser?.id === tweet?.User?.id ?
+                                            {authorizedUser?.id === comment?.userId ?
                                                 <div onClick={(e) => commentModalActions(e, comment?.id, comment?.comment)}
                                                     className="dot-container">{dotDotDotIcon}</div> : null}
                                             {commentModalStatus && commentNum === comment?.id ?

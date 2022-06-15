@@ -40,9 +40,11 @@ function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum
         dispatch(deleteCommentThunk(commentId))
     }
 
-    const editComment = (e, commentNum) => {
+    const editComment = (e, commentId) => {
         e.stopPropagation();
-        setEditMode(true);
+        console.log(commentId, 'hioooo')
+        console.log('am i getting here??')
+        history.push(`/comments/${commentId}/edit`)
     }
 
     return (
@@ -52,7 +54,7 @@ function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum
                     <div className='edit-button-container'>
                         {commentVerification ?
                         <button className='edit-button-elipsis' type='button'
-                        onClick={e=> editComment(e, tweetNum)}>
+                        onClick={e=> editComment(e, commentNum)}>
                             <div>{editIcon}</div>
                             <div className='edit-word'>Edit Comment</div>
                         </button>
