@@ -5,6 +5,9 @@ import { deleteTweetThunk } from '../../store/tweets'
 import { deleteCommentThunk } from '../../store/oneTweet';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+
+
 function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum, comment}) {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -13,6 +16,10 @@ function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum
     const [editMode, setEditMode] = useState(false)
 
     console.log(tweetNum, "what is thsi tweetnum thing")
+    console.log(setEditModalStatus, "what is thsi modalstats thing")
+    console.log(commentVerification, "what is thsi commentVerification thing")
+    console.log(commentNum, "what is thsi commentNum thing")
+    console.log(comment, "what is thsi comment thing")
 
     const deleteTweet = (e, tweetId) => {
         console.log(tweetId, "this is tweetId in delete")

@@ -24,6 +24,7 @@ function NewTweetForm() {
         if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
         setErrors(validations);
 
+
         if (!errors.length) {
             console.log('am i here?')
             e.preventDefault();
@@ -48,6 +49,7 @@ function NewTweetForm() {
             // });
         };
     }
+
 
     const tweetButtonStyle = () => {
         if (tweetField.length > 0 || image !== null) {
@@ -79,21 +81,24 @@ function NewTweetForm() {
 
 
     const updateImage = (e) => {
-        const file = e.target.files[0];
+        let file = e.target.files[0];
         setImgUrl(file);
         setShowModal(true)
         if (file) {
             setPreviewUrl(URL.createObjectURL(file))
 
         }
+        e.target.value = null
         setSubmitted(true)
     }
 
     const clearFields = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log(e.target.files)
         setImgUrl(null);
         setTweetField('');
         setPreviewUrl('')
-        setSubmitted(false)
     }
 
 
@@ -101,7 +106,6 @@ function NewTweetForm() {
         return <h1>Please sign in to post a tweet</h1>
     } else {
         return (
-            // <form onSubmit={handleSubmit}>
             <div className="new-tweet-container">
                 <div className="new-tweet-header">
                     <div className="header">
@@ -137,8 +141,8 @@ function NewTweetForm() {
                             onClick={e => handleSubmit(e)}
                             className='new-tweet-button'>Tweet</button>
                         <div className="clear-input-container">
-                            {(tweetField.length > 0) && (submitted === false) || (previewUrl !== '') && (submitted === false) ?
-                                <button onClick={e => clearFields(e)}>Clear</button> : null}
+                            {(tweetField.length > 0) && (submitted === false) || (previewUrl) ?
+                                <button className='clear-button' onClick={e => clearFields(e)}>Clear</button> : null}
                         </div>
                     </div>
                     </div>
@@ -147,11 +151,10 @@ function NewTweetForm() {
                 </div>
                 <div className="new-form-footer">
                     <div className="preview-img-main-container">
-                    {submitted? <img className="preview-img" src={previewUrl}></img> :null}
+                    {previewUrl? <img className="preview-img" src={previewUrl}></img> :null}
                     </div>
                 </div>
             </div>
-            // </form>
         )
     }
 }
