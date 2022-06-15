@@ -104,45 +104,50 @@ function NewTweetForm() {
             // <form onSubmit={handleSubmit}>
             <div className="new-tweet-container">
                 <div className="new-tweet-header">
-                    <h4 className="form-header">Home</h4>
-                    <img className="profile-pic" src={`${user?.profilePic}`}></img>
+                    <div className="header">
+                        <h4 className="form-header">Home</h4>
+                    </div>
                 </div>
-                <div className="new-tweet-input-item-containers">
+                <div className="new-tweet-body">
+                    <img className="profile-pic" src={`${user?.profilePic}`}></img>
                     <div className="input-outer-1">
-                        <input
-                            id="new-tweet-field"
+                        <input id="new-tweet-field"
                             placeholder="What's happening?"
                             value={tweetField}
-                            onChange={e => setTweetField(e.target.value)}
-                        ></input>
+                            onChange={e => setTweetField(e.target.value)}>
+                        </input>
+                    </div>
+                </div>
+                <div className="icon-holder">
+                    <div className="new-tweet-preview-image-container">
                         <div className="preview-image-container">
-                            {submitted ? <img className='preview-img' src={previewUrl}></img> : <label htmlFor="file-upload" className='custome-file-upload'>
-                                <div className="media-icon">{mediaIcon}</div>
-                                <input id="file-upload"
-                                    type='file'
-                                    name='image'
-                                    onChange={updateImage}
-                                    accept='.jpg, .jpeg, .png, .gif'>
-                                </input>
-                            </label>}
+                                <label htmlFor="file-upload" className="custom-file-upload">
+                                    <div className="media-icon">{mediaIcon}</div>
+                                </label>
+                            <input
+                                id="file-upload"
+                                type='file'
+                                name="image"
+                                onChange={updateImage}
+                                accept='.jpg, .jpeg, .png, .gif'></input>
                         </div>
+                    <div className="outter-button-container">
+                        <button style={tweetButtonStyle()}
+                            type='button'
+                            onClick={e => handleSubmit(e)}
+                            className='new-tweet-button'>Tweet</button>
+                        <div className="clear-input-container">
+                            {(tweetField.length > 0) && (submitted === false) || (previewUrl !== '') && (submitted === false) ?
+                                <button onClick={e => clearFields(e)}>Clear</button> : null}
+                        </div>
+                    </div>
+                    </div>
+                    <div className="new-tweet-icon-parent">
                     </div>
                 </div>
                 <div className="new-form-footer">
-                    <div className="outter-button-container">
-                        <button style={tweetButtonStyle()} type='button' onClick={e => handleSubmit(e)} className="new-tweet-button">Tweet</button>
-                        {(tweetField.length > 0) && (submitted === false) || (previewUrl !== '') && (submitted === false) ?
-                            <button
-                                onClick={e => clearFields(e)}
-                                style={{
-                                    background: 'transparent',
-                                    'color': 'white',
-                                    'border': 'transparent'
-                                }}>X
-                            </button>
-                            : null}
-                    </div>
-                    <div>
+                    <div className="preview-img-main-container">
+                    {submitted? <img className="preview-img" src={previewUrl}></img> :null}
                     </div>
                 </div>
             </div>
