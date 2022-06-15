@@ -120,7 +120,14 @@ function OneTweet() {
                                         </div>
                                     </div>
                                 </div>
+                                <div className='tweet-body-text'>
                                 <p style={{ color: 'white' }} >{tweet?.tweet}</p>
+                                </div>
+                                <div className='posted-image'>
+                                <div>
+                                    <img className='tweet-feed-image' src={tweet?.imgUrl} alt='user-posted-item'></img>
+                                </div>
+                                </div>
                                 {/* {authorizedUser.id === tweet?.User?.id ? <>
                                 <button onClick={e => deleteTweet(e, tweet?.id)}
                                 className="delete-tweet-button">Delete Tweet</button>
@@ -144,7 +151,7 @@ function OneTweet() {
                                         ></input>
                                     </div>
                                     <div className="outter-button-container-reply" >
-                                        <button onClick={e => handleSubmit(e)} className="new-tweet-button-one-tweet">Reply</button>
+                                        <button onClick={e => handleSubmit(e)} className="reply-button">Reply</button>
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +172,9 @@ function OneTweet() {
                                                     commentNum={commentNum}
                                                     comment={comment} />
                                                 : null}
+                                                <div className='tweet-body-text'>
                                             <p style={{ color: 'white' }} >{comment?.comment}</p>
+                                            </div>
                                         </div>
                                     )
                                 }) : null}

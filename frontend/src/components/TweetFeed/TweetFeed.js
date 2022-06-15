@@ -11,7 +11,7 @@ import './tweetfeed.css'
 import EditTweetModal from "./EditTweetModal";
 
 
-function TweetFeed() {
+function TweetFeed({posted}) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -108,7 +108,9 @@ function TweetFeed() {
                                             <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
                                             {modalStatus ? <EditTweetModal tweet={tweet?.tweet} /> :
                                                 <p style={{ color: 'white' }} >{tweet?.tweet}</p>}
+                                                <div className="posted-image">
                                             {tweet?.imgUrl ? <img className='tweet-feed-image' src={tweet?.imgUrl} alt='tweet content'></img> : null}
+                                            </div>
                                             {/* {authorizedUser.id === tweet.User.id ? <>
                                             <button onClick={e => deleteTweet(e, tweet.id)}
                                             className="delete-tweet-button">Delete Tweet</button>

@@ -68,6 +68,15 @@ width: 100%;
     padding-left: 2%;
 }
 
+
+.posted-image{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
 .tweet-feed-image{
     height: 250px;
     width: 250px;

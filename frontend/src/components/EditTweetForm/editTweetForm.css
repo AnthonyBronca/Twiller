@@ -3,6 +3,9 @@
     width: 120%;
     word-wrap: break-word;
     font-size: 18px;
+    color: white;
+    background-color: rgb(21,32,43);
+    outline: none;
 }
 
 .submit-edit-button{
@@ -14,4 +17,8 @@
 
 .new-tweet-button-one-tweet{
     color:white;
+}
+
+.edit-form-container{
+    height: 300px;
 }

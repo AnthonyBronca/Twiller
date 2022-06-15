@@ -37,15 +37,13 @@ function EditCommentForm() {
             .then(() => history.push(`/tweets/${tweet.id}`))
     }
 
-    if (authorizedUser.id !== tweet?.userId) {
-        history.push(`/tweets/${tweet.id}`)
-    } else if (!isLoaded){
+    if (!isLoaded){
         return <h1>Loading...</h1>
     }else {
         return (
             <form onSubmit={handleSubmit}>
                 <div className='edit-form-container'>
-                    <label> Edit Tweet Body:
+                    <label> Edit Comment Body:
                         <textarea className='edit-tweet-body-input'
                             placeholder={comment[0]?.comment}
                             value={commentField}
