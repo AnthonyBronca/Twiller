@@ -27,7 +27,7 @@ function SideBar() {
 
 
     const clearIconStatus = (id) => {
-        setHomeStatus(homeIcon);
+        // setHomeStatus(homeIcon);
         setExploreStatus(exploreIcon);
         setNotificationStatus(notificationIcon);
         setMessageStatus(messageIcon);
@@ -71,26 +71,26 @@ function SideBar() {
                                 <span id='home' onClick={(e) => changeIconStatus(e, e.target.id)}>{homeStatus}</span>
                                 <label id='home' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Home</label>
                             </div>
-                            <div id='explore' className="side-bar-icon"
+                            {/* <div id='explore' className="side-bar-icon"
                                 onClick={(e) => changeIconStatus(e, e.target.id)}>
                                 <span id="explore" onClick={(e) => changeIconStatus(e, e.target.id)}>{exploreStatus}</span>
                                 <label id='explore' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Explore</label>
-                            </div >
-                            <div id='notification' className="side-bar-icon"
+                            </div > */}
+                            {/* <div id='notification' className="side-bar-icon"
                                 onClick={(e) => changeIconStatus(e, e.target.id)}>
                                 <span id='notification' onClick={(e) => changeIconStatus(e, e.target.id)}>{notificationStatus}</span>
                                 <label id='notification' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Notifications</label>
-                            </div>
-                            <div id='message' className="side-bar-icon"
+                            </div> */}
+                            {/* <div id='message' className="side-bar-icon"
                                 onClick={(e) => changeIconStatus(e, e.target.id)}>
                                 <span id='message' onClick={(e) => changeIconStatus(e, e.target.id)}>{messageStatus}</span>
                                 <label id='message' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Messages</label>
-                            </div>
-                            <div id='profile' className="side-bar-icon"
+                            </div> */}
+                            {/* <div id='profile' className="side-bar-icon"
                                 onClick={(e) => changeIconStatus(e, e.target.id)}>
                                 <span id='profile' onClick={(e) => changeIconStatus(e, e.target.id)}>{profileStatus}</span>
                                 <label id='profile' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Profile</label>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="user-profile-actions">

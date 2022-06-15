@@ -107,34 +107,40 @@ function NewTweetForm() {
                     <h4 className="form-header">Home</h4>
                     <img className="profile-pic" src={`${user?.profilePic}`}></img>
                 </div>
-                <div className="input-outer-1">
-                    <input
-                        id="new-tweet-field"
-                        placeholder="What's happening?"
-                        value={tweetField}
-                        onChange={e => setTweetField(e.target.value)}
-                    ></input>
+                <div className="new-tweet-input-item-containers">
+                    <div className="input-outer-1">
+                        <input
+                            id="new-tweet-field"
+                            placeholder="What's happening?"
+                            value={tweetField}
+                            onChange={e => setTweetField(e.target.value)}
+                        ></input>
+                        <div className="preview-image-container">
+                            {submitted ? <img className='preview-img' src={previewUrl}></img> : <label htmlFor="file-upload" className='custome-file-upload'>
+                                <div className="media-icon">{mediaIcon}</div>
+                                <input id="file-upload"
+                                    type='file'
+                                    name='image'
+                                    onChange={updateImage}
+                                    accept='.jpg, .jpeg, .png, .gif'>
+                                </input>
+                            </label>}
+                        </div>
+                    </div>
                 </div>
-                {submitted ? <img className='preview-img' src={previewUrl}></img> : <label htmlFor="file-upload" className='custome-file-upload'>
-                    <div className="media-icon">{mediaIcon}</div>
-                    <input id="file-upload"
-                        type='file'
-                        name='image'
-                        onChange={updateImage}
-                        accept='.jpg, .jpeg, .png, .gif'>
-                    </input>
-                </label>}
                 <div className="new-form-footer">
                     <div className="outter-button-container">
                         <button style={tweetButtonStyle()} type='button' onClick={e => handleSubmit(e)} className="new-tweet-button">Tweet</button>
-                        {(tweetField.length > 0) && (submitted === false) || (previewUrl !== '') && (submitted === false)  ?
-                         <button
-                         onClick={e=> clearFields(e)}
-                         style={{background: 'transparent',
-                         'color': 'white',
-                         'border': 'transparent'}}>X
-                         </button>
-                         : null}
+                        {(tweetField.length > 0) && (submitted === false) || (previewUrl !== '') && (submitted === false) ?
+                            <button
+                                onClick={e => clearFields(e)}
+                                style={{
+                                    background: 'transparent',
+                                    'color': 'white',
+                                    'border': 'transparent'
+                                }}>X
+                            </button>
+                            : null}
                     </div>
                     <div>
                     </div>

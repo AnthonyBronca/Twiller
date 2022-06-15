@@ -16,7 +16,7 @@
 }
 
 .form-header{
-    font-size: 30px;
+    font-size: 21px;
     font-weight: bold;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 0%;
@@ -31,8 +31,6 @@
 }
 
 .input-outer-1{
-    display: flex;
-    flex-direction: row;
     position: relative;
     left: 75px;
     width: 60%;
@@ -95,10 +93,15 @@ input#file-upload{
     padding-bottom: 10px;
 }
 
-
+/* */
 .preview-img{
-    position: absolute;
-    left: 50%;
+    /* position: absolute; */
+    /* left: 50%; */
     height: 125px;
     width: 125px;
+}
+
+.new-tweet-input-item-containers{
+    display: flex;
+    flex-direction: column;
 }

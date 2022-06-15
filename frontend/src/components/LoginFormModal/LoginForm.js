@@ -26,7 +26,8 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    return dispatch(sessionActions.login({ credential, password })).then(()=> history.push('/tweets'))
+    .catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) {
