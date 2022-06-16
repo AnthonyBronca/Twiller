@@ -125,7 +125,7 @@ function OneTweet() {
                                 </div>
                                 <div className='posted-image'>
                                 <div>
-                                    <img className='tweet-feed-image' src={tweet?.imgUrl} alt='user-posted-item'></img>
+                                    {tweet?.imgUrl ?<img className='tweet-feed-image' src={tweet?.imgUrl} alt='user-posted-item'></img>: null}
                                 </div>
                                 </div>
                                 {/* {authorizedUser.id === tweet?.User?.id ? <>

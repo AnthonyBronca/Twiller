@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { updateTweetThunk } from '../../store/tweets';
+import { getTweetsThunk, updateTweetThunk } from '../../store/tweets';
 import './editTweetForm.css'
 
 function EditTweetForm() {
@@ -25,7 +25,7 @@ function EditTweetForm() {
         const tweetId = id
         dispatch(updateTweetThunk(tweetId, tweetField))
             .then(() => history.push(`/tweets/${tweetId}`))
-
+            .then(()=> dispatch(getTweetsThunk()))
 
         //     const userId = authorizedUser.id
         //     const form = {

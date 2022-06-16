@@ -32,7 +32,7 @@ function TweetFeed({posted}) {
             .then(() => setIsLoaded(true))
     }, [isLoaded])
 
-    console.log(editModalStatus, "hellllllloooo")
+    // console.log(editModalStatus, "hellllllloooo")
 
     const deleteTweet = (e, tweetId) => {
         e.preventDefault();
@@ -46,13 +46,13 @@ function TweetFeed({posted}) {
         e.stopPropagation();
         setTweetNum(tweetId)
         if (editModalStatus) {
-            console.log('editmodal was closed')
+            // console.log('editmodal was closed')
             setEditModalStatus(false)
         } else {
-            console.log('you opened the edit modal')
+            // console.log('you opened the edit modal')
             setEditModalStatus(true)
         }
-        console.log(editModalStatus)
+        // console.log(editModalStatus)
     }
 
     const modalAction = (e) => {
