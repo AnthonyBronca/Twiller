@@ -12,11 +12,41 @@
     position: relative;
     top: 40px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
 .new-tweet-button-one-tweet{
     color:white;
+    width: 100px;
+}
+
+.button-holder{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.message-holder{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.go-back-holder{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.go-back-button{
+    color:white;
+    width: 100px;
 }
 
 .edit-form-container{

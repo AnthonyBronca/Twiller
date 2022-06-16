@@ -14,32 +14,40 @@ import Elipsis from '../MoreTweetOptions/Elipsis';
 function OneTweet() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const tweet = useSelector((state) => state?.oneTweet?.oneTweet)
-    const comments = useSelector((state => Object.values(state?.comments)))
+    const tweet = useSelector((state) => state?.oneTweet?.oneTweet);
+    const comments = useSelector((state => Object.values(state?.comments)));
     // const comment = useSelector((state) => Object.values(state?.comments))
-    const authorizedUser = useSelector((state) => state?.session?.user)
+    const authorizedUser = useSelector((state) => state?.session?.user);
     const { id } = useParams();
-    console.log(comments, "is this a thing?")
+    console.log(comments, "is this a thing?");
 
 
-    const [isLoaded, setIsLoaded] = useState(false)
-    const [tweetField, setTweetField] = useState('')
-    const [imgUrl, setImgUrl] = useState('')
-    const [editModalStatus, setEditModalStatus] = useState(false)
-    const [commentModalStatus, setCommentModalStatus] = useState(false)
-    const [tweetNum, setTweetNum] = useState(null)
-    const [commentNum, setCommentNum] = useState(null)
-    const [commentsLoaded, setCommentsLoaded] = useState(false)
-    const [commentVerification, setCommentVerifiaction] = useState(false)
-    const [comment, setComment] = useState('')
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [tweetField, setTweetField] = useState('');
+    const [imgUrl, setImgUrl] = useState('');
+    const [editModalStatus, setEditModalStatus] = useState(false);
+    const [commentModalStatus, setCommentModalStatus] = useState(false);
+    const [tweetNum, setTweetNum] = useState(null);
+    const [commentNum, setCommentNum] = useState(null);
+    const [commentsLoaded, setCommentsLoaded] = useState(false);
+    const [commentVerification, setCommentVerifiaction] = useState(false);
+    const [comment, setComment] = useState('');
+    const [errors, setErrors] = useState('');
 
 
     useEffect(() => {
-        dispatch(getTweetThunk(id))
+        dispatch(getTweetThunk(id));
         dispatch(getCommentsThunk(id))
             .then(() => setIsLoaded(true))
-            .then(() => setCommentsLoaded(true))
+            .then(() => setCommentsLoaded(true));
     }, [isLoaded, commentsLoaded])
+
+    useEffect(()=> {
+        let validations = [];
+        if (tweetField.length > 180) validations.push('Reply must not be more than 180 Characters');
+        if (tweetField.length === 0) validations.push('Reply can not be empty');
+        setErrors(validations)
+    }, [tweetField])
 
     const editModalActions = (e, tweetId) => {
         e.preventDefault()
@@ -121,12 +129,12 @@ function OneTweet() {
                                     </div>
                                 </div>
                                 <div className='tweet-body-text'>
-                                <p style={{ color: 'white' }} >{tweet?.tweet}</p>
+                                    <p style={{ color: 'white' }} >{tweet?.tweet}</p>
                                 </div>
                                 <div className='posted-image'>
-                                <div>
-                                    {tweet?.imgUrl ?<img className='tweet-feed-image' src={tweet?.imgUrl} alt='user-posted-item'></img>: null}
-                                </div>
+                                    <div>
+                                        {tweet?.imgUrl ? <img className='tweet-feed-image' src={tweet?.imgUrl} alt='user-posted-item'></img> : null}
+                                    </div>
                                 </div>
                                 {/* {authorizedUser.id === tweet?.User?.id ? <>
                                 <button onClick={e => deleteTweet(e, tweet?.id)}
@@ -138,25 +146,29 @@ function OneTweet() {
                                 <div className='comments-container'>
                                 </div>
                             </div>
-                            <div className="tweet-header">
+                            <div className="submit-comment-main">
                                 <div className='tweet-reply-container'>
-                                    <img className='profile-pic' src={authorizedUser?.profilePic}></img>
-                                    <div className='new-reply-input-field'>
-                                        <input
-                                            id="new-tweet-field"
-                                            placeholder="Tweet your reply"
-                                            value={tweetField}
-                                            onChange={e => setTweetField(e.target.value)}
-                                            style={{ position: 'relative', 'left': '4px', 'top': '10px', paddingLeft: '8px', fontSize: '24px' }}
-                                        ></input>
+                                    <div className='image-bubble'>
+                                        <img className='profile-pic' src={authorizedUser?.profilePic}></img>
+                                        <div className='new-reply-input-field'>
+                                            <input
+                                                id="new-tweet-field"
+                                                placeholder="Tweet your reply"
+                                                value={tweetField}
+                                                onChange={e => setTweetField(e.target.value)}
+                                                style={{ position: 'relative', 'left': '4px', 'top': '10px', paddingLeft: '8px', fontSize: '24px' }}
+                                            ></input>
+                                        </div>
                                     </div>
                                     <div className="outter-button-container-reply" >
-                                        <span>{tweetField.length === 0? null: <span style={tweetField.length >= 181? {'color': 'red'}: {'color': 'white'}}>Characters left: {180-tweetField.length}</span>}</span>
+                                        <span className='char-counter-reply'>{tweetField.length === 0 ? null
+                                        : <span style={tweetField.length >= 181 ? { 'color': 'red' } : { 'color': 'white' }}
+                                        >Characters left: {180 - tweetField.length}</span>}</span>
                                         <button
-                                        style={tweetField.length >= 181? {'backgroundColor': 'red'}: null}
-                                        disabled={tweetField.length >= 181}
-                                        onClick={e => handleSubmit(e)}
-                                        className="reply-button">Reply</button>
+                                            style={tweetField.length >= 181 || tweetField.length === 0? { 'backgroundColor': 'red' } : null}
+                                            disabled={tweetField.length >= 181 || tweetField.length === 0}
+                                            onClick={e => handleSubmit(e)}
+                                            className="reply-button">Reply</button>
                                     </div>
                                 </div>
                             </div>
@@ -177,8 +189,8 @@ function OneTweet() {
                                                     commentNum={commentNum}
                                                     comment={comment} />
                                                 : null}
-                                                <div className='tweet-body-text'>
-                                            <p style={{ color: 'white' }} >{comment?.comment}</p>
+                                            <div className='tweet-body-text'>
+                                                <p style={{ color: 'white' }} >{comment?.comment}</p>
                                             </div>
                                         </div>
                                     )
