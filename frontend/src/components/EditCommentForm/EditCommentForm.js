@@ -21,12 +21,28 @@ function EditCommentForm() {
 
 
     const [commentField, setCommentField] = useState('')
-    const [isLoaded, setIsLoaded] = useState(false)
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [errors, setErrors] = useState([]);
+    const [maxLength, setMaxLength] = useState([])
 
     useEffect(()=> {
         dispatch(getCommentsThunk(id))
         .then(()=> setIsLoaded(true))
     }, [isLoaded])
+
+
+    useEffect(()=> {
+        let validations = [];
+        let customMessage = [];
+        if (commentField.length > 180) validations.push('Reply can not be longer than 180 Characters');
+        setErrors(validations)
+        if (commentField.length === 180) customMessage.push('You have reached the 180 character limit');
+        setMaxLength(customMessage)
+    }, [commentField])
+
+    function sendEmBack(e){
+        history.push(`/tweets/${tweet.id}`)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -47,10 +63,19 @@ function EditCommentForm() {
                         <textarea className='edit-tweet-body-input'
                             placeholder={comment[0]?.comment}
                             value={commentField}
+                            maxLength={180}
                             onChange={e => setCommentField(e.target.value)}></textarea>
                     </label>
                     <div className='submit-edit-button'>
-                        <button type='button' onClick={e=> handleSubmit(e)}className='new-tweet-button-one-tweet'>Submit Edit</button>
+                    <div className='button-holder'>
+                        <button className='new-tweet-button-one-tweet'>Submit Edit</button>
+                        </div>
+                        <div className='go-back-holder'>
+                            <button className='new-tweet-button-one-tweet' onClick={e=> sendEmBack(e)}>Go Back</button>
+                        </div>
+                        <div className='message-holder'>
+                        {maxLength? maxLength.map(msg => <li>{msg}</li>): errors? errors.map(error => <li>{error}</li>): null}
+                        </div>
                     </div>
                 </div>
             </form>
