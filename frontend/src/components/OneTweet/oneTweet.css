@@ -53,8 +53,27 @@
     padding-left: 5px;
 }
 
+.submit-comment-main{
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 .tweet-reply-container{
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.char-counter-reply{
+    padding-right: 15px;
+}
+
+.image-bubble{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 15px;
 }
 
 .individual-comment-container{
@@ -69,9 +88,9 @@
     margin-right: 10px;
     display: flex;
     align-content: center;
-    justify-content: center;
-    position: relative;
-    left: 150px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
 }
 .new-tweet-button-one-tweet{
     display: flex;
@@ -83,7 +102,7 @@
     font-size: 16px;
 }
 
-@media (max-width: 1160px) {
+/* @media (max-width: 1160px) {
     .outter-button-container-reply{
         left: 0;
     }
@@ -93,7 +112,7 @@
     .outter-button-container-reply{
         visibility: hidden;
     }
-}
+} */
 
 .reply-button{
     width: 100px;
