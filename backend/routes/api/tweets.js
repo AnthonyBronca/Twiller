@@ -58,10 +58,10 @@ router.get('/user/:id', (async(req,res)=> {
 //aws test post a new tweet image
 router.post('/new', singleMulterUpload('image'),asyncHandler(async(req,res)=> {
     const {userId, tweet} = req.body
-    console.log('1')
-    console.log(req)
+    // console.log('1')
+    // console.log(req)
     if(req.file){
-        console.log('2')
+        // console.log('2')
         const imgUrl = await singlePublicFileUpload(req.file); //converts data from form
         const newT = await Tweet.create({
             userId,
@@ -73,7 +73,7 @@ router.post('/new', singleMulterUpload('image'),asyncHandler(async(req,res)=> {
         })
         return res.json(newTweet)
     }else {
-        console.log('3')
+        // console.log('3')
         const newT = await Tweet.create({
             userId,
             tweet,
@@ -122,7 +122,7 @@ router.put('/:id/edit', (async(req,res)=>{
     //     await originalTweet.save();
     // }
     const newTweet = await Tweet.findByPk(id)
-    return res.json(updatedTweet)
+    return res.json(newTweet)
     // return res.send(';)')
 }))
 

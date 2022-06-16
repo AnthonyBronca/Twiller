@@ -127,8 +127,9 @@ const tweetReducer = (state = initialState, action) => {
             newState[`${newTweetId}`] = action.payload
             return newState
         case UPDATE_TWEET:
-            newState = { ...state };
+            newState = JSON.parse(JSON.stringify(state));
             const updatedTweetId = action.payload.id;
+            console.log(updatedTweetId, 'helllllo who are you?')
             newState[`${updatedTweetId}`] = action.payload
             return newState
         case DELETE_TWEET:

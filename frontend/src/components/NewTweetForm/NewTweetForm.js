@@ -18,13 +18,22 @@ function NewTweetForm() {
     const [showModal, setShowModal] = useState(false);
     const [submitted, setSubmitted] = useState(false)
 
+//           1  && 0 false   ||  0 && 1 false
+// if prev is NOT blank (something there) AND tweet is empty OR prev is blank AND tweet is NOT empty
+
+    useEffect(()=>{
+        const validations = [];
+        if(tweetField.length > 280) validations.push('Tweet length must not exceed 280 characters')
+        if((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an img')
+        setErrors(validations)
+        console.log(errors)
+    }, [tweetField, previewUrl,  image])
+
     function handleSubmit(e) {
-        let validations = [];
-        if (tweetField.length <= 0 && image === null) validations.push('No tweet has been entered')
-        if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
-        setErrors(validations);
-
-
+        // let validations = [];
+        // if (tweetField.length <= 0 && image === null) validations.push('No tweet has been entered')
+        // if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
+        // setErrors(validations);
         if (!errors.length) {
             console.log('am i here?')
             e.preventDefault();
@@ -138,6 +147,7 @@ function NewTweetForm() {
                     <div className="outter-button-container">
                         <button style={tweetButtonStyle()}
                             type='button'
+                            // disabled={errors.length > 0? true:false}
                             onClick={e => handleSubmit(e)}
                             className='new-tweet-button'>Tweet</button>
                         <div className="clear-input-container">
