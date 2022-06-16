@@ -29,6 +29,10 @@
     width: 100%;
 }
 
+.errors{
+    width: 100px;
+}
+
 .login-button{
     width: 100%;
     background-color: rgb(26, 93, 141);

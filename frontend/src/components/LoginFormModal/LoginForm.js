@@ -26,15 +26,15 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).then(()=> history.push('/tweets'))
-    .catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors)
+    return dispatch(sessionActions.login({ credential, password })).then(() => history.push('/tweets'))
+      .catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            setErrors(data.errors)
+          }
         }
-      }
-    );
+      );
   };
 
   return (
@@ -42,11 +42,13 @@ function LoginForm() {
       <div className="login-form-container">
         <form onSubmit={handleSubmit}>
           <div className="sign-in-form-fields">
-            <ul>
-              {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-              ))}
-            </ul>
+            <div className="errors">
+              <ul>
+                {errors.map((error, idx) => (
+                  <li key={idx}>{error}</li>
+                ))}
+              </ul>
+            </div>
             <label className="username-label">
               Username or Email
               <div className="input-container-login">
@@ -76,13 +78,13 @@ function LoginForm() {
             </div>
             <div className="login-button-div">
               <button type='submit'
-              className='login-button'
-              onClick={demoLogin}>Demo Login</button>
+                className='login-button'
+                onClick={demoLogin}>Demo Login</button>
             </div>
             <div className="login-button-div">
               <button type='button'
-              className='login-button'
-              onClick={sendToSplash}>Go Back</button>
+                className='login-button'
+                onClick={sendToSplash}>Go Back</button>
             </div>
           </div>
         </form>

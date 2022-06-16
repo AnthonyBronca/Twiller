@@ -14,9 +14,9 @@
     margin-left: 50px;
 }
 
-#signup-button{
+/* #signup-button{
     margin-left: 50px;
-}
+} */
 
 .signup-items{
     display: flex;
@@ -25,8 +25,36 @@
     padding: 5px;
 }
 
+.signup-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    position: relative;
+    left: 3%;
+}
 .input-box-signup{
     display: flex;
     justify-content: space-between;
     align-content: space-between;
+}
+
+.signup-body{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-body{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.list-items{
+    word-wrap: break-word;
 }

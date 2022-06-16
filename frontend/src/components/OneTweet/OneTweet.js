@@ -151,7 +151,12 @@ function OneTweet() {
                                         ></input>
                                     </div>
                                     <div className="outter-button-container-reply" >
-                                        <button onClick={e => handleSubmit(e)} className="reply-button">Reply</button>
+                                        <span>{tweetField.length === 0? null: <span style={tweetField.length >= 181? {'color': 'red'}: {'color': 'white'}}>Characters left: {180-tweetField.length}</span>}</span>
+                                        <button
+                                        style={tweetField.length >= 181? {'backgroundColor': 'red'}: null}
+                                        disabled={tweetField.length >= 181}
+                                        onClick={e => handleSubmit(e)}
+                                        className="reply-button">Reply</button>
                                     </div>
                                 </div>
                             </div>
