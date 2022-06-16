@@ -49,10 +49,17 @@ width: 100%;
     transition-duration: .3s;
 }
 
+.dot-parent{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
 .dot-container{
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
+    width: 25px;
 }
 
 .tweet-action-icon-row{

@@ -11,7 +11,7 @@ import './tweetfeed.css'
 import EditTweetModal from "./EditTweetModal";
 import NotSignedIn from "../NotSignedIn/NotSignedIn";
 
-function TweetFeed({posted}) {
+function TweetFeed({ posted }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -70,12 +70,9 @@ function TweetFeed({posted}) {
         e.stopPropagation();
         if (editModalStatus) {
             return;
-        } else {
-
         }
         history.push(`/tweets/${tweetId}`)
     }
-
 
 
 
@@ -92,13 +89,17 @@ function TweetFeed({posted}) {
                         <div className="feed-container">
                             {tweets ? tweets.map((tweet) => {
                                 return (
-                                    <div key={tweet?.id}>
+                                    <div onClick={e => sendToTweetPage(e, tweet.id)} key={tweet?.id}>
                                         <div
                                             onClick={e => sendToTweetPage(e, tweet.id)}
                                             className="tweet-header">
                                             {authorizedUser?.id === tweet?.User?.id ?
-                                                <div onClick={(e) => editModalActions(e, tweet?.id)}
-                                                    className="dot-container">{dotDotDotIcon}</div> : null}
+                                                <div className="dot-parent">
+                                                    <div onClick={(e) => editModalActions(e, tweet?.id)}
+                                                        className="dot-container">{dotDotDotIcon}</div>
+                                                </div>
+                                                : null}
+
                                             {editModalStatus && tweetNum === tweet?.id ?
                                                 <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweet?.id} />
                                                 : null}
@@ -108,8 +109,8 @@ function TweetFeed({posted}) {
                                             <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
                                             {modalStatus ? <EditTweetModal tweet={tweet?.tweet} /> :
                                                 <p style={{ color: 'white' }} >{tweet?.tweet}</p>}
-                                                <div className="posted-image">
-                                            {tweet?.imgUrl ? <img className='tweet-feed-image' src={tweet?.imgUrl} alt='tweet content'></img> : null}
+                                            <div className="posted-image">
+                                                {tweet?.imgUrl ? <img className='tweet-feed-image' src={tweet?.imgUrl} alt='tweet content'></img> : null}
                                             </div>
                                             {/* {authorizedUser.id === tweet.User.id ? <>
                                             <button onClick={e => deleteTweet(e, tweet.id)}

@@ -32,6 +32,7 @@ function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum
             dispatch(deleteTweetThunk(tweetId))
             .then(()=> history.push('/tweets'))
         }
+        setEditModalStatus(false)
     }
 
     const editTweet = (e, tweetNum) => {

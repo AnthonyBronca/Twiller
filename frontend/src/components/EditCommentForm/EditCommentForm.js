@@ -34,6 +34,7 @@ function EditCommentForm() {
     useEffect(()=> {
         let validations = [];
         let customMessage = [];
+        if (commentField.length === 0) validations.push('A Reply can not be blank.')
         if (commentField.length > 180) validations.push('Reply can not be longer than 180 Characters');
         setErrors(validations)
         if (commentField.length === 180) customMessage.push('You have reached the 180 character limit');
