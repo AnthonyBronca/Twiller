@@ -10,6 +10,7 @@ import './oneTweet.css'
 import Checkmark from '../Checkmark/Checkmark';
 import { dotDotDotIcon } from './onetweeticons';
 import Elipsis from '../MoreTweetOptions/Elipsis';
+import NotSignedIn from '../NotSignedIn/NotSignedIn';
 
 function OneTweet() {
     const dispatch = useDispatch();
@@ -103,6 +104,8 @@ function OneTweet() {
 
     if (!isLoaded) {
         return <h1>Woah... loading</h1>
+    } else if (!authorizedUser){
+        return <NotSignedIn />
     } else {
         return (
             <>

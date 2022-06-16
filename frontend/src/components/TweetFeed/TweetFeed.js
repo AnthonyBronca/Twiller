@@ -9,7 +9,7 @@ import NewTweetForm from "../NewTweetForm/NewTweetForm";
 import { commentIcon, dotDotDotIcon } from "../OneTweet/onetweeticons";
 import './tweetfeed.css'
 import EditTweetModal from "./EditTweetModal";
-
+import NotSignedIn from "../NotSignedIn/NotSignedIn";
 
 function TweetFeed({posted}) {
 
@@ -82,7 +82,7 @@ function TweetFeed({posted}) {
     if (!isLoaded) {
         return <h1>Loading...</h1>
     } else if (!authorizedUser) {
-        return <h1>Please sign in to view the feed</h1>
+        return <NotSignedIn />
     } else {
         return (authorizedUser &&
             <>
