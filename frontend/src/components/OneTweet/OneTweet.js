@@ -158,7 +158,7 @@ function OneTweet() {
                                         <div className='new-reply-input-field'>
                                             <input
                                                 id="new-tweet-field"
-                                                placeholder="Tweet your reply"
+                                                placeholder='Tweet your reply'
                                                 value={tweetField}
                                                 onChange={e => setTweetField(e.target.value)}
                                                 style={{ position: 'relative', 'left': '4px', 'top': '10px', paddingLeft: '8px', fontSize: '24px' }}
@@ -175,6 +175,9 @@ function OneTweet() {
                                             onClick={e => handleSubmit(e)}
                                             className="reply-button">Reply</button>
                                     </div>
+                                </div>
+                                <div className='no-tweet-reply-container'>
+                                    {tweetField.length === 0? <span> * Please Enter a Reply to enable reply button *</span>: null}
                                 </div>
                             </div>
                             <div className='comment-section-one-tweet'>

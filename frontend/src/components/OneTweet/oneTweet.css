@@ -126,3 +126,10 @@
 .tweet-body-text{
     overflow-wrap: break-word;
 }
+
+.no-tweet-reply-container{
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+}
