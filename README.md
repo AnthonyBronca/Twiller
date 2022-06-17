@@ -51,7 +51,7 @@ Check out [Twiller](https://twiller.herokuapp.com/)
 
   ```npx dotenv sequelize db:create```
 
-   ```npx dotenv sequelize db:reset
+   ```npm run db:reset
    ```
    db:reset will create, migrate, and seed your database using scripts.
 
