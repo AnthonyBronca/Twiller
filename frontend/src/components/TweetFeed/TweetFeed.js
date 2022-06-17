@@ -94,7 +94,7 @@ function TweetFeed({ posted }) {
                                             onClick={e => sendToTweetPage(e, tweet.id)}
                                             className="tweet-header">
                                             {authorizedUser?.id === tweet?.User?.id ?
-                                                <div className="dot-parent">
+                                                <div className="          ">
                                                     <div onClick={(e) => editModalActions(e, tweet?.id)}
                                                         className="dot-container">{dotDotDotIcon}</div>
                                                 </div>
@@ -108,22 +108,17 @@ function TweetFeed({ posted }) {
                                             <span >{tweet?.User?.id === 2 ? <Checkmark /> : null}</span>
                                             <span style={{ color: 'rgb(139,152,165)' }}>{`@${tweet?.User?.username}`}</span>
                                             {modalStatus ? <EditTweetModal tweet={tweet?.tweet} /> :
-                                                <p style={{ color: 'white' }} >{tweet?.tweet}</p>}
+                                               <p className='tweet-p-tag' style={{ color: 'white' }} >{tweet?.tweet}</p>}
                                             <div className="posted-image">
                                                 {tweet?.imgUrl ? <img className='tweet-feed-image' src={tweet?.imgUrl} alt='tweet content'></img> : null}
                                             </div>
-                                            {/* {authorizedUser.id === tweet.User.id ? <>
-                                            <button onClick={e => deleteTweet(e, tweet.id)}
-                                            className="delete-tweet-button">Delete Tweet</button>
-                                            <button onClick={e => modalAction(e)}>Edit Tweet</button>
-                                        </> : null} */}
                                             <div className="tweet-action-icon-row">
                                                 <div className='comment-icon' onClick={e => sendToTweetPage(e, tweet.id)}>{commentIcon}</div>
                                                 {tweet?.Comments ? <div className="tweetCount">{tweet?.Comments?.length > 0 ? tweet?.Comments?.length : null}</div> : <div className="tweetCount"></div>}
                                             </div>
                                         </div>
                                     </div>
-                                )
+                                    )
                             }) : <h1>Loading...</h1>}
                         </div>
                     </div>

@@ -98,3 +98,9 @@ width: 100%;
 .user-handle-info{
     padding-left: 10px
 }
+
+.tweet-p-tag{
+    width: 300px;
+    word-wrap: break-word;
+    table-layout: fixed;
+}
