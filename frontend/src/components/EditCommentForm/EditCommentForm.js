@@ -20,7 +20,7 @@ function EditCommentForm() {
     console.log(comment, 'is this comments?')
 
 
-    const [commentField, setCommentField] = useState('')
+    const [commentField, setCommentField] = useState(comment[0]?.comment)
     const [isLoaded, setIsLoaded] = useState(false);
     const [errors, setErrors] = useState([]);
     const [maxLength, setMaxLength] = useState([])
@@ -48,6 +48,13 @@ function EditCommentForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
+        const validations = [];
+
+        if(commentField.length === 0 ){
+            validations.push('You can not submit a blank reply.')
+            setErrors(validations);
+            return;
+        }
         console.log(commentField)
         const commentId = id
         dispatch(updateCommentThunk(commentId, commentField))
@@ -76,6 +83,7 @@ function EditCommentForm() {
                         </div>
                         <div className='message-holder'>
                         {maxLength? maxLength.map(msg => <li>{msg}</li>): errors? errors.map(error => <li>{error}</li>): null}
+                        {errors? errors.map(error => <li>{error}</li>):null}
                         </div>
                     </div>
                 </div>

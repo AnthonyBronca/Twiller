@@ -20,7 +20,6 @@ function EditTweetForm() {
     const [errors, setErrors] = useState([])
     const [maxLength, setMaxLength] = useState([])
 
-
     useEffect(()=> {
         let validations = [];
         let customMessage = [];
@@ -34,6 +33,13 @@ function EditTweetForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
+        const validations = [];
+
+        if(tweetField.length === 0 ){
+            validations.push('You can not submit a blank reply.')
+            setErrors(validations);
+            return;
+        }
         console.log(tweetField)
         const tweetId = id
         dispatch(updateTweetThunk(tweetId, tweetField))
@@ -76,6 +82,7 @@ function EditTweetForm() {
                         </div>
                         <div className='message-holder'>
                         {maxLength? maxLength.map(msg => <li>{msg}</li>): errors? errors.map(error => <li>{error}</li>): null}
+                        {errors? errors.map(error => <li>{error}</li>):null}
                         </div>
                     </div>
                 </div>
