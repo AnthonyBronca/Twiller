@@ -177,7 +177,7 @@ function OneTweet() {
                                     </div>
                                 </div>
                                 <div className='no-tweet-reply-container'>
-                                    {tweetField.length === 0? <span> * Please Enter a Reply to enable reply button *</span>: null}
+                                    {tweetField.length === 0 ? <span> * Please Enter a Reply to enable reply button *</span> : null}
                                 </div>
                             </div>
                             <div className='comment-section-one-tweet'>
@@ -188,8 +188,10 @@ function OneTweet() {
                                             {comment?.User?.id === 2 ? <Checkmark /> : null}
                                             <span style={{ color: 'rgb(139,152,165)' }}>{`@${comment?.User?.username}`}</span>
                                             {authorizedUser?.id === comment?.userId ?
-                                                <div onClick={(e) => commentModalActions(e, comment?.id, comment?.comment)}
-                                                    className="dot-container">{dotDotDotIcon}</div> : null}
+                                                <div className='dots-container'>
+                                                    <div onClick={(e) => commentModalActions(e, comment?.id, comment?.comment)}
+                                                        className="dot-container">{dotDotDotIcon}</div>
+                                                </div> : null}
                                             {commentModalStatus && commentNum === comment?.id ?
                                                 <Elipsis setEditModalStatus={commentModalStatus}
                                                     tweetNum={comment?.id}
