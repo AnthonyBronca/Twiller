@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import './LoginForm.css'
+import { useEffect } from 'react/cjs/react.production.min';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -15,6 +16,8 @@ function LoginFormPage() {
   if (sessionUser) return (
     <Redirect to="/tweets" />
   );
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

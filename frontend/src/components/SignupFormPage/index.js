@@ -15,12 +15,13 @@ function SignupFormPage() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    // useEffect(()=>{
-    //     const validations = [];
-    //     if (username.length <= 3 || username.length > 20) validations.push('Username must be between 4 - 20 characters')
-    //     if (fullname.length === 0 || fullname.length > 50) validations.push('Fullname must be between 1 - 50 characters')
-    //     setErrors(validations)
-    // }, [username, fullname])
+    useEffect(()=>{
+        const validations = [];
+        if (username.length <= 3 || username.length > 20) validations.push('Username must be between 4 - 20 characters')
+        if (fullname.length === 0 || fullname.length > 50) validations.push('Fullname must be between 1 - 50 characters')
+        if (password !== confirmPassword) validations.push('passwords must match!')
+        setErrors(validations)
+    }, [username, fullname, password, confirmPassword, email])
 
 
 
