@@ -16,7 +16,7 @@ function EditTweetForm() {
 
 
 
-    const [tweetField, setTweetField] = useState('')
+    const [tweetField, setTweetField] = useState(tweet?.tweet)
     const [errors, setErrors] = useState([])
     const [maxLength, setMaxLength] = useState([])
 
