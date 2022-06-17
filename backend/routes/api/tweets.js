@@ -4,6 +4,10 @@ const {User, Tweet, Comment} = require('../../db/models')
 const {dateParser} = require('../../helpers/datecalculator')
 const asyncHandler = require('express-async-handler')
 const {singlePublicFileUpload, singleMulterUpload} = require('../../awsS3')
+
+
+
+
 //get all tweets
 router.get('/', (async(req,res)=>{
     const tweets = await Tweet.findAll({

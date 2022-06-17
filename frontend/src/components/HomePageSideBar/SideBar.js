@@ -7,10 +7,11 @@ import {
     exploreIcon, exploreIconFilledIn,
     notificationIcon, notificationIconFilledIn,
     messageIcon, messageIconFilledIn,
-    profileIcon, profileIconFilledIn
+    profileIcon, profileIconFilledIn,
 } from './sidebaricons';
 import './sidebar.css'
 import Navigation from "../Navigation";
+
 
 function SideBar() {
     const dispatch = useDispatch();
@@ -70,6 +71,14 @@ function SideBar() {
                                 onClick={(e) => changeIconStatus(e, e.target.id)}>
                                 <span id='home' onClick={(e) => changeIconStatus(e, e.target.id)}>{homeStatus}</span>
                                 <label id='home' onClick={(e) => changeIconStatus(e, e.target.id)} className="side-bar-label">Home</label>
+                            </div>
+                            <div id='js' className="side-bar-icon">
+                                <a className="link-to-github" href="https://github.com/AnthonyBronca/Twiller"
+                                style={{'textDecoration': 'none', 'color': 'white', 'cursor': 'pointer'}}>Anthony's GitHub</a>
+                            </div>
+                            <div id='js' className="side-bar-icon">
+                                <a className="link-to-Linked" href="https://www.linkedin.com/in/anthonybronca/"
+                                style={{'textDecoration': 'none', 'color': 'white', 'cursor': 'pointer'}}>Anthony's Linkedin</a>
                             </div>
                             {/* <div id='explore' className="side-bar-icon"
                                 onClick={(e) => changeIconStatus(e, e.target.id)}>

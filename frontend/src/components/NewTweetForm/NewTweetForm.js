@@ -17,25 +17,28 @@ function NewTweetForm() {
     const [previewUrl, setPreviewUrl] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [submitted, setSubmitted] = useState(false)
-
     //           1  && 0 false   ||  0 && 1 false
     // if prev is NOT blank (something there) AND tweet is empty OR prev is blank AND tweet is NOT empty
 
     useEffect(() => {
         const validations = [];
+        setErrors([])
+        if(tweetField.split('')[0] == ' ') validations.push('Tweet can not start with a space')
         if (tweetField.length > 280) validations.push('Tweet length must not exceed 280 characters')
         if ((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an img')
         setErrors(validations)
         console.log(errors)
-    }, [tweetField, previewUrl, image, errors])
+    }, [tweetField, previewUrl, image,])
 
     function handleSubmit(e) {
-        let validations = [];
+        const validations = [];
+        console.log(tweetField.trim(), 'whats this')
+        if (tweetField) validations.push('no empty space allows')
         if (tweetField.length <= 0 && image === null) validations.push('No tweet has been entered')
-        // if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
+        if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
+        if (tweetField === '') validations.push("Tweet can't be empty")
         setErrors(validations);
         if (!errors.length) {
-            console.log('am i here?')
             e.preventDefault();
             const userId = user.id;
             const tweet = tweetField
@@ -136,7 +139,7 @@ function NewTweetForm() {
                         <span className='char-counter-reply'>{tweetField.length === 0 ? null
                             : <span style={tweetField.length >= 280 ? { 'color': 'red' } : { 'color': 'white' }}
                             >Characters left: {280 - tweetField.length}</span>}</span>
-                        {errors.length > 0 ? errors.map(error => <li>{error}</li>): null}
+                        {errors.length > 0 ? errors.map((error, idx) => <li key={idx}>{error}</li>): null}
                     </div>
                 </div>
                 <div className="new-tweet-body">
