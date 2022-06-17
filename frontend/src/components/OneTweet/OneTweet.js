@@ -43,7 +43,7 @@ function OneTweet() {
             .then(() => setCommentsLoaded(true));
     }, [isLoaded, commentsLoaded])
 
-    useEffect(()=> {
+    useEffect(() => {
         let validations = [];
         if (tweetField.length > 180) validations.push('Reply must not be more than 180 Characters');
         if (tweetField.length === 0) validations.push('Reply can not be empty');
@@ -104,7 +104,7 @@ function OneTweet() {
 
     if (!isLoaded) {
         return <h1>Woah... loading</h1>
-    } else if (!authorizedUser){
+    } else if (!authorizedUser) {
         return <NotSignedIn />
     } else {
         return (
@@ -115,8 +115,10 @@ function OneTweet() {
                             <div className="tweet-header">
                                 <div onClick={e => history.push('/tweets')} className='go-back-header'>{backArrowIcon}<span className='back-to-tweet'>Tweet</span></div>
                                 {authorizedUser?.id === tweet?.User?.id ?
-                                    <div onClick={(e) => editModalActions(e, tweet?.id)}
-                                        className="dot-container">{dotDotDotIcon}</div> : null}
+                                    <div className='dots-container'>
+                                        <div onClick={(e) => editModalActions(e, tweet?.id)}
+                                            className="dot-container">{dotDotDotIcon}</div>
+                                    </div> : null}
                                 {editModalStatus && tweetNum === tweet?.id ?
                                     <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweetNum} />
                                     : null}
@@ -165,10 +167,10 @@ function OneTweet() {
                                     </div>
                                     <div className="outter-button-container-reply" >
                                         <span className='char-counter-reply'>{tweetField.length === 0 ? null
-                                        : <span style={tweetField.length >= 181 ? { 'color': 'red' } : { 'color': 'white' }}
-                                        >Characters left: {180 - tweetField.length}</span>}</span>
+                                            : <span style={tweetField.length >= 181 ? { 'color': 'red' } : { 'color': 'white' }}
+                                            >Characters left: {180 - tweetField.length}</span>}</span>
                                         <button
-                                            style={tweetField.length >= 181 || tweetField.length === 0? { 'backgroundColor': 'red' } : null}
+                                            style={tweetField.length >= 181 || tweetField.length === 0 ? { 'backgroundColor': 'red' } : null}
                                             disabled={tweetField.length >= 181 || tweetField.length === 0}
                                             onClick={e => handleSubmit(e)}
                                             className="reply-button">Reply</button>
