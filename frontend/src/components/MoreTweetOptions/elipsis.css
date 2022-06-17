@@ -41,6 +41,12 @@
     padding-left: 10px;
 }
 
+.edit-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 .delete-button-container{
     display: flex;
     flex-direction: row;
@@ -58,6 +64,13 @@
     justify-content: flex-start;
     padding: 15%;
     cursor: pointer;
+}
+
+.edit-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 350px;
 }
 
 .delete-wrapper{

@@ -112,7 +112,7 @@ function OneTweet() {
                 <div className='one-tweet-page-container'>
                     <div className='center-container-one-post'>
                         <div className='feed-container-one-post'>
-                            <div className="tweet-header">
+                            <div className="tweet-header-one-tweet">
                                 <div onClick={e => history.push('/tweets')} className='go-back-header'>{backArrowIcon}<span className='back-to-tweet'>Tweet</span></div>
                                 {authorizedUser?.id === tweet?.User?.id ?
                                     <div className='dots-container'>
@@ -197,7 +197,8 @@ function OneTweet() {
                                                     tweetNum={comment?.id}
                                                     commentVerification={commentVerification}
                                                     commentNum={commentNum}
-                                                    comment={comment} />
+                                                    comment={comment}
+                                                    editModalStatus={setEditModalStatus}/>
                                                 : null}
                                             <div className='tweet-body-text'>
                                                 <p style={{ color: 'white' }} >{comment?.comment}</p>

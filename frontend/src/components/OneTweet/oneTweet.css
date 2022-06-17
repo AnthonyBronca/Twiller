@@ -10,6 +10,11 @@
     height: 100%;
 }
 
+.tweet-header-one-tweet{
+    border: 1px solid rgb(56,68,77);
+    padding: 10px;
+}
+
 .center-container-one-post{
     position: relative;
     left: 0%;

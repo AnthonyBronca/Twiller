@@ -102,7 +102,7 @@ function TweetFeed({ posted }) {
 
                                             {editModalStatus && tweetNum === tweet?.id ?
                                                 <Elipsis setEditModalStatus={setEditModalStatus} tweetNum={tweet?.id} />
-                                                : null}
+                                               : null}
                                             <span><img className="profile-pic" src={tweet?.User?.profilePic}></img></span>
                                             <span className='user-handle-info' style={{ color: 'white' }}>{tweet?.User?.fullname}</span>
                                             <span >{tweet?.User?.id === 2 ? <Checkmark /> : null}</span>

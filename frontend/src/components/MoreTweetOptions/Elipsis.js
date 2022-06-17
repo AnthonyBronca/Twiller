@@ -8,12 +8,12 @@ import { useHistory } from 'react-router-dom';
 
 
 
-function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum, comment}) {
+function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum, comment, editModalStatus}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
 
-    const [editMode, setEditMode] = useState(false)
+    const [editMode, setEditMode] = useState(true)
 
     console.log(tweetNum, "what is thsi tweetnum thing")
     console.log(setEditModalStatus, "what is thsi modalstats thing")
@@ -55,16 +55,25 @@ function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum
         history.push(`/comments/${commentId}/edit`)
     }
 
+    function closeButton(e){
+        console.log('hello')
+        setEditMode(false)
+        setEditModalStatus(false)
+    }
+
     return (
         <>
+        {editMode?
             <div className='elispis-modal-container'>
                 <div className='elipsis-modal-inner'>
                     <div className='edit-button-container'>
                         {commentVerification ?
                         <button className='edit-button-elipsis' type='button'
                         onClick={e=> editComment(e, commentNum)}>
+                            <div className='edit-wrapper'>
                             <div>{editIcon}</div>
                             <div className='edit-word'>Edit Comment</div>
+                            </div>
                         </button>
                         :<button className='edit-button-elipsis' type='button'
                         onClick={e=> editTweet(e, tweetNum)}>
@@ -87,13 +96,13 @@ function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum
                     <div className='close-button-container'>
                         <button className='close-button-elipsis'
                             type='button'
-                            onClick={e => setEditModalStatus(false)}>
+                            onClick={e => closeButton(e)}>
                             <div>{upwardIcon}</div>
                             <div className='close-word'>Close</div>
                         </button>
                     </div>
                 </div>
-            </div>
+            </div>: null}
         </>
     )
 }
