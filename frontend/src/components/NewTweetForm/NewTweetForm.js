@@ -119,9 +119,9 @@ function NewTweetForm() {
         console.log(e.target.files)
         setImgUrl(null);
         setTweetField('');
-        setPreviewUrl('')
+        setPreviewUrl('');
+        setSubmitted(false)
     }
-
 
     if (!user) {
         return <h1>Please sign in to post a tweet</h1>
