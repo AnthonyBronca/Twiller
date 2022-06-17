@@ -18,16 +18,16 @@ function NewTweetForm() {
     const [showModal, setShowModal] = useState(false);
     const [submitted, setSubmitted] = useState(false)
 
-//           1  && 0 false   ||  0 && 1 false
-// if prev is NOT blank (something there) AND tweet is empty OR prev is blank AND tweet is NOT empty
+    //           1  && 0 false   ||  0 && 1 false
+    // if prev is NOT blank (something there) AND tweet is empty OR prev is blank AND tweet is NOT empty
 
-    useEffect(()=>{
+    useEffect(() => {
         const validations = [];
-        if(tweetField.length > 280) validations.push('Tweet length must not exceed 280 characters')
-        if((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an img')
+        if (tweetField.length > 280) validations.push('Tweet length must not exceed 280 characters')
+        if ((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an img')
         setErrors(validations)
         console.log(errors)
-    }, [tweetField, previewUrl,  image])
+    }, [tweetField, previewUrl, image])
 
     function handleSubmit(e) {
         // let validations = [];
@@ -61,7 +61,7 @@ function NewTweetForm() {
 
 
     const tweetButtonStyle = () => {
-        if (tweetField.length > 0 || image !== null) {
+        if (tweetField.length > 0 && tweetField.length <= 280 || image !== null) {
             return {
                 'backgroundColor': 'rgb(29, 155, 240)',
                 'color': 'white',
@@ -73,7 +73,19 @@ function NewTweetForm() {
                 'borderRadius': '12%',
                 'fontFamily': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
             }
-        } else {
+        } else if (tweetField.length>280){
+            return {
+            'backgroundColor': 'red',
+            'color': 'white',
+            'fontWeight': 700,
+            'fontSize': '15px',
+            'textAlign': 'center',
+            'position': 'sticky',
+            'marginBottom': '20%',
+            'borderradius': '12%',
+            'fontFamily': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+            }
+        }else {
             return {
                 'backgroundColor': 'rgb(26, 93, 141)',
                 'color': 'light-grey',
@@ -120,6 +132,11 @@ function NewTweetForm() {
                     <div className="header">
                         <h4 className="form-header">Home</h4>
                     </div>
+                    <div className="errors-container-and-counter">
+                        <span className='char-counter-reply'>{tweetField.length === 0 ? null
+                            : <span style={tweetField.length >= 280 ? { 'color': 'red' } : { 'color': 'white' }}
+                            >Characters left: {280 - tweetField.length}</span>}</span>
+                    </div>
                 </div>
                 <div className="new-tweet-body">
                     <img className="profile-pic" src={`${user?.profilePic}`}></img>
@@ -134,9 +151,9 @@ function NewTweetForm() {
                 <div className="icon-holder">
                     <div className="new-tweet-preview-image-container">
                         <div className="preview-image-container">
-                                <label htmlFor="file-upload" className="custom-file-upload">
-                                    <div className="media-icon">{mediaIcon}</div>
-                                </label>
+                            <label htmlFor="file-upload" className="custom-file-upload">
+                                <div className="media-icon">{mediaIcon}</div>
+                            </label>
                             <input
                                 id="file-upload"
                                 type='file'
@@ -144,24 +161,22 @@ function NewTweetForm() {
                                 onChange={updateImage}
                                 accept='.jpg, .jpeg, .png, .gif'></input>
                         </div>
-                    <div className="outter-button-container">
-                        <button style={tweetButtonStyle()}
-                            type='button'
-                            // disabled={errors.length > 0? true:false}
-                            onClick={e => handleSubmit(e)}
-                            className='new-tweet-button'>Tweet</button>
-                        <div className="clear-input-container">
-                            {(tweetField.length > 0) && (submitted === false) || (previewUrl) ?
-                                <button className='clear-button' onClick={e => clearFields(e)}>Clear</button> : null}
+                        <div className="outter-button-container">
+                            <button style={tweetButtonStyle()}
+                                type='button'
+                                // disabled={errors.length > 0? true:false}
+                                onClick={e => handleSubmit(e)}
+                                className='new-tweet-button'>Tweet</button>
+                            <div className="clear-input-container">
+                                {(tweetField.length > 0) && (submitted === false) || (previewUrl) ?
+                                    <button className='clear-button' onClick={e => clearFields(e)}>Clear</button> : null}
+                            </div>
                         </div>
-                    </div>
-                    </div>
-                    <div className="new-tweet-icon-parent">
                     </div>
                 </div>
                 <div className="new-form-footer">
                     <div className="preview-img-main-container">
-                    {previewUrl? <img className="preview-img" src={previewUrl}></img> :null}
+                        {previewUrl ? <img className="preview-img" src={previewUrl}></img> : null}
                     </div>
                 </div>
             </div>
