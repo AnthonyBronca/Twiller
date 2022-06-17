@@ -94,7 +94,7 @@ function TweetFeed({ posted }) {
                                             onClick={e => sendToTweetPage(e, tweet.id)}
                                             className="tweet-header">
                                             {authorizedUser?.id === tweet?.User?.id ?
-                                                <div className="          ">
+                                                <div className="dots-container">
                                                     <div onClick={(e) => editModalActions(e, tweet?.id)}
                                                         className="dot-container">{dotDotDotIcon}</div>
                                                 </div>

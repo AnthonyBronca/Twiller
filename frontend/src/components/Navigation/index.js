@@ -56,11 +56,11 @@ function Navigation({ isLoaded }) {
               <div style={{ 'position': 'relative', 'top': '120px', 'right': '100px' }} className='elispis-modal-container'>
                 <div className='elipsis-modal-inner'>
                   <div className='edit-button-container'>
-                    <button className='edit-button-elipsis' type='button'
+                    {/* <button className='edit-button-elipsis' type='button'
                       onClick={e => sendToProfile(e)}
                     >
                       <div className='edit-word'>Profile</div>
-                    </button>
+                    </button> */}
                   </div>
                   <div className='delete-button-container'>
                     <button className='delete-button-elipsis' type='button'

@@ -104,3 +104,9 @@ width: 100%;
     word-wrap: break-word;
     table-layout: fixed;
 }
+
+.dots-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
