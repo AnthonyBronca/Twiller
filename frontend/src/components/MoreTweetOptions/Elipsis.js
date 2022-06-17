@@ -78,8 +78,10 @@ function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum
                             <div className='delete-word'>Delete Comment</div>
                         </button>
                         :<button className='delete-button-elipsis' onClick={e => deleteTweet(e, tweetNum)} type='button'>
+                            <div className='delete-wrapper'>
                             <div>{trashCanIcon}</div>
                             <div className='delete-word'>Delete Tweet</div>
+                            </div>
                         </button>}
                     </div>
                     <div className='close-button-container'>

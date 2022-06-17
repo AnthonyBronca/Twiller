@@ -38,7 +38,7 @@
 
 .edit-word{
     font-size: 15px;
-    padding-left: 15%;
+    padding-left: 10px;
 }
 
 .delete-button-elipsis{
@@ -54,6 +54,13 @@
     cursor: pointer;
 }
 
+.delete-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 350px;
+}
+
 .delete-button-elipsis:hover{
     background-color: rgba(70,70,70,1);
     transition-duration: .2s;
@@ -61,7 +68,7 @@
 
 .delete-word{
     font-size: 15px;
-    padding-left: 15%;
+    padding-left: 10px;
 }
 
 .close-button-elipsis{
@@ -85,6 +92,6 @@
 
 .close-word{
     font-size: 15px;
-    padding-left: 15%;
+    padding-left: 10px;
     z-index: 1000;
 }
