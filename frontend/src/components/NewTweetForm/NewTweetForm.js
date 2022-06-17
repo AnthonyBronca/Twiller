@@ -27,13 +27,13 @@ function NewTweetForm() {
         if ((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an img')
         setErrors(validations)
         console.log(errors)
-    }, [tweetField, previewUrl, image])
+    }, [tweetField, previewUrl, image, errors])
 
     function handleSubmit(e) {
-        // let validations = [];
-        // if (tweetField.length <= 0 && image === null) validations.push('No tweet has been entered')
+        let validations = [];
+        if (tweetField.length <= 0 && image === null) validations.push('No tweet has been entered')
         // if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
-        // setErrors(validations);
+        setErrors(validations);
         if (!errors.length) {
             console.log('am i here?')
             e.preventDefault();
@@ -136,6 +136,7 @@ function NewTweetForm() {
                         <span className='char-counter-reply'>{tweetField.length === 0 ? null
                             : <span style={tweetField.length >= 280 ? { 'color': 'red' } : { 'color': 'white' }}
                             >Characters left: {280 - tweetField.length}</span>}</span>
+                        {errors.length > 0 ? errors.map(error => <li>{error}</li>): null}
                     </div>
                 </div>
                 <div className="new-tweet-body">
