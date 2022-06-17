@@ -56,7 +56,6 @@ function SideBar() {
     if (!userId) {
         return null
     } else {
-
         return (
             <>
                 <div className="side-bar-container">
