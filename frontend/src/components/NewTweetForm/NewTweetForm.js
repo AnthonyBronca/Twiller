@@ -23,17 +23,18 @@ function NewTweetForm() {
     useEffect(() => {
         const validations = [];
         setErrors([])
-        if(tweetField.split('')[0] == ' ') validations.push('Tweet can not start with a space')
+        if (tweetField.split('')[0] == ' ') validations.push('Tweet can not start with a space')
         if (tweetField.length > 280) validations.push('Tweet length must not exceed 280 characters')
-        if ((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an img')
+        if ((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an image')
         setErrors(validations)
         console.log(errors)
     }, [tweetField, previewUrl, image,])
 
     function handleSubmit(e) {
         const validations = [];
-        console.log(tweetField.trim(), 'whats this')
-        if (tweetField) validations.push('no empty space allows')
+        if (!tweetField.replace(/\s/g, '').length) {
+            validations.push('Tweet can not be empty')
+        }
         if (tweetField.length <= 0 && image === null) validations.push('No tweet has been entered')
         if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
         if (tweetField === '') validations.push("Tweet can't be empty")
@@ -76,19 +77,19 @@ function NewTweetForm() {
                 'borderRadius': '12%',
                 'fontFamily': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
             }
-        } else if (tweetField.length>280){
+        } else if (tweetField.length > 280) {
             return {
-            'backgroundColor': 'red',
-            'color': 'white',
-            'fontWeight': 700,
-            'fontSize': '15px',
-            'textAlign': 'center',
-            'position': 'sticky',
-            'marginBottom': '20%',
-            'borderradius': '12%',
-            'fontFamily': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                'backgroundColor': 'red',
+                'color': 'white',
+                'fontWeight': 700,
+                'fontSize': '15px',
+                'textAlign': 'center',
+                'position': 'sticky',
+                'marginBottom': '20%',
+                'borderradius': '12%',
+                'fontFamily': "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
             }
-        }else {
+        } else {
             return {
                 'backgroundColor': 'rgb(26, 93, 141)',
                 'color': 'light-grey',
@@ -139,7 +140,7 @@ function NewTweetForm() {
                         <span className='char-counter-reply'>{tweetField.length === 0 ? null
                             : <span style={tweetField.length >= 280 ? { 'color': 'red' } : { 'color': 'white' }}
                             >Characters left: {280 - tweetField.length}</span>}</span>
-                        {errors.length > 0 ? errors.map((error, idx) => <li key={idx}>{error}</li>): null}
+                        {errors.length > 0 ? errors.map((error, idx) => <li style={{'color': 'red'}}key={idx}>{error}</li>) : null}
                     </div>
                 </div>
                 <div className="new-tweet-body">
