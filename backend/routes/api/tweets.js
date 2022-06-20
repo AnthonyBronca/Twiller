@@ -33,7 +33,7 @@ router.get('/:id/comments', (async(req,res)=> {
     const comments = await Comment.findAll({
         where: {tweetId:id}, include: [User]
     })
-    console.log('am i here??')
+    // console.log('am i here??')
     return res.json(comments)
 
 }))
@@ -111,7 +111,7 @@ router.post('/new', singleMulterUpload('image'),asyncHandler(async(req,res)=> {
 router.put('/:id/edit', (async(req,res)=>{
     // const id = req.params.id
     const {id, updatedTweet} = req.body
-    console.log(req.body, "this is req.body")
+    // console.log(req.body, "this is req.body")
     // console.log(id, tweet, 'this is req.body from PUT')
     const originalTweet = await Tweet.findByPk(id)
     const oldTweet = originalTweet.tweet
@@ -133,7 +133,7 @@ router.put('/:id/edit', (async(req,res)=>{
 //deletes an existing tweet
 router.delete('/:id', (async(req,res)=> {
     const id = req.params.id;
-    console.log(id, "this is id")
+    // console.log(id, "this is id")
     const tweet = await Tweet.findByPk(id)
     await tweet.destroy();
     return res.json(tweet)
@@ -142,10 +142,10 @@ router.delete('/:id', (async(req,res)=> {
 //adds a new comment to a specified tweet
 router.post('/:id/comment/new', (async(req,res)=>{
     // const id = req.params.id;
-    console.log('hellllo???')
+    // console.log('hellllo???')
     const {tweetId, userId, reply} = req.body
     const comment = reply
-    console.log(tweetId,userId,reply, "tweetId??");
+    // console.log(tweetId,userId,reply, "tweetId??");
     const newComment = await Comment.create({
         tweetId,
         userId,

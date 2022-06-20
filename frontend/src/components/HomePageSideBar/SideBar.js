@@ -38,7 +38,7 @@ function SideBar() {
     const changeIconStatus = (e, iconId) => {
         e.stopPropagation();
         clearIconStatus(iconId);
-        console.log(iconId)
+        // console.log(iconId)
         if (iconId === 'home') {
             setHomeStatus(homeFilledIn)
             history.push('/tweets')

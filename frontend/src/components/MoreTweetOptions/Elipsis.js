@@ -15,14 +15,14 @@ function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum
 
     const [editMode, setEditMode] = useState(true)
 
-    console.log(tweetNum, "what is thsi tweetnum thing")
-    console.log(setEditModalStatus, "what is thsi modalstats thing")
-    console.log(commentVerification, "what is thsi commentVerification thing")
-    console.log(commentNum, "what is thsi commentNum thing")
-    console.log(comment, "what is thsi comment thing")
+    // console.log(tweetNum, "what is thsi tweetnum thing")
+    // console.log(setEditModalStatus, "what is thsi modalstats thing")
+    // console.log(commentVerification, "what is thsi commentVerification thing")
+    // console.log(commentNum, "what is thsi commentNum thing")
+    // console.log(comment, "what is thsi comment thing")
 
     const deleteTweet = (e, tweetId) => {
-        console.log(tweetId, "this is tweetId in delete")
+        // console.log(tweetId, "this is tweetId in delete")
         e.preventDefault();
         e.stopPropagation();
         const currentURL = window.location.href;
@@ -37,26 +37,26 @@ function Elipsis({ setEditModalStatus, tweetNum, commentVerification, commentNum
 
     const editTweet = (e, tweetNum) => {
         e.stopPropagation();
-        console.log(tweetNum, 'this is tweetNum')
+        // console.log(tweetNum, 'this is tweetNum')
         history.push(`/tweets/${tweetNum}/edit`)
     }
 
     const deleteComment = (e, commentId) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log('you clicked a comment!', commentId)
+        // console.log('you clicked a comment!', commentId)
         dispatch(deleteCommentThunk(commentId))
     }
 
     const editComment = (e, commentId) => {
         e.stopPropagation();
-        console.log(commentId, 'hioooo')
-        console.log('am i getting here??')
+        // console.log(commentId, 'hioooo')
+        // console.log('am i getting here??')
         history.push(`/comments/${commentId}/edit`)
     }
 
     function closeButton(e){
-        console.log('hello')
+        // console.log('hello')
         setEditMode(false)
         setEditModalStatus(false)
     }

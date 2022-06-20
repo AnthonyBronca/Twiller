@@ -46,7 +46,7 @@ export const updateTweetThunk = (id, updatedTweet) => async (dispatch) => {
         body: JSON.stringify({id, updatedTweet})
     }
 
-    console.log(options, 'this is options')
+    // console.log(options, 'this is options')
 
     const response = await csrfFetch(`/api/tweets/${id}/edit`, options)
     const tweet = await response.json()
@@ -68,10 +68,10 @@ export const addTweetThunk = (formValues) => async (dispatch) => {
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('tweet', tweet);
-    console.log(formData, "what is this")
-    console.log('is image present?')
+    // console.log(formData, "what is this")
+    // console.log('is image present?')
     if (image) {
-        console.log('did i get to this location???')
+        // console.log('did i get to this location???')
         formData.append('image', image);
 
         const options = {
@@ -79,11 +79,11 @@ export const addTweetThunk = (formValues) => async (dispatch) => {
             headers: { 'Content-Type': 'multipart/form-data' },
             body: formData
         }
-        console.log(options, "this is options")
+        // console.log(options, "this is options")
         const response = await csrfFetch('/api/tweets/new', options)
-        console.log(response, 'this is response, 2')
+        // console.log(response, 'this is response, 2')
         const newTweet = await response.json()
-        console.log(newTweet, "this is newTweet 2")
+        // console.log(newTweet, "this is newTweet 2")
         dispatch(addTweet(newTweet))
         return response
     } else {
@@ -94,9 +94,9 @@ export const addTweetThunk = (formValues) => async (dispatch) => {
         };
 
         const response = await csrfFetch('/api/tweets/new', options)
-        console.log(response, 'this is response, 2')
+        // console.log(response, 'this is response, 2')
         const newTweet = await response.json()
-        console.log(newTweet, "this is newTweet 2")
+        // console.log(newTweet, "this is newTweet 2")
         dispatch(addTweet(newTweet))
         return response
     }
@@ -129,7 +129,7 @@ const tweetReducer = (state = initialState, action) => {
         case UPDATE_TWEET:
             newState = JSON.parse(JSON.stringify(state));
             const updatedTweetId = action.payload.id;
-            console.log(updatedTweetId, 'helllllo who are you?')
+            // console.log(updatedTweetId, 'helllllo who are you?')
             newState[`${updatedTweetId}`] = action.payload
             return newState
         case DELETE_TWEET:

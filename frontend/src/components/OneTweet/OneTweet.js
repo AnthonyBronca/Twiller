@@ -20,7 +20,7 @@ function OneTweet() {
     // const comment = useSelector((state) => Object.values(state?.comments))
     const authorizedUser = useSelector((state) => state?.session?.user);
     const { id } = useParams();
-    console.log(comments, "is this a thing?");
+    // console.log(comments, "is this a thing?");
 
 
     const [isLoaded, setIsLoaded] = useState(false);
@@ -59,7 +59,7 @@ function OneTweet() {
         } else {
             setEditModalStatus(true)
         }
-        console.log(editModalStatus)
+        // console.log(editModalStatus)
     }
 
     const commentModalActions = (e, commentId, comment) => {
@@ -68,9 +68,9 @@ function OneTweet() {
         setCommentNum(commentId);
         setCommentVerifiaction(true)
         setComment(comment)
-        console.log(comment)
-        console.log(commentVerification)
-        console.log('lol idk anymore')
+        // console.log(comment)
+        // console.log(commentVerification)
+        // console.log('lol idk anymore')
 
         if (commentModalStatus) {
             setCommentModalStatus(false)
@@ -78,7 +78,7 @@ function OneTweet() {
             setCommentModalStatus(true)
         }
 
-        console.log(commentId, 'yoooo what sup')
+        // console.log(commentId, 'yoooo what sup')
     }
 
     function handleSubmit(e) {

@@ -78,9 +78,9 @@ module.exports = (sequelize, DataTypes) => {
 
   User.login = async function ({ credential, password }) {
     const { Op } = require('sequelize');
-    console.log('Am i getting here?')
-    console.log(credential, "this is cred")
-    console.log(password, "this is password")
+    // console.log('Am i getting here?')
+    // console.log(credential, "this is cred")
+    // console.log(password, "this is password")
     const user = await User.scope('loginUser').findOne({
       where: {
         [Op.or]: {
@@ -89,7 +89,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     });
-    console.log(user, "this is user")
+    // console.log(user, "this is user")
     if (user && user.validatePassword(password) || user && password === 'twiller') {
       return await User.scope('currentUser').findByPk(user.id);
     }

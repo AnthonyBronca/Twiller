@@ -24,12 +24,12 @@ export const addCommentThunk = (tweetId, formValues) => async (dispatch)=> {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formValues)
     }
-    console.log('am i here?')
-    console.log(options)
+    // console.log('am i here?')
+    // console.log(options)
     const response = await csrfFetch(`/api/tweets/${tweetId}/comment/new`, options)
-    console.log(response, 'response ********************************3838383883838')
+    // console.log(response, 'response ********************************3838383883838')
     const comment = await response.json();
-    console.log(comment, "^^^^^^^^^^^^^^^^^^^^^^^^^*******")
+    // console.log(comment, "^^^^^^^^^^^^^^^^^^^^^^^^^*******")
     //check state between user and usertable and comments userId.
     dispatch(addComment(comment))
     return response;
@@ -59,8 +59,8 @@ const commentReducer = (state = initialState, action) => {
         case ADD_COMMENT:
             //newState = JSON.parse(JSON.stringify(state));
             newState = {...state};
-            console.log(action.payload, 'yoo')
-            console.log(newState, "this is newState")
+            // console.log(action.payload, 'yoo')
+            // console.log(newState, "this is newState")
             const newCommentId = action.payload.id;
             newState[newCommentId] = action.payload
             return newState
