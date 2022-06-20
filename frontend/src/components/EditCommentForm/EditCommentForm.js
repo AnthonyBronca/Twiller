@@ -11,13 +11,13 @@ function EditCommentForm() {
     const history = useHistory();
     const { id } = useParams();
 
-    console.log(id, "is this id?")
+    // console.log(id, "is this id?")
     const comments = useSelector((state) => state?.oneTweet?.oneTweet?.Comments)
     const authorizedUser = useSelector((state) => state?.session?.user)
     const tweet = useSelector((state)=> state?.oneTweet?.oneTweet)
 
     const comment = {...comments.filter(comment => comment.id == id? comment: null)}
-    console.log(comment, 'is this comments?')
+    // console.log(comment, 'is this comments?')
 
 
     const [commentField, setCommentField] = useState(comment[0]?.comment)
@@ -55,7 +55,7 @@ function EditCommentForm() {
             setErrors(validations);
             return;
         }
-        console.log(commentField)
+        // console.log(commentField)
         const commentId = id
         dispatch(updateCommentThunk(commentId, commentField))
             .then(() => history.push(`/tweets/${tweet.id}`))

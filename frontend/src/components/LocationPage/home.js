@@ -11,7 +11,7 @@ function Home(){
     const [html, setHtml] = useState('hello')
     const [isLoaded, setIsLoaded] = useState(false)
 
-    console.log(locations, "this is locations") //an array of all locations
+    // console.log(locations, "this is locations") //an array of all locations
     //async
     useEffect(()=> {
         dispatch(getLocations()) //sends request to backend (may send data from front end if needed)

@@ -27,25 +27,25 @@ function NewTweetForm() {
         if (tweetField.length > 280) validations.push('Tweet length must not exceed 280 characters')
         if ((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an image')
         setErrors(validations)
-        console.log(errors)
+        // console.log(errors)
     }, [tweetField, previewUrl, image,])
 
     function handleSubmit(e) {
         const validations = [];
-        // if (!tweetField.replace(/\s/g, '').length) {
+        // if (!tweetField.replace(/\s/g, '').length && image === null) {
         //     validations.push('Tweet can not be empty')
         // }
         if (tweetField.split('')[0] == ' ') validations.push('Tweet can not start with a space')
-        if (tweetField.length <= 0 && image === null) validations.push('No tweet has been entered')
+        if (tweetField.length <= 0 && image === null) validations.push('No Tweet or Image has been entered')
         if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
-        // if (tweetField === '') validations.push("Tweet can't be empty")
+        if (tweetField === '' && image === null) validations.push("You must enter either a text or an image.")
         setErrors(validations);
         if (!errors.length) {
             e.preventDefault();
             const userId = user.id;
             const tweet = tweetField
             const formValues = { userId, tweet, image }
-            console.log(formValues, "this is form values")
+            // console.log(formValues, "this is form values")
             dispatch(addTweetThunk(formValues))
                 .then(() => {
                     setTweetField('');
@@ -121,7 +121,7 @@ function NewTweetForm() {
     const clearFields = e => {
         e.preventDefault();
         e.stopPropagation();
-        console.log(e.target.files)
+        // console.log(e.target.files)
         setImgUrl(null);
         setTweetField('');
         setPreviewUrl('');

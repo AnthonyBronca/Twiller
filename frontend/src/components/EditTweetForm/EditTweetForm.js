@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { getTweetsThunk, updateTweetThunk } from '../../store/tweets';
 import './editTweetForm.css'
 
@@ -9,7 +9,7 @@ function EditTweetForm() {
     const history = useHistory();
     const { id } = useParams();
 
-    console.log(id, "is this id?")
+    // console.log(id, "is this id?")
     const tweets = useSelector((state) => state?.tweets)
     const tweet = tweets[id]
     const authorizedUser = useSelector((state) => state?.session?.user)
@@ -40,7 +40,7 @@ function EditTweetForm() {
             setErrors(validations);
             return;
         }
-        console.log(tweetField)
+        // console.log(tweetField)
         const tweetId = id
         dispatch(updateTweetThunk(tweetId, tweetField))
             .then(() => history.push(`/tweets/${tweetId}`))
@@ -56,12 +56,19 @@ function EditTweetForm() {
         // }
     }
 
+
     function sendEmBack(e) {
         history.push(`/tweets/${id}`)
     }
 
-    // if (authorizedUser.id !== tweet?.userId) {
-    //     history.push(`/tweets/${id}`)
+    // if (authorizedUser?.id !== tweet?.userId) {
+    //     return (
+    //         <div>
+    //             <h1>Uh-oh! It doesn't look like you authorized to be here!</h1>
+    //             <span>Please log in to the correct account, or make sure the URL you entered is correct
+    //                 Please click <NavLink style={{ 'color': 'orange', 'cursor': 'pointer' }} to='/tweets'>HERE</NavLink> to go back.</span>
+    //         </div>
+    //     )
     // } else {
     return (
         <form onSubmit={handleSubmit}>

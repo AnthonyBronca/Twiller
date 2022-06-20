@@ -5,9 +5,9 @@ function dateParser(date){
     let year = newDateArr[0]
     let month = newDateArr[1]
     let day = newDateArr[2].slice(2)
-    console.log(year, "year")
-    console.log(month, "month")
-    console.log(day, "day")
+    // console.log(year, "year")
+    // console.log(month, "month")
+    // console.log(day, "day")
     return {"createdAt": [year, month, day]}
 }
 

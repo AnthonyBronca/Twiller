@@ -26,9 +26,9 @@ router.put('/:id/edit', (async(req, res)=> {
 //deletes a comment and returns the deleted comment
 router.delete('/:id/delete', (async(req,res)=> {
     const id = req.params.id;
-    console.log(id, 'this is id')
+    // console.log(id, 'this is id')
     const comment = await Comment.findByPk(id)
-    console.log(comment, 'this is comment')
+    // console.log(comment, 'this is comment')
     // const updatedComment = await Comment.findByPk(id, {include: [Tweet]})
     // console.log(updatedComment, "idk what this is")
     await comment.destroy();
