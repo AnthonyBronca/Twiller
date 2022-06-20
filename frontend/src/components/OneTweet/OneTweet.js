@@ -111,7 +111,7 @@ function OneTweet() {
         )
     }
     else if (!isLoaded) {
-        return <h1>Woah... loading</h1>
+        return <h1>Loading...</h1>
     } else if (!authorizedUser) {
         return <NotSignedIn />
     } else {
