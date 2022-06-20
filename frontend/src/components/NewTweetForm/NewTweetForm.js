@@ -32,12 +32,13 @@ function NewTweetForm() {
 
     function handleSubmit(e) {
         const validations = [];
-        if (!tweetField.replace(/\s/g, '').length) {
-            validations.push('Tweet can not be empty')
-        }
+        // if (!tweetField.replace(/\s/g, '').length) {
+        //     validations.push('Tweet can not be empty')
+        // }
+        if (tweetField.split('')[0] == ' ') validations.push('Tweet can not start with a space')
         if (tweetField.length <= 0 && image === null) validations.push('No tweet has been entered')
         if (tweetField.length > 280) validations.push('Your tweet must be less than 280 characters.')
-        if (tweetField === '') validations.push("Tweet can't be empty")
+        // if (tweetField === '') validations.push("Tweet can't be empty")
         setErrors(validations);
         if (!errors.length) {
             e.preventDefault();
