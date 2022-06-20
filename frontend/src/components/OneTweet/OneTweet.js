@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { addCommentThunk, getCommentsThunk } from '../../store/comments';
 import { getTweetThunk } from '../../store/oneTweet';
 import { deleteTweetThunk } from '../../store/tweets'
@@ -101,8 +101,16 @@ function OneTweet() {
     //     history.push('/')
     // }
 
-
-    if (!isLoaded) {
+    if (!tweet) {
+        return (
+            <div>
+                <h1>Uh-oh there doesn't seem to be anything here!</h1>
+                <span>The item you were looking for may have been deleted...
+                    Please click <NavLink style={{'color':'orange', 'cursor': 'pointer'}}to='/tweets'>HERE</NavLink> to go back.</span>
+            </div>
+        )
+    }
+    else if (!isLoaded) {
         return <h1>Woah... loading</h1>
     } else if (!authorizedUser) {
         return <NotSignedIn />
@@ -198,7 +206,7 @@ function OneTweet() {
                                                     commentVerification={commentVerification}
                                                     commentNum={commentNum}
                                                     comment={comment}
-                                                    editModalStatus={setEditModalStatus}/>
+                                                    editModalStatus={setEditModalStatus} />
                                                 : null}
                                             <div className='tweet-body-text'>
                                                 <p style={{ color: 'white' }} >{comment?.comment}</p>
