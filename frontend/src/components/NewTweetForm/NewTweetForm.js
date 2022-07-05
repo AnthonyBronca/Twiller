@@ -20,15 +20,15 @@ function NewTweetForm() {
     //           1  && 0 false   ||  0 && 1 false
     // if prev is NOT blank (something there) AND tweet is empty OR prev is blank AND tweet is NOT empty
 
-    useEffect(() => {
-        const validations = [];
-        setErrors([])
-        if (tweetField.split('')[0] == ' ') validations.push('Tweet can not start with a space')
-        if (tweetField.length > 280) validations.push('Tweet length must not exceed 280 characters')
-        if ((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an image')
-        setErrors(validations)
-        // console.log(errors)
-    }, [tweetField, previewUrl, image,])
+    // useEffect(() => {
+    //     const validations = [];
+    //     setErrors([])
+    //     if (tweetField.split('')[0] == ' ') validations.push('Tweet can not start with a space')
+    //     if (tweetField.length > 280) validations.push('Tweet length must not exceed 280 characters')
+    //     if ((previewUrl === '' && tweetField === '')) validations.push('You must add either a tweet or an image')
+    //     setErrors(validations)
+    //     // console.log(errors)
+    // }, [tweetField, previewUrl, image,])
 
     function handleSubmit(e) {
         const validations = [];
